@@ -1,0 +1,32 @@
+
+   <div class="jumbotron jumbotron-fluid">
+     <div class="panel panel-transparent">
+       <div class="panel-heading">
+          <h2>CHECK-UP SESSION</h2>
+       </div>
+       <div class="panel-body">
+          <div>
+              <h4><i>Please ENTER the ID NUMBER of a Child</i></h4>
+                   
+                  <%= form_tag "check", :method => :get do %>
+                    <%= text_field_tag :search, params[:search], style: 'color:grey', placeholder: ' ID number here' %> 
+                    <%= submit_tag "Search", style: 'color:grey' %>
+                  <% end -%>
+                
+          </div>
+          <hr>
+
+          <div class="row">
+              <div class="col-xs-6">
+                  <h5>Total children  registered by Day</h5>
+                  <%= line_chart Child.group_by_day(:created_at).reverse_order.count %>
+              </div>
+         
+              <div class="col-xs-6">
+                  <h5>Total Visits by Village</h5>
+                  <%= pie_chart Child.group(:village).count %>
+              </div>
+          </div>
+       </div>
+     </div>
+   </div>

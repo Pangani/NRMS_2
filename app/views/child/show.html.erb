@@ -1,0 +1,222 @@
+<!--  SHOW CHILD DETAILS PAGE -->
+
+<div>
+  <!--<aside class="main-sidebar">
+      <section class="sidebar">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/show">
+            <span class="hidden-xs">
+              <!--<img class="user-image" width="100%" alt="User Image" src="https://portal.cc.ac.mw/students/images/noimage.gif">
+            </span>
+          </a>
+          <br>
+
+          <ul class="sidebar-menu">
+              <li class="header">NAVIGATION MENU</li>
+
+              <!-- first link 
+              <li>
+                  <a id="profile" href="#">
+                      <i class="fa fa-graduation-cap"></i>
+                      <span>OTP Ration Card</span>
+                  </a>
+              </li>
+
+              <!-- second link 
+              <li>
+                  <a id="courses" href="https://portal.cc.ac.mw/students/pages/courses/">
+                      <i class="fa fa-book"></i>
+                      <span>Treatment Plan</span>
+                  </a>
+              </li>
+
+              <!-- third link --
+              <li>
+                  <a id="results" href="https://portal.cc.ac.mw/students/pages/results/">
+                      <i class="fa fa-bar-chart"></i>
+                      <span>Child Monitor</span>
+                  </a>
+              </li>
+              
+          </ul>
+      </section>
+  </aside> -->
+<div class="jumbotron"  >
+<dl class="dl-horizontal">
+      <div class="panel panel-primary panel-transparent">
+        <div class="panel-heading">
+          <h2>CHILD RECORD</h2>
+        </div>
+        <style>
+          h3 {
+            text-decoration: underline;
+          }
+
+        </style>
+        <div class="panel-body">
+            <br>     
+            <center>
+              <h4>FULL NAME: <%= @child.full_name%> (<i>ID Number: <%= @child.reg_number%></i>)</h4>
+            </center>
+            <br>
+            <div class="row" >
+              <div class="col-md-6" >
+                <% if @child.done_assessment %>
+                <em>
+                  <div>
+                    <p><strong>Type of Admission </strong> :   <%= @child.admission.admission_type if @child.admission rescue nil%></p>
+                  </div>
+
+                  <div>
+                    <p><strong>Referred By : </strong><%= @child.tests.first.referred_by if @child.tests rescue nil%></p>
+                  </div>
+
+                  <div>
+                    <p><strong>Date of Admission</strong> :   <%= @child.admission.date_of_admission.to_date if @child.admission rescue nil%></p>
+                  </div>
+
+                  <div>
+                    <p><strong>Admission Criteria</strong> : <%= @child.admission.admission_criteria if @child.admission rescue nil%></p>
+                  </div>
+                </em>
+                <% end %>
+                
+              </div>
+            </div>
+            <div class="row">  
+              <h3><i>Bio-data</i></h3>
+                  <div class="col-md-6" >
+                   <em> 
+                    <table>
+                      <div>
+                        <p><strong>Gender </strong> <em> :<%= @child.sex %></em></p>
+                      </div>
+                      
+                      <div>
+                        <p><strong>Age </strong> : <em><%= @child.age_in_months%> months old (approx. <%= @child.age%> yrs)</em></p>
+                      </div>
+
+                      <div>
+                        <p><strong>On Breast Feeding? : </strong><%= @child.tests.first.breastfeeding if @child.tests rescue nil%></p>
+                      </div>
+                      
+                       <div>
+                        <p><strong>HIV Serostatus </strong>  :  <em><%= @child.HIV_serostatus %></em></p>
+                      </div>
+
+                      <div>
+                        <p><strong>On ART? </strong> : <em><%= @child.on_ART ? 'Yes' : 'No' %></em></p>
+                      </div>
+                      
+                       <div>
+                        <p><strong>A Twin child? </strong>  :  <em><%= @child.twin_child %></em></p>
+                      </div>
+                    </table>
+                    </em>  
+                  </div>
+
+                  <div class="col-xs-6">
+                    <em>
+                      <div>
+                        <p><strong>Child's Guardian  </strong> :     <em><%= @child.guardian_name %></em></p>
+                      </div>
+
+                      <div>
+                        <p><strong>Maternal HIV Serostatus </strong> :   <%= @child.maternal_HIV_serostatus %></p>
+                      </div>
+
+                      <div>
+                        <p><strong>Village  </strong>:   <%= @child.village %></p>
+                      </div>
+
+                      <div>
+                        <p><strong>T/A  </strong> :     <%= @child.trad_authority %></p>
+                      </div>
+
+                      <div>
+                        <p><strong>District </strong>  :     <em><%= @child.district %></em></p>
+                      </div>
+                    </em>
+                  </div>
+            <br /><br />
+            <hr>
+            </div>
+
+           <!-- section for the assessment-->
+           <div class="row">
+              <% if @child.done_assessment %>
+                <h3><i>Anthropometric and Medical Assessment</i></h3>
+                <div class="col-xs-6">
+                  <em>
+                    <div>
+                          <p><strong>Admission Weight(kg) </strong>:<%= @child.anthropometry.weight if @child.anthropometry rescue nil%></p>
+                    </div>
+
+                    <div>
+                          <p><strong>Admission Height(cm) </strong>:<%= @child.anthropometry.height if @child.anthropometry rescue nil%></p>
+                    </div>
+
+                    <div>
+                          <p><strong>Admission MUAC(mm) </strong>:<%= @child.anthropometry.MUAC if @child.anthropometry rescue nil%></p>
+                    </div>
+
+                    <div>
+                          <p><strong>Admission Oedema </strong>:<%= @child.anthropometry.oedema if @child.anthropometry rescue nil%></p>
+                    </div>
+
+                    <div>
+                      <p><strong>Admission Z-score </strong>: <%= @child.anthropometry.z_score if @child.anthropometry rescue nil %></p>
+                    </div>
+                  </em>  
+                </div>
+                <div class="col-xs-6">
+                  <em>
+                    <div>
+                          <p><strong>Appetite Test </strong> : <%= @child.tests.first.Appetite_test ? 'Has appetite' : 'No appetite' if @child.tests rescue nil%></p>
+                    </div>
+
+                    <div>
+                          <p><strong>Level of Appetite </strong> : <%= @child.tests.first.yes_appetite if @child.tests rescue nil%></p>
+                    </div>
+
+                    <div>
+                          <p><strong>On Complementary Food? </strong> : <%= @child.tests.first.complementery_food  if @child.tests rescue nil%></p>
+                    </div>
+
+                    <div>
+                          <p><strong>Previous Medical History </strong> : <%= @child.tests.first.prev_medical_history if @child.tests rescue nil%></p>
+                    </div>
+                  </em>  
+                </div>
+              <% end -%>
+            </div> 
+        </div>
+      </div>
+
+       
+  </dl>
+  <div class="row">
+    <div class="col-xs-4 col-offset-8">
+      <% if @child.done_assessment %> 
+        <%= link_to 'View Session Card', url_for(:action => 'index', :child_id =>@child.id ,:controller => 'check_up') , :class => "btn btn-default btn-default" %>
+        <%= link_to 'Treatment Plan', url_for(:child_id =>@child.id ,:controller => 'diagnosis') , :class => "btn btn-default btn-default" %>
+      <% else %>
+        <%= link_to 'Continue Assessment', url_for(:child_id =>@child.id ,:controller => 'Assessment') , :class => "btn btn-default btn-default" %>
+      <% end -%>
+      
+    </div>
+  </div>
+    	
+  <hr/>
+  <div   class="row-center">
+    <%= link_to '<< Back', url_for(:action => 'index',  :id =>@child.id ,:controller => 'child') , :class => "btn btn-primary btn-default" %> |
+      
+  <%= link_to 'Edit', url_for(:action => 'edit', :id =>@child.id ,:controller => 'child') , :class => "btn btn-default btn-default" %>   
+
+
+  </div>
+
+ 
+</div>
+
+</div>
+

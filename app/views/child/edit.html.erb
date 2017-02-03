@@ -1,0 +1,17 @@
+<div class="intro-panel">
+   	<div class="panel panel-primary panel-transparent">
+    <div class="panel-heading">Child Registration</div>
+      	<div class="panel-body">
+ 			<div>
+				 <%= simple_form_for @child, :url => url_for(:action => 'update', :controller => 'child',:id => @child.id),:method => 'post'  do |f| %>
+
+				   	<%= render(:partial => "form", :locals => {:f => f}) %>
+				  <div>
+				  	<%= f.button :submit, 'update ', class: 'btn btn-primary' %>
+				  </div>
+				  	
+  				<% end %>
+  			</div>
+    	</div>
+  	</div>
+</div>

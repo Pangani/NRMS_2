@@ -1,0 +1,114 @@
+<div class="jumbotron">
+	<div class="panel panel-primary panel-transparent">
+		<div class="panel-heading">
+			<h3>OTP SESSION CARD</h3>
+		</div>
+		<div class="panel-body">
+				<center><h4><em>6 MONTHS TO < 12 YEARS</h4></em></center>
+
+				<br>
+
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="panel panel-default panel-transparent" >
+							<p><i><strong>ID Number: </strong> <%= @child.reg_number %></i></p>
+						</div>
+
+						<div class="panel panel-default panel-transparent">
+							<p><i><strong>Full Name: </strong> <%= @child.full_name %></i></p>
+						</div>
+
+						<div class="panel panel-default panel-transparent">
+							<p><strong>Age (<i>months</i>) : </strong> <%= @child.age_in_months %></p>
+						</div>
+
+						<div class="panel panel-default panel-transparent">
+							<p><i><strong>Gender : </strong> <%= @child.sex %></i></p>
+						</div>
+					</div>
+
+					<div class="col-xs-6">
+						<div class="panel panel-default panel-transparent">
+							<p><i><strong>Mother/Caregiver: </strong> <%= @child.guardian_name %></i></p>
+						</div>
+
+						<div class="panel panel-default panel-transparent">
+							<p><i><strong>Admission Criteria: </strong> <%= @child.admission.admission_criteria rescue nil%></i></p>
+						</div>
+
+						<div class="panel panel-default panel-transparent">
+							<p><i><strong>Village: </strong> <%= @child.village %></i></p>
+						</div>
+						
+					</div>
+				</div>
+
+				<br><br>
+				<table class="table table-bordered" >
+					<thead>
+						<tr>
+							<th>Distribution</th>
+							<th>Date</th>
+							<th>Oedema</th>
+							<th>Weight</th>
+							<th>Height</th>
+							<th>WHZ</th>
+							<th>MUAC</th>
+							<th>BMI*(for Age)</th>
+						</tr>
+					</thead>
+							
+					<tbody>
+						<!-- This is recorded during admission.. -->
+						<tr>
+							<td>Admission</td>
+							<td><%= @child.admission.date_of_admission.to_date rescue Time.now.to_date %></td>
+							<td><%= @child.anthropometry.oedema rescue nil %></td>
+							<td><%= @child.anthropometry.weight rescue nil %></td>
+							<td><%= @child.anthropometry.height rescue nil %></td>
+							<td><%= @child.anthropometry.z_score rescue nil %></td>
+							<td><%= @child.anthropometry.MUAC rescue nil %></td>
+							<td><%= @child.anthropometry.BMI rescue "-" %></td>
+						</tr>
+
+						<!-- During weekly session -->
+						<% @child_follows.each do |check| %>
+						<tr>
+							<td><%= check.id rescue nil %></td>
+							<td><%= check.last_update rescue nil %></td>
+							<td><%= check.oedema rescue nil %></td>
+							<td><%= check.weight rescue nil %></td>
+							<td><%= check.height rescue nil %></td>
+							<td><%= check.z_score rescue nil %></td>
+							<td><%= check.MUAC rescue nil %></td>
+							<td><%= check.BMI rescue "-" %></td>
+							
+						</tr>
+						<% end %>
+					</tbody>
+					<i>BMI for Age (to be used for children from 5 years above)</i>
+				</table>
+
+				<div class="col-md-12">
+					<div>
+						<p>Latest comments : <i><%= @child.follow_ups.last remark rescue "Just registered in program..." %></i></p>
+					</div>
+					<div>
+						<p>Last checked by: <i><%= @child.follow_ups.last.last_update rescue @child.admission.date_of_admission.to_date %></i></p>
+					</div>
+
+				</div>
+
+		</div>
+	</div>
+</div>
+
+<style>
+	h4{
+		text-decoration: underline;
+	}
+
+	p{
+		font-size: 2;
+	}
+</style>

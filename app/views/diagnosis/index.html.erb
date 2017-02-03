@@ -1,0 +1,123 @@
+<div class="jumbotron"  >
+<dl class="dl-horizontal">
+      <div class="panel panel-primary panel-transparent">
+        <div class="panel-heading">
+          <h2>TREATMENT PLAN</h2>
+        </div>
+        <style>
+          h3 {
+            text-decoration: underline;
+          }
+
+        </style>
+        <div class="panel-body">
+            <br>     
+            <center>
+              <h4>FULL NAME: <%= @child.full_name %></h4>
+            </center>
+            <br>
+            <div class="row">
+              <div class="col-xs-6">
+                <div>
+                  <p>Stay in programme : <%= ((Time.now.to_date - @child.admission.created_at.to_date).to_i) %> days</p>
+                </div>
+
+                <div>
+                  <p>Age : <%= @child.age_in_months %> months old</p>
+                </div>
+
+              </div>
+
+              <div class="col-xs-6">
+                <div>
+                  <p>Admission Weight: <%= @child.anthropometry.weight  rescue nil %> kgs</p>
+                </div>
+
+                <div>
+                  <p>Current Weight: <%= @child.follow_ups.last.weight rescue @child.anthropometry.weight %> kgs</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row" >
+              <h3><i>Nutritional Treatment</i></h3>
+              <div class="col-md-6" >
+                <em>
+                  <div>
+                    <p>Type of Food : <%= @child.feed_plans.last.type_of_food rescue nil %></p>
+                  </div>
+                  <div>
+                    <p>Food package : <%= @child.feed_plans.last.food_package rescue "sachets" %></p>
+                  </div>
+                  <div>
+                    <p>Amount Offered : <%= @child.feed_plans.last.amount_offered rescue nil %></p>
+                  </div>
+                </em>
+                
+              </div>
+
+              <div class="col-md-6">
+                  graph here!
+              </div>
+            </div>
+            
+            <div class="row" >
+              <h3><i>Medical Treatment</i></h3>
+              <div class="col-md-12" >
+                <em>
+                  <div>
+                    <p>Dosage of Vitamin A : <%= @child.routine_treatment.vitamin_A rescue nil %></p>
+                  </div>
+                  <div>
+                    <p>Dosage of Folic acid : <%= @child.routine_treatment.folic_acid rescue nil %></p>
+                  </div>
+                  <div>
+                    <p>Dosage of Amoxicilin Antibiotic : <%= @child.routine_treatment.amoxicilin_antibiotic rescue nil %></p>
+                  </div>
+                  <div>
+                    <p>Dosage of Albendazole : <%= @child.routine_treatment.albendazole rescue nil %></p>
+                  </div>
+                </em>
+                
+              </div>
+            </div>
+     
+            <br />
+            <hr>
+
+            <div class="row">
+              <em>
+                <h3><i>Medical Tips: </i></h3>
+                
+                  <% if @child.tests.first.breastfeeding = 'Yes' %>
+                      <p>
+                       - Always give <%= @child.first_name %> the breast-milk before given RUTF, for atleast 20-30 minutes
+                      </p>
+                  <% end %>
+                 
+                  <% if @child.tests.first.complementery_food = 'Yes' %>
+                      <p>
+                        - If <%= @child.first_name %> asks for other foods, it should always be given after RUTF
+                      </p>
+                   <% end %>
+              </em>
+            </div>
+           <!-- section for the assessment-->
+          
+        </div>
+              <div class="col-xs-6">
+                <em>
+                  
+                </em>
+              </div>
+            </div> 
+        </div>
+      </div>
+
+       
+  </dl>
+
+ 
+</div>
+

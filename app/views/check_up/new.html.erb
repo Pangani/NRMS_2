@@ -1,0 +1,54 @@
+<div class="jumbotron jumbotron-fluid">
+
+  <div class="panel panel-transparent">
+      <div class="panel-heading"><h3>WEEKLY SURVELLANCE SESSION</h3></div>
+      <div class="panel-body">
+          <center><h4><em>6 MONTHS TO < 12 YEARS</h4></em></center>
+
+          <br>
+
+          <div class="row">
+            <div class="col-xs-6">
+              <em>
+                <div>
+                  <p><strong>Full Name: </strong><%= @child.full_name %></p>
+                </div>
+                <div>
+                  <p><strong>ID Number: </strong><%= @child.reg_number %></p>
+                </div>
+              </em>
+            </div>
+  
+            <div class="col-xs-6">
+              <em>
+                <div>
+                  <p><strong>Age : </strong><%= @child.age_in_months %> months old</p>
+                </div>
+                <div>
+                  <p><strong>Guardian Name: </strong><%= @child.guardian_name %></p>
+                </div>
+               </div>
+              </em>
+            </div>
+          </div>
+          <hr>
+            <i>Please fill in the entries below with required data gathered during check-up...</i>
+          <br />
+          <div class="row">
+            <%= simple_form_for :follow, :url => url_for(:action => 'create', :controller => 'check-up'),
+          :method => 'post'  do |f| %>
+
+              <%= render(:partial => "followup", :locals => {:f => f}) %>
+
+              <div class="col-md-12 col-offset-8">
+                  <%= f.button :submit, 'UPDATE ', class: 'btn btn-primary btn-lg' %>
+              </div>
+      <% end %>
+          </div>
+          
+      </div>
+      <!-- #link_to '<< Back', url_for(:action => 'index', :controller => 'child'), class: 'btn btn-primary btn-medium'%> -->
+  </div>
+
+</div>
+

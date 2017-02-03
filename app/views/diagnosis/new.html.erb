@@ -1,0 +1,53 @@
+<div class="jumbotron jumbotron-fluid">
+
+  <div class="panel panel-primary panel-transparent">
+      <div class="panel-heading">TREATMENT PLAN</div>
+      <div class="panel-body">
+        <div class="row">
+            <center>
+              <h3>FULL NAME: <%= @child.full_name%> (<i>ID Number: <%= @child.reg_number%></i>)</h4>
+            </center>
+            <br>
+            
+              <div class="col-xs-6">
+                <em>
+                <div>
+                  <p>Stay in programme : <%= ((Time.now.to_date - @child.admission.created_at.to_date).to_i) %> days </p>
+                </div>
+
+                <div>
+                  <p>Age : <%= @child.age_in_months %> months old</p>
+                </div>
+
+              </div>
+
+              <div class="col-xs-6">
+                <div>
+                  <p>Admission Weight: <%= @child.anthropometry.weight  rescue nil %> kgs</p>
+                </div>
+
+                <div>
+                  <p>Current Weight: <%= @child.follow_ups.last.weight rescue @child.anthropometry.weight %> kgs</p>
+                </div>
+
+              </div>
+              <em>
+      <div>
+       <%= form_tag(:action => 'create', :controller => 'diagnosis', :method => :post)  do %>
+
+              <%= render(:partial => "form") %>
+
+              <div class="col-md-12 col-offset-8">
+                  <%= submit_tag "CREATE", class: 'btn btn-primary btn-lg' %>
+              </div>
+      <% end %>
+      </div>
+       </div>
+       <div>
+        <%= link_to '<< Back', url_for(:action => 'index', :controller => 'child'), class: 'btn btn-primary btn-medium'%>
+     
+       </div>
+      </div>
+  </div>
+
+</div>

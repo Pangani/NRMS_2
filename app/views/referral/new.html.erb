@@ -1,0 +1,53 @@
+<div class="jumbotron">
+
+  <div class="panel panel-transparent panel-primary">
+      	<div class="panel-heading">
+      		<h3>REFERRAL CARD</h3>
+      	</div>
+      	<!-- panel body (pd) -->
+	      <div class="panel-body">
+	          <div class="row">
+	            <div class="col-xs-6">
+	              <em>
+	                <div>
+	                  <p><strong>Full Name: </strong></p>
+	                </div>
+	                <div>
+	                  <p><strong>ID Number: </strong></p>
+	                </div>
+	              </em>
+	            </div>
+	  
+	            <div class="col-xs-6">
+	              <em>
+	                <div>
+	                  <p><strong>Age : </strong></p>
+	                </div>
+	                <div>
+	                  <p><strong>Facility Name: </strong> Nthumbwe Health Centre </p>
+	                </div>
+	               </div>
+	              </em>
+	            </div>
+	          </div>
+	          <hr>
+	            <i>Please fill in the entries below with required information...</i>
+	          <br />
+	          <div class="row">
+	            <%= simple_form_for @referral, :url => url_for(:action => 'create', :controller => 'referral'),
+	              :method => 'post'  do |f| %>
+
+	                  <%= render(:partial => "referral", :locals => {:f => f}) %>
+
+	                  <div style="align-left">
+	                      <%= f.button :submit, 'CREATE ', class: 'btn btn-primary btn-lg' %>
+	                  </div>
+	            <% end %>
+	          </div>
+	      </div>
+	      <!-- pd ends -->
+	      <!-- #link_to '<< Back', url_for(:action => 'index', :controller => 'child'), class: 'btn btn-primary btn-medium'%> -->
+	  </div>
+
+</div>
+

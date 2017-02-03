@@ -1,0 +1,45 @@
+
+<!--///////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div class="col-md-12">
+	<div class="col-md-6">
+		<h4><i>Anthropometric Assessment</i></h4>
+			
+			<%= f.input :MUAC, :label => "MUAC (mm) :", placeholder: 'e.g 12.8mm', class: 'col-md-4' %>
+
+			<%= f.input :weight, :label => "Weight (kgs):", :placeholder => 'current weight', class: 'col-md-4' %>
+			<%= f.input :height, :label => "Height (cm) :", placeholder: 'e.g 125cm' %>
+
+			<%= f.input :z_score, as: :integer, :label => 'Z-score :', class: 'col-md-4' %>
+
+			<%= f.input :oedema, :label => "Oedema", placeholder: 'e.g ++' %>
+	</div>
+
+	<div class="col-md-6">
+		<h4><i>Medical Assessment</i></h4>
+
+			<label for="clinical_status">Clinical Status: </label>
+			<dt>
+				<%= f.collection_radio_buttons :clinical_status, [['clinically_well', 'Clinically well'], ['not_well', 'Not well']], :first, :last%>
+			</dt>
+			<br>
+			<label for="appetite_test">Appetite Test: </label>
+			<dt>
+				<%= f.collection_radio_buttons :appetite_test, [['Yes', 'Has Appetite'], ['No', 'No Appetite']], :first, :last %>
+			</dt>
+			
+			<br>
+			<%= f.input :clinician, :label => "Examined By: ", placeholder: "clinician on duty" %>
+			
+			<%= f.input :remark, as: :text, :label => 'Comments', placeholder: 'any remarks on this child' %>
+	</div>
+</div>
+
+
+<!-- ============================================================================= -->
+<style>
+	h4{
+		text-decoration: underline;
+	}
+</style>
+

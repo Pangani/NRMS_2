@@ -1,0 +1,58 @@
+<div class="jumbotron"  >
+<dl class="dl-horizontal">
+     <div class="panel panel-primary panel-transparent">
+        <div class="panel-heading">
+        	<h3>CONFIRM ASSESSMENT DETAILS</h3>
+        </div>
+
+        <div class="panel-body">
+        	
+            <div class="row">  
+                  <div class="col-xs-6" >
+                   <em> 
+                    <table>
+                        <div>
+                        	<p>Weight: <%= @follow.weight rescue nil%> Kg</p>
+                        </div>
+
+                        <div>
+                          <p>Height: <%= @follow.height rescue nil %> cm</p>
+                        </div>
+
+                        <div>
+                        	<p>Appetite test: <%= @follow.appetite_test rescue nil%></p>
+                        </div>
+
+                        <div>
+                          <p>MUAC  <em>:<%= @follow.MUAC rescue nil%> mm</em></p>
+                        </div>
+                        
+                        <div>
+                          <p>Z-Score  :  <em><%= @follow.z_score rescue nil%></em></p>
+                        </div>
+
+                        <div>
+                          <p>Oedema : <%= @follow.oedema rescue @child.anthropometry.oedema %></p>
+                        </div>
+
+                        <div>
+                          <p>Comments : <%= @follow.remark rescue nil %></p>
+                        </div>
+
+                    </table>
+                    </em>  
+                  </div>
+
+    </div>
+
+    <div class="row">
+    	<div id="myButton" class="col-md-6">
+    		<%= link_to 'CONFIRM', url_for(:controller => 'check_up', :action => 'index', :child_id => @child.id) , :class => "btn btn-primary btn-default" %>
+      </div>
+      <div class="col-md-6">
+        <%= link_to 'EDIT', url_for(:controller => 'check_up', :action => 'edit', :id => @follow.id) , :class => "btn btn-default" %>
+      </div>
+    </div>
+
+</dl>
+</div>

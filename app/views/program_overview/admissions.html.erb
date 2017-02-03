@@ -1,0 +1,142 @@
+
+<div class="jumbotron">
+	<div class="panel panel-transparent">
+		<div class="panel-heading">
+			<h3>ADMISSIONS SUMMARY</h3>
+		</div>
+
+		<div class="panel-body">
+			<div class="col-xs-12">
+				<em>
+                    <!-- table for Admis criteria(AC) -->
+                    <p><h4>Admission Criteria</h4></p>
+                    <i>These are the number of children in different categories based on admission criteria...</i>
+                    <table class="table table-bordered">
+	                    <thead>
+	                    	<th>Age</th>
+	                    	<th>Gender</th>
+	                    	<th>Z-scores</th>
+	                    	<th>MUAC</th>
+	                    	<th>Bilateral Oedema</th>
+	                    	<th>BMI for age</th>
+	                    	<th>Total</th>
+	                    </thead>
+	                    <tbody>
+	                    	<tr>
+	                    		<tr>
+	                    			<td rowspan="2">6-59 months</td>
+		                    		<td>Males</td>
+		                    		<td><%= @child_male_adm.is_z_score.count rescue nil%></td>
+		                    		<td><%= @child_male_adm.is_muac.count rescue nil%></td>
+		                    		<td><%= @child_male_adm.is_oedema.count rescue nil%></td>
+		                    		<td><%= @child_male_adm.is_bmi.count rescue nil%></td>
+		                    		<td><%= @child_male_adm.count rescue nil%></td>
+		                    	</tr>
+		                    	<tr>
+		                    		<
+		                    		<td>Females</td>
+		                    		<td><%= @child_female_adm.is_z_score.count rescue nil%></td>
+		                    		<td><%= @child_female_adm.is_muac.count rescue nil%></td>
+		                    		<td><%= @child_female_adm.is_oedema.count rescue nil%></td>
+		                    		<td><%= @child_female_adm.is_bmi.count rescue nil%></td>
+		                    		<td><%= @child_female_adm.count rescue nil%></td>
+		                    	</tr>
+		                    </tr>
+		                    <tr>
+		                    	<tr>
+	                    			<td rowspan="2">60 months - 12yrs</td>
+		                    		<td>Males</td>
+		                    		<td><%= Admission.is_z_score.count %></td>
+		                    		<td><%= Admission.is_muac.count %></td>
+		                    		<td><%= Admission.is_oedema.count %></td>
+		                    		<td><%= Admission.is_bmi.count %></td>
+		                    		<td><%= Admission.all.count %></td>
+		                    	</tr>
+		                    	<tr>
+		                    		
+		                    		<td>Females</td>
+		                    		<td></td>
+		                    		<td></td>
+		                    		<td></td>
+		                    		<td></td>
+		                    		<td></td>
+		                    	</tr>
+		                    </tr>
+	                    </tbody>
+					</table>
+					<!-- AC table ends here -->
+
+					<p><h4>HIV Sero-status</h4></p>
+					<div class="row">
+						<div class="col-xs-6">
+							<table class="table table-bordered">
+								<thead>
+									<th>HIV Sero-status</th>
+									<th>Child</th>
+									<th>Maternal</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>RR</td>
+										<td><%= Child.has_hiv.count rescue nil%></td>
+										<td><%= Child.has_maternal_hiv.count rescue nil%></td>
+									</tr>
+									<tr>
+										<td>NR</td>
+										<td><%= Child.has_no_hiv.count %></td>
+										<td><%= Child.no_maternal_hiv.count %></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-xs-6">
+							<table class="table table-bordered">
+								<thead>
+									<th>Gender</th>
+									<th>On ART</th>
+									<th>Referred to HTC</th>
+									<th>Test Results </th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Males</td>
+										<td><%= @child_male.on_art.count rescue nil%></td>
+										<td><%= @child_male.refer_to_htc rescue nil %></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Females</td>
+										<td><%= @child_female.on_art.count rescue nil%></td>
+										<td><%= @child_female.refer_to_htc.count rescue nil %></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						*Exposed children have mothers HIV+ but their status unknown..
+						<div class="col-xs-4">
+							<table class="table table-bordered">
+								<tr>
+									<th>Exposed Children</th>
+									<th><%= Child.is_exposed.count %></th>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</em>
+			</div>
+		</div>
+	</div>
+	<%= link_to '<< Back', url_for(:action => 'index' ,:controller => 'program_overview') , :class => "btn btn-primary btn-default" %> 
+ 
+</div>
+
+<style type="text/css">
+	h4{
+		text-decoration: underline;
+	}
+	
+</style>

@@ -1,0 +1,45 @@
+<div class="col-md-6">
+
+   <%= f.input :reg_number, :label => "Registration Number",placeholder: 'Registration Number' %>
+
+
+   <%= f.input :first_name, :label => "First Name", placeholder: 'first name', class: 'col-md-3' %>
+   <%= f.input :last_name, :label => "Last Name",placeholder: 'last name', class: 'col-md-3'%>
+   <%= f.input :sex, :label => "Gender",collection: ["Male", "Female"] , selected: "Male"%>
+
+
+   <%= f.input :dob,:label => "Date Of Birth", as: :date, start_year: Date.today.year - 11,
+                              end_year: Date.today.year, 
+                              order: [:day,:month, :year] %>
+ <%= f.input :HIV_serostatus, :label => "HIV Serostatus",collection: ["RR", "NR", "unknown"] ,selected: "NR" %>
+   <%= f.input :on_ART, :label => "ON ART", collection: ["Yes", "No"], selected: "No"%>
+   
+  
+
+
+
+   
+ </div>
+
+   <div class="col-md-6">
+
+  <%= f.input :twin_child, :label => "Twin Child ",collection: ["Yes", "no"], :selected => "no" %>
+  <%= f.input :maternal_HIV_serostatus,  :label => "Maternal HIV Serostatus ", collection: ["RR", "NR", "unknown"] %>
+
+ <%= f.input :guardian_name, :label => "Guardian Name",placeholder: 'guardian name' %>
+
+  <%= f.input :district, :label => "District ",placeholder: 'District',collection: [
+        "Balaka","Blantyre","Chikwawa","Chiradzulu","Chitipa","Dedza",
+        "Dowa", "Karonga","Likoma","Lilongwe","Machinga","Mangochi",
+        "Mchinji","Mulanje", "Mwanza", "Mzimba","Neno","Nkhata Bay",
+        "Nkhotakota","Nsanje","Ntcheu","Ntchisi","Phalombe","Rumphi",
+        "Salima","Thyolo","Zomba"] %>
+  <%= f.input :trad_authority,  :label => "Traditional Authority",placeholder: 'T/A' %>
+
+  <%= f.input :village,  :label => "Village ", placeholder: 'village' %>
+
+ 
+    
+  
+   
+   </div>

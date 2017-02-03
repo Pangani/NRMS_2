@@ -1,0 +1,9 @@
+
+<div>
+	<% form_tag(:action => 'check', :method => :get) do -%>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag 'Search Child', :style => "color:grey" %>
+	<% end -%>
+</div>
+	
+

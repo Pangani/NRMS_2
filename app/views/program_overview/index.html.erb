@@ -1,0 +1,77 @@
+<div class="panel panel-transparent">
+
+	<!-- panel heading(ph)-->
+	<div class="panel-heading">
+			<h3><i>PROGRAM OVERVIEW</i></h2>
+	</div>
+	<!-- ph ends here -->
+
+	<!-- Panel Body(pb) -->
+	<div class="panel-body">
+
+		<div class="row">
+			<div class="col-lg-4">
+			
+				<a href="/program_overview/admissions" class="btn btn-default btn-lg" id="mybtn">
+				<i class="fa fa-hospital-o fa-fw"></i>
+		            <span class="network-name">ADMISSIONS SUMMARY</span>
+		        </a>
+			</div>
+
+			<div class="col-lg-4">
+				<a href="/program_overview/transfer" class="btn btn-default btn-lg" id="mybtn">
+				 <i class="fa fa-ambulance fa-fw"></i>
+		            <span class="network-name">TRANSFERS & RETURNS</span>
+		        </a>
+			</div>
+
+			<div class="col-lg-4">
+				<a href="/program_overview/location" class="btn btn-default btn-lg" id="mybtn">
+				 <i class="fa fa-map fa-fw"></i>
+		            <span class="network-name">LOCATIONS OVERVIEW</span>
+		        </a>
+			</div>
+		</div>
+
+		<div class="row"></div>
+
+		<div class="row">
+			<div class="col-lg-4">
+				<a href="/program_overview/discharge" class="btn btn-default btn-lg" id="mybtn">
+				 <i class="fa fa-heartbeat fa-fw"></i>
+		            <span class="network-name">DISCHARGES SUMMARY</span>
+		        </a>
+			</div>
+
+			<div class="col-lg-4">
+				<a href="/program_overview/treatment_referral" class="btn btn-default btn-lg" id="mybtn">
+				 <i class="fa fa-stethoscope fa-fw"></i>
+		            <span class="network-name">TREATMENT OVERVIEW</span>
+		        </a>
+			</div>
+
+			<div class="col-lg-4">
+
+				<a href="/program_overview/stock_management" class="btn btn-default btn-lg" id="mybtn">
+				<i class="fa fa-dashboard fa-fw"></i>
+		            <span class="network-name">STOCK MANAGEMENT</span>
+		        </a>
+			</div>
+		</div>
+
+	</div>
+	<!-- pb ends here -->
+	<hr>
+	<%= link_to "Back",:controller => "child", :action => "records",:class => "btn btn-primary btn-default" %>
+
+</div>
+<!-- panel ends here -->
+
+	
+
+<style>
+	h3{
+		text-align: center;
+		text-decoration: underline;
+	}
+</style>

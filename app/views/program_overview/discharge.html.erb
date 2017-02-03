@@ -1,0 +1,82 @@
+
+
+
+	<div class="jumbotron">
+
+	<div class="panel panel-transparent">
+		<div class="panel-heading">
+		<h3>Discharge Summary</h3>
+
+    </div>
+
+
+</div>
+
+<table id="discharge" class="table table-inverse table-bordered" cellspacing="0"    >
+
+     
+        <thead>
+            <tr>
+              <th>Cured <span>(k)</span></th>
+              <th>Died <span>(L)</span> </th>
+              <th> Defaulted <span>(M)</span></th>
+              <th>Non Response (N)</th>
+              <th>Transfer to NRU <span>(O)</span></th>
+              <th>Transfer to Other OTP <span>(P)</span> </th>
+              <th>Total</th>
+             
+            </tr>
+        </thead>
+
+
+  <tbody style="color:grey" >
+
+          
+
+              <tr>
+                  <td>5</td>
+                  <td>6</td>
+                  <td> 7 </td>
+                  <td>8</td>
+                  <td>9 </td>
+                  <td>10 </td>
+                  <td></td>
+
+              </tr>
+            <tr>
+            	 <td> Cure rate=  %</td>
+                  <td>Death rate=  %</td>
+                  <td> Default rate= %</td>
+                  <td>Non-response rate = %</td>
+                  <td> </td>
+                  <td> </td>
+                  <td></td>
+            </tr>
+
+        </tbody>
+   
+           <tfoot>
+           		  <td>Not Applicable</td>
+                  <td>Target Death rate=  <10%</td>
+                  <td>Target Default rate= <15%</td>
+                  <td>Target Non-response rate = N/A</td>
+                  <td> </td>
+                  <td> </td>
+                  <td></td>
+
+ </tfoot>
+
+</table>
+
+<hr>
+
+
+<%= link_to '<< Back', url_for(:action => 'index' ,:controller => 'program_overview') , :class => "btn btn-primary btn-default" %> 
+ 
+
+</div>
+
+
+   
+
+

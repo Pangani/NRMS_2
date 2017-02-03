@@ -1,0 +1,75 @@
+<div class="col-md-12">
+	<hr>
+
+	<div class="col-md-6" >
+		<h4><i>Nutritional Treatment</i></h4>
+		<br>
+		
+		<%= fields_for(:feed) do |fp| %>
+			<div class="form-group">
+				<label for="type_of_food">Type of Food :</label>
+				<dt><%= fp.text_field :type_of_food, :label => "Type of Food :", placeholder: 'e.g. RUTF' , :style => "color:grey"%></dt>
+			</div>
+
+			<div class="form-group" >
+				<label for="amount_offered">Amount Offered :</label>
+				<dt><%= fp.text_field :amount_offered, :label => "Amount Offered :", :style => "color:grey"%></dt>
+			</div>
+
+			<div class="form-group" >
+				<label for="amount_offered">Amount Offered :</label>
+				<dt><%= fp.text_field :amount_left, :label => "Amount Left :", :style => "color:grey"%></dt>
+			</div>
+
+
+			<div class="form-group">
+				<dd><label for="food_package">Food Package :</label></dd>
+				<dt>
+					<%= fp.radio_button(:food_package, 'sachet')%> Sachets
+					<%= fp.radio_button(:food_package, 'bottle')%> Bottles</dt>
+			</div>
+		
+		<% end %>
+	</div>
+
+	<div class="col-md-6">
+		<h4><i>Medical Treatment</i></h4>
+		<br>
+			<%= fields_for(:treatment) do |treat| %>
+
+				<div class="form-group">
+					<label>Dosage of Vitamin A :</label>
+					<dt>
+						<%= treat.radio_button(:vitamin_A, 'Yes')%> Yes
+						<%= treat.radio_button(:vitamin_A, 'No')%> No</dt>
+					</dt>
+				</div>
+				<div class="form-group">
+					<label>Dosage of Folic Acid :</label>
+					<dt>
+						<%= treat.radio_button(:folic_acid, 'Yes')%> Yes
+						<%= treat.radio_button(:folic_acid, 'No')%> No</dt>
+					</dt>
+				</div>
+				<div class="form-group">
+					<label>Dosage of Amoxicilin Antibiotic :</label>
+					<dt><%= treat.radio_button(:amoxicilin_antibiotic, 'No')%> No</dt>
+					</dt>
+				</div>
+
+				<div class="form-group">
+					<label>Dosage of Albendazole :</label>
+						<dt>
+							<%= treat.radio_button(:albendazole, 'Yes')%> Yes
+							<%= treat.radio_button(:albendazole, 'No')%> No</dt>
+						</dt>
+				</div>
+			<% end %>
+	</div>
+</div>
+
+<style>
+	h4{
+		text-decoration: underline;
+	}
+</style>

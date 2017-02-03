@@ -1,0 +1,2 @@
+module CheckUpHelper
+end

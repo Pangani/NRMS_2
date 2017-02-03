@@ -1,0 +1,14 @@
+<div class="jumbotron">
+	<div class="row">
+	    <%= form_for :child_feedplan, :url => (:action => 'create_follow', :controller => 'check_up') do |fp| %>
+
+	        <%= render(:partial => "followup", :locals => {:fp => fp}) %>
+
+	    <% end %>
+	</div>
+	<div class="row">
+		<div style="align-left">
+		    <%= submit_tag 'UPDATE ', class: 'btn btn-primary btn-lg' %>
+		</div>
+	</div>
+</div>

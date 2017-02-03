@@ -1,0 +1,2 @@
+module FeedplanHelper
+end
