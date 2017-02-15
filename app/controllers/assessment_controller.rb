@@ -37,8 +37,8 @@ private
 	#----------------------------------------------------------------------------
 	#To marry everything to a specific child
 	def find_child
-		if params[:child_id]
-			@child = Child.find_by_id(params[:child_id])
+		if session[:child_id]
+			@child = Child.find_by_id(session[:child_id])
 		end
 	end
 end

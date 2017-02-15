@@ -15,13 +15,11 @@ class CheckUpController < ApplicationController
 
 	def create
 		@follow = FollowUp.new(follow_params)
-		# @child.follow_ups << @child_follow
+
 		if @follow.save
-			flash[:notice] = "surveillance session done successfully..."
 			redirect_to(:action => 'show', :id => @follow.id )
 		else
 			render('new')
-			flash[:notice] = "There is an error to update session for this child"
 		end
 	end
 
@@ -47,7 +45,7 @@ class CheckUpController < ApplicationController
 
 private
 	def follow_params
-		params.require(:follow).permit(:child_id, :last_update, :weight, :MUAC, :z_score, :BMI, :clinician, :remark, :appetite_test, :clinical_status)
+		params.require(:follow_up).permit(:weight, :MUAC, :z_score, :BMI, :height, :oedema, :clinician, :remark, :appetite_test, :clinical_status)
 	end
 
 	def find_child

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201063645) do
+ActiveRecord::Schema.define(version: 20170214082546) do
 
   create_table "admissions", force: :cascade do |t|
     t.integer  "child_id",           limit: 4
@@ -103,6 +103,14 @@ ActiveRecord::Schema.define(version: 20170201063645) do
   end
 
   add_index "follow_ups", ["child_id"], name: "index_follow_ups_on_child_id", using: :btree
+
+  create_table "foodrations", force: :cascade do |t|
+    t.decimal  "weight_for_child",           precision: 3, scale: 1
+    t.integer  "sachets_per_week", limit: 4
+    t.decimal  "sachets_per_day",            precision: 3, scale: 2
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
 
   create_table "routine_treatments", force: :cascade do |t|
     t.integer  "child_id",              limit: 4

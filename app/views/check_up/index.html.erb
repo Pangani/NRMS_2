@@ -10,33 +10,33 @@
 
 				<div class="row">
 					<div class="col-xs-6">
-						<div class="panel panel-default panel-transparent" >
+						<div  >
 							<p><i><strong>ID Number: </strong> <%= @child.reg_number %></i></p>
 						</div>
 
-						<div class="panel panel-default panel-transparent">
+						<div>
 							<p><i><strong>Full Name: </strong> <%= @child.full_name %></i></p>
 						</div>
 
-						<div class="panel panel-default panel-transparent">
+						<div>
 							<p><strong>Age (<i>months</i>) : </strong> <%= @child.age_in_months %></p>
 						</div>
 
-						<div class="panel panel-default panel-transparent">
+						<div>
 							<p><i><strong>Gender : </strong> <%= @child.sex %></i></p>
 						</div>
 					</div>
 
 					<div class="col-xs-6">
-						<div class="panel panel-default panel-transparent">
+						<div>
 							<p><i><strong>Mother/Caregiver: </strong> <%= @child.guardian_name %></i></p>
 						</div>
 
-						<div class="panel panel-default panel-transparent">
+						<div>
 							<p><i><strong>Admission Criteria: </strong> <%= @child.admission.admission_criteria rescue nil%></i></p>
 						</div>
 
-						<div class="panel panel-default panel-transparent">
+						<div>
 							<p><i><strong>Village: </strong> <%= @child.village %></i></p>
 						</div>
 						
@@ -90,6 +90,7 @@
 				</table>
 
 				<div class="col-md-12">
+
 					<div>
 						<p>Latest comments : <i><%= @child.follow_ups.last remark rescue "Just registered in program..." %></i></p>
 					</div>
@@ -98,7 +99,6 @@
 					</div>
 
 				</div>
-
 		</div>
 	</div>
 </div>

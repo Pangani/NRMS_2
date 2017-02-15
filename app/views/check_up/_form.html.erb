@@ -10,9 +10,9 @@
 			<%= f.input :weight, :label => "Weight (kgs):", :placeholder => 'current weight', class: 'col-md-4' %>
 			<%= f.input :height, :label => "Height (cm) :", placeholder: 'e.g 125cm' %>
 
-			<%= f.input :z_score, as: :integer, :label => 'Z-score :', class: 'col-md-4' %>
+			<%= f.input :z_score, as: :integer, :label => 'Z-score :', :collection => ["-1", "-2", "-3", "-4"], :selected => "-3" %>
 
-			<%= f.input :oedema, :label => "Oedema", placeholder: 'e.g ++' %>
+			<%= f.input :oedema, :label => "Oedema", :collection => ["none", "+", "++", "+++"], :selected => "none" %>
 	</div>
 
 	<div class="col-md-6">
@@ -20,7 +20,7 @@
 
 			<label for="clinical_status">Clinical Status: </label>
 			<dt>
-				<%= f.collection_radio_buttons :clinical_status, [['clinically_well', 'Clinically well'], ['not_well', 'Not well']], :first, :last%>
+			<%= f.collection_radio_buttons :clinical_status, [['clinically_well', 'Clinically well'], ['not_well', 'Not well']], :first, :last%>
 			</dt>
 			<br>
 			<label for="appetite_test">Appetite Test: </label>

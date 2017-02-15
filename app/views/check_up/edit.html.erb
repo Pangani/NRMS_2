@@ -25,10 +25,10 @@
             <i>Please fill in the entries below with required data gathered during check-up...</i>
           <br />
           <div class="row">
-            <%= simple_form_for :follow, :url => url_for(:action => 'update', :controller => 'check-up', :id => @follow.id),
+            <%= simple_form_for :follow_up, :url => url_for(:action => 'update', :controller => 'check-up', :id => @follow.id),
           :method => 'post'  do |f| %>
 
-              <%= render(:partial => "followup", :locals => {:f => f}) %>
+              <%= render(:partial => "form", :locals => {:f => f}) %>
 
               <div class="col-md-12 col-offset-8">
                   <%= f.button :submit, 'UPDATE ', class: 'btn btn-primary btn-lg' %>

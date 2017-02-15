@@ -34,16 +34,17 @@
           <hr>
             <i>Please fill in the entries below with required data gathered during check-up...</i>
           <br />
-          <div class="row">
-            <%= simple_form_for :follow, :url => url_for(:action => 'create', :controller => 'check-up'),
-          :method => 'post'  do |f| %>
+          <div class="row" >
+            <%= simple_form_for :follow_up, :url => url_for(:action => 'create', :controller => 'check_up'), :method => 'post' do |f| %>
 
-              <%= render(:partial => "followup", :locals => {:f => f}) %>
+              <%= render(:partial => 'form', :locals => {:f => f}) %>
 
-              <div class="col-md-12 col-offset-8">
-                  <%= f.button :submit, 'UPDATE ', class: 'btn btn-primary btn-lg' %>
+
+
+              <div class="row">
+                <%= f.button :submit, 'Update Card', class: 'btn btn-primary btn-lg' %>
               </div>
-      <% end %>
+            <% end -%>
           </div>
           
       </div>

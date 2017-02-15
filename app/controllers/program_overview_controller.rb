@@ -15,22 +15,32 @@ class ProgramOverviewController < ApplicationController
   end
 
   def admissions
+    #========================================================================================
+    #Children from 6 months to 0 day old
+      @male_6_months_old = Child.joins(:admission).male_6_months_old
+      @female_6_months_old = Child.joins(:admission).female_6_months_old
 
-    @child = Child.joins(:admission).all
+    #========================================================================================
+    #Children from 59 months to 6 months old
+      @male_59_months_old = Child.joins(:admission).male_59_months_old
+      @female_59_months_old = Child.joins(:admission).female_59_months_old
 
-    @child_male = Child.is_male
-    @child_female = Child.is_female
+    #========================================================================================
+    #Children from 60 months to 12 years old
+      @male_12_years_old = Child.joins(:admission).male_12_years_old
+      @female_12_years_old = Child.joins(:admission).female_12_years_old
 
-    @child_male_infants = for child in @child_male child.age_in_months < 60 end
+    #========================================================================================
+      @child = Child.joins(:admission).all
 
-    
-    @child_male_adm = @child_male.each do |c| c.admission end
-    @child_female_adm = @child_female.each do |c| c.admission end
-
-    @male_admin = Admission.joins(:child).where(:child => {:sex => "male"})
+      @child_male = Child.joins(:admission).is_male
+      @child_female = Child.joins(:admission).is_female
   end
 
+
   def transfer 	  	
-  end	 
+  end	  
+
+
 
 end

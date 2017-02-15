@@ -14,6 +14,10 @@ class ChildController < ApplicationController
     end
   end
 
+  def otp_book
+    @child_otp = Child.eligible_for_admission
+  end
+
   def new
     @child =Child.new   
   end
@@ -43,6 +47,7 @@ class ChildController < ApplicationController
 
   def simple_show
     @child =Child.find(params[:id])
+    session[:child_id] = @child.id
   end
 
 
