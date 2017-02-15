@@ -10,4 +10,4 @@ namespace :db do
 end
 # 	
 
-#Then run "bundle exec rake db:migrate"
+#Then run "bundle exec rake db:import_csv"
