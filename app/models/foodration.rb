@@ -1,5 +1,11 @@
 class Foodration < ActiveRecord::Base
 	
+	def self.amount_of_rutf(weight)
+		@ration = self.find_by_weight_for_child(weight)
+
+		return if @ration.blank?
+		@ration
+	end
 end
 
 #please do not un-comment the following code, it is for reference purposes only

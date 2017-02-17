@@ -16,6 +16,18 @@ class AssessmentController < ApplicationController
 		@presenter = AssessmentPresenter.new(params[:presenter])
 
 		if @presenter.save
+			#-----------------------------------------------------------------------------
+		        # #CREATE A FEEDPLAN
+		        # @ration = Foodration.amount_of_rutf(@child.anthropometry.weight)
+		        # FeedPlan.create( 
+			       #    :child_id => @child.id,
+			       #    :admission_weight => @child.anthropometry.weight,
+			       #    :today_weight => @child.anthropometry.weight,
+			       #    :type_of_food => "RUTF",
+			       #    :food_package => "sachet",
+			       #    :amount_offered => @ration.sachets_per_week,
+			       #    :amount_left => 0
+		        #   )
 			
 			flash[:notice] = "Assessment details have been recorded successfully"
 			redirect_to(:controller => 'child',:action => 'index')
@@ -25,13 +37,6 @@ class AssessmentController < ApplicationController
 		end
 	end
 	
-
-	def show
-	end
-
-	def edit
-	end
-
 #/////////////////////////////////////////////////////////////////////////////////
 private
 	#----------------------------------------------------------------------------

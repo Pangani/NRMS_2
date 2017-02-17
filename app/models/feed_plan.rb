@@ -7,11 +7,6 @@ class FeedPlan < ActiveRecord::Base
 
 #///////////////////////////////////////////////////////////////////////////////////
 
-	# def addAdmissionWeight(id)
-	# 	@child = Child.find_by_id(id)
-	# 	self.admission_weight = 
-	# end
-
 	def setDate
 		self.date = Time.now.to_date
 	end
