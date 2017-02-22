@@ -1,10 +1,15 @@
-class FollowUp < ActiveRecord::Base
+class Followup < ActiveRecord::Base
 	belongs_to :child
 	before_validation :set_last_update
 	# after_save :touch_child
 	
 #////////////////////////////////////////////////////////////////////////////////////
-	#validates_presence_of :weight, :MUAC, :z_score, :clinician, :clinical_status
+	validates :weight, presence: true
+	validates :height, presence: true
+	validates :MUAC, presence: true
+	validates :z_score, presence: true
+	validates :clinician, presence: true
+	validates :clinical_status, :presence => true
 
 #////////////////////////////////////////////////////////////////////////////////////
 	scope :latest_update_first, lambda{ order("follow_ups.updated_at ASC")}
@@ -18,12 +23,6 @@ private
 	def set_last_update
 		self.last_update = Time.now.to_date
 	end
-
-	def touch_child
-		child.touch
-	end
-
-	
 end
 
 #please do not un-comment the following code, it is for reference purposes only
@@ -50,5 +49,3 @@ end
 	#        add_index("follow_ups", "child_id")
 	#   end
 	# end
-
-

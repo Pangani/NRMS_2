@@ -1,58 +1,74 @@
 class ChildController < ApplicationController
 	before_action :authenticate_user!
-  
+
+#===============================child/index-page====================================================
+  #displays all children 
   def index
     @child = Child.all
   end
 
+#==============================child/show===========================================================
+  #shows the full details of a child
   def show
     @child =Child.find(params[:id])
     session[:child_id] = @child.id
 
     if !@child.done_assessment #if registration was not finished
+      #done_assessment :see Child model
       flash[:notice] = "The anthropometric and Medical assessment details of #{@child.full_name} were not recorded..."
     end
   end
 
+#=============================child/otp_book========================================================
   def otp_book
     @child_otp = Child.eligible_for_admission
   end
 
+#=============================child/new=============================================================
+  #add new child
   def new
     @child =Child.new   
   end
 
+#=============================child/check===========================================================
+#Search a child for a check-up
   def check
+    # ----------------------------------------------------------------------------
+    # this is a search function
     @found_person = nil
-    if params[:search]
-      @found_results = Child.search(params[:search])
 
+    if params[:search] #if the variable carries values...
+      @found_results = Child.search(params[:search]) #search in DB
+
+      #check the number of results found and assign to "found_person"
       if @found_results.length > 1
         @found_person = @found_results.first
       else
         @found_person = @found_results
       end
 
+      #if assigned
       if @found_person
         session[:child_id] = @found_person.first.id
-        redirect_to :controller => :check_up, :action => 'new', :child_id => @found_person.first.id and return
+        redirect_to :controller => :check_up, :action => 'summary', :child_id => @found_person.first.id and return
       else
           flash[:error] = "No child is found..."
       end
+    #-------if variable doesnt have value
     else
       render 'check'
     end
 
   end
 
+#===================================================================================================
   def simple_show
     @child =Child.find(params[:id])
     session[:child_id] = @child.id
   end
 
-
-
- def create
+#===================================================================================================
+  def create
     @child = Child.new(child_params)
 
     if @child.new_record?
@@ -68,14 +84,12 @@ class ChildController < ApplicationController
     end
   end
   
-
-
+#==============================child/edit==============================================================
   def edit
     @child =Child.find(params[:id])
   end
 
-
-
+#------------------------------------------------------------------------------------------------------
   def update
     @child = Child.find(params[:id])
 
@@ -92,16 +106,18 @@ class ChildController < ApplicationController
     end
   end
 
-
+#==================================child/delete======================================================
   def delete
       @child =Child.find(params[:id])
   end
 
+#----------------------------------------------------------------------------------------------------
   def destroy
       child =Child.find(params[:id]).destroy
       flash[:notice]= "#{child.full_name} details destroyed successfully"
       redirect_to(:action => 'index')
   end
+
 
 private
   def child_params

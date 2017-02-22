@@ -14,16 +14,11 @@ class DiagnosisController < ApplicationController
 	end
 
 	def new
-		@treatment = RoutineTreatment.joins(:child).new(:child_id => @child.id)
-		@feed = FeedPlan.joins(:child).new(:child_id => @child.id)
+		@treatment = Routinetreatment.joins(:child).new(:child_id => @child.id)
 	end
 
 	def create
-		@treatment = RoutineTreatment.joins(:child).new(treatment_params)
-		@feed = FeedPlan.joins(:child).new(feed_params)
-
-		@treatment.set_child(@child.id)
-		@feed.set_child(@child.id)
+		@treatment = Routinetreatment.new(treatment_params)
 
 		if @treatment.save && @feed.save
 

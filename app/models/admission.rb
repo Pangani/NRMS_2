@@ -18,13 +18,6 @@ class Admission < ActiveRecord::Base
 	def set_admission_date
 		self.date_of_admission = Time.now.to_date
 	end
-
-	def setID
-		@child = Child.last
-		@child.admission = Admission.find_by_id(@child.id)
-	end
-
-	
 #=========================================================================================================
 #--------------------------------------DEFINE ADMISSION CRITERIA--------------------------------------
 

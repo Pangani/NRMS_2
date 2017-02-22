@@ -1,4 +1,4 @@
-class RoutineTreatment < ActiveRecord::Base
+class Routinetreatment < ActiveRecord::Base
 	belongs_to :child
 	before_validation :set_date
 
@@ -48,4 +48,3 @@ end
 #     add_index("routine_treatments", "child_id")
 #   end
 # end
-

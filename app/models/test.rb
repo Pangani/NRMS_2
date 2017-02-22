@@ -1,6 +1,6 @@
 class Test < ActiveRecord::Base
 	belongs_to :child
-	#after_save :setID
+	#before_save :set_bfeeding
 
 #////////////////////////////////////////////////////////////////////////////////////////////
 	as_enum :stools, [:three, :four, :five], map: :string, source: :stools
@@ -15,14 +15,8 @@ class Test < ActiveRecord::Base
 	scope :appetite_fail, lambda {where(:Appetite_test => false)}
 
 #//////////////////////////////////////////////////////////////////////////////////////////
-
-	def setID
-		@child = Child.last
-		@test = Test.find_by_child_id(@child.id)
-
-		for t in @test
-			@child.tests << t
-		end
+	def self.set_bfeeding
+		@age = Child.find_by_id()
 	end
 end
 

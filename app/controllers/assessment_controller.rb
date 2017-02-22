@@ -9,9 +9,12 @@ class AssessmentController < ApplicationController
 	end
 
 	def exception
-    	RuntimeError.new("Here I am #{self}")
+    	RuntimeError.new("Here I am #{self}") #to catch errors
   	end
 
+#-----------------------------------------------------------------------------------------
+	# AssessmentPresenter is a ruby class(presenter) that combines 3 models
+	# namely admission, anthropometry and test
 	def create		
 		@presenter = AssessmentPresenter.new(params[:presenter])
 

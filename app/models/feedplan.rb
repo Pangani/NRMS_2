@@ -1,4 +1,4 @@
-class FeedPlan < ActiveRecord::Base
+class Feedplan < ActiveRecord::Base
 	belongs_to :child
 	before_validation :setDate
 
@@ -9,6 +9,10 @@ class FeedPlan < ActiveRecord::Base
 
 	def setDate
 		self.date = Time.now.to_date
+	end
+
+	def total_amount
+		
 	end
 end
 
@@ -37,4 +41,5 @@ end
 	#        add_index("feed_plans", "child_id")
 	#   end
 	# end
+
 

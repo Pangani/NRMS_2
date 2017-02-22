@@ -92,7 +92,7 @@
 				<div class="col-md-12">
 
 					<div>
-						<p>Latest comments : <i><%= @child.follow_ups.last remark rescue "Just registered in program..." %></i></p>
+						<p>Latest comments : <i><%= @child.follow_ups.last.remark rescue "Just registered in program..." %></i></p>
 					</div>
 					<div>
 						<p>Last checked by: <i><%= @child.follow_ups.last.last_update rescue @child.admission.date_of_admission.to_date %></i></p>

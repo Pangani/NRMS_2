@@ -23,6 +23,8 @@ gem 'authlogic'
 gem 'cancan'
 gem 'devise'
 
+gem 'wicked'
+
 gem 'immigrant', '~> 0.3.5'
 
 gem 'rolify'

@@ -2,15 +2,15 @@ class FeedplanController < ApplicationController
 	before_action :find_child
 
  	def index
-  		@feed = FeedPlan.where(:child_id => @child.id)
+  		@feed = Feedplan.where(:child_id => @child.id)
  	end
 
   	def new
-  		@feed = FeedPlan.new(:child_id => @child.id)
+  		@feed = Feedplan.new(:child_id => @child.id)
   	end
 
   	def create
-		@feed = FeedPlan.new(feed_params)
+		@feed = Feedplan.new(feed_params)
 
 		#======================
 		#filling in admission and current weight columns from Admission and FollowUp tables respectively 

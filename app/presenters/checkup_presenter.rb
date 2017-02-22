@@ -6,11 +6,11 @@ class CheckupPresenter
 				:prefix => 'follow_up', :writer => true
 
 	def follow_up
-		@follow_up ||= FollowUp.new
+		@follow_up ||= Followup.new
 	end
 
 	def feed_plan
-		@feed_plan ||= FeedPlan.new
+		@feed_plan ||= Feedplan.new
 	end
 
 	def save

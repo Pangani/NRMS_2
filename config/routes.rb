@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'feedplan/index'
-
-  get 'feedplan/new'
-
   devise_for :users
   root 'home#index'
 
