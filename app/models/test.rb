@@ -1,6 +1,6 @@
 class Test < ActiveRecord::Base
 	belongs_to :child
-	#before_save :set_bfeeding
+	#before_validation :set_bfeeding
 
 #////////////////////////////////////////////////////////////////////////////////////////////
 	as_enum :stools, [:three, :four, :five], map: :string, source: :stools
@@ -15,8 +15,16 @@ class Test < ActiveRecord::Base
 	scope :appetite_fail, lambda {where(:Appetite_test => false)}
 
 #//////////////////////////////////////////////////////////////////////////////////////////
-	def self.set_bfeeding
-		@age = Child.find_by_id()
+	def set_breastfeeding(child)
+		@age = child.age_in_months
+		if @age.to_f > 24
+			return self.breastfeeding = "Yes"
+		else
+			return self.breastfeeding = "No"
+		end
+	end
+
+	def self.complementery_food
 	end
 end
 

@@ -22,24 +22,12 @@ class CheckUpController < ApplicationController
 
 #------------------------------------------------------------------------------------
 	def create	
-		@follow = Followup.new(follow_params)
-		@child.follow_ups << @follow
+		@presenter = CheckupPresenter.new(params[:presenter])
+		@presenter.current_child(@child)
 
-		if @follow.save
-			#----Update the feedplan table upon follow up--------
-
-	        # @ration = Foodration.amount_of_rutf(@follow.weight)
-	        # @feed = FeedPlan.create( 
-					    #       :child_id => @child.id,
-					    #       :admission_weight => @child.anthropometry.weight,
-					    #       :today_weight => @follow.weight,
-					    #       :type_of_food => "RUTF",
-					    #       :food_package => "sachet",
-					    #       :amount_offered => @ration.sachets_per_week,
-					    #       :amount_left => 0
-	        #  						 )
-			#-----Update the tests table------------------------
-			redirect_to(:action => 'show', :id => @follow.id )
+		if @presenter.save
+			flash[:notice] = "successfully updated the assessment details for #{@child.full_name}"
+			redirect_to(:action => 'index', :child_id => @child.id )
 		else
 			render('new')
 		end

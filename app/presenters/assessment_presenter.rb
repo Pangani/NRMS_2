@@ -15,9 +15,9 @@ class AssessmentPresenter
 		@admission ||= Admission.new
 	end
 
-	def current_child
-		if session[:child_id]
-			@current_child = Child.find_by_id(session[:child_id])
+	def current_child(child)
+		if child
+			@current_child = Child.find_by_id(child.id)
 		end
 	end
 

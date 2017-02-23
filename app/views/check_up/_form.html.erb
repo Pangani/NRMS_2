@@ -4,33 +4,81 @@
 	<div class="col-md-6">
 		<h4><i>Anthropometric Assessment</i></h4>
 			
-			<%= f.input :MUAC, :label => "MUAC (mm) :", placeholder: 'e.g 12.8mm', class: 'col-md-4' %>
+			<%= f.input :followup_MUAC, :label => "MUAC (mm) :", placeholder: 'e.g 12.8mm', class: 'col-md-4' %>
 
-			<%= f.input :weight, :label => "Weight (kgs):", :placeholder => 'current weight', class: 'col-md-4' %>
-			<%= f.input :height, :label => "Height (cm) :", placeholder: 'e.g 125cm' %>
+			<%= f.input :followup_weight, :label => "Weight (kgs):", :placeholder => 'current weight', class: 'col-md-4' %>
+			<%= f.input :followup_height, :label => "Height (cm) :", placeholder: 'e.g 125cm' %>
 
-			<%= f.input :z_score, as: :integer, :label => 'Z-score :', :collection => ["-1", "-2", "-3", "0"], :selected => "0" %>
+			<%= f.input :followup_z_score, as: :integer, :label => 'Z-score :', :collection => ["-1", "-2", "-3", "0"], :selected => "0" %>
 
-			<%= f.input :oedema, :label => "Oedema", :collection => ["none", "+", "++", "+++"], :selected => "none" %>
+			<%= f.input :followup_oedema, :label => "Oedema", :collection => ["none", "+", "++", "+++"], :selected => "none" %>
 	</div>
 
 	<div class="col-md-6">
 		<h4><i>Medical Assessment</i></h4>
 
-			<label for="clinical_status">Clinical Status: </label>
+			<label for="followup_clinical_status">Clinical Status: </label>
 			<dt>
-			<%= f.collection_radio_buttons :clinical_status, [['clinically_well', 'Clinically well'], ['not_well', 'Not well']], :first, :last%>
+			<%= f.collection_radio_buttons :followup_clinical_status, [['clinically_well', 'Clinically well'], ['not_well', 'Not well']], :first, :last%>
 			</dt>
 			<br>
-			<label for="appetite_test">Appetite Test: </label>
+			<label for="followup_appetite_test">Appetite Test: </label>
 			<dt>
-				<%= f.collection_radio_buttons :appetite_test, [['Yes', 'Has Appetite'], ['No', 'No Appetite']], :first, :last %>
+				<%= f.collection_radio_buttons :followup_appetite_test, [['Yes', 'Has Appetite'], ['No', 'No Appetite']], :first, :last %>
 			</dt>
 			
 			<br>
-			<%= f.input :clinician, :label => "Examined By: ", placeholder: "clinician on duty" %>
+			<%= f.input :followup_clinician, :label => "Examined By: ", placeholder: "clinician on duty" %>
 			
-			<%= f.input :remark, as: :text, :label => 'Comments', placeholder: 'any remarks on this child' %>
+			<%= f.input :followup_remark, as: :text, :label => 'Comments', placeholder: 'any remarks on this child' %>
+	</div>
+	<div class="row">
+		<%= f.input :feedplan_food_package, :label => "RUTF package?", :collection => ["sachet", "bottle"], :selected => "sachet" %>
+
+		<%= f.input :feedplan_amount_left, :label => "Any RUTF left?", :collection => ["Yes", "No"], :selected => "No" %>
+
+		<label for="feedplan_watery_diarrhoea">Has watery Diarrhoea? : </label>
+			<dt>
+              <%= f.radio_button(:feedplan_watery_diarrhoea, 'Yes')%> Yes
+              <%= f.radio_button(:feedplan_watery_diarrhoea, 'No')%> No
+          </dt>
+	</div>
+	<div lass="row">
+      <label for="test_yes_appetite">Level of Appetite:</label>
+      <dt>
+        <%= f.select :test_yes_appetite, options_for_select([['Very Good','very_good'],['Good','good'],['Poor','poor'], ['Very Poor', 'very_poor']], params[:test_yes_appetite]),{}, { :class => 'span3 controls controls-row' } %>
+      </dt>
+
+      <div class="form-group">
+        <label for="test_alert">Alert? :</label>
+        <dt><%= f.radio_button(:test_alert, 'true')%> Yes
+              <%= f.radio_button(:test_alert, 'false')%> No</dt>
+      </div>
+        	
+      <div class="form-group">
+          <label for="test_complementery_food">Complementary Food:</label>
+          <dt><%= f.radio_button(:test_complementery_food, 'Yes')%> Yes
+              <%= f.radio_button(:test_complementery_food, 'None')%> No</dt>
+      </div>
+
+      <div class="form-group">
+          <label for="test_vomiting">Is a child Vomiting? :</label>
+          <dt>
+              <%= f.radio_button(:test_vomiting, 'Yes')%> Yes
+              <%= f.radio_button(:test_vomiting, 'No')%> No
+          </dt>
+      </div>
+
+      <div class="form-group">
+      	<!-- should dynamically be opened if child has watery diarrhoea -->
+        <label for="test_stools">Stools:</label>
+        <dt><%= f.radio_button(:test_stools, 'three')%> 1-3 times
+              <%= f.radio_button(:test_stools, 'four')%> 3-4 times
+              <%= f.radio_button(:test_stools, 'five')%> >5 times</dt>
+      </div>
+
+      <%= f.text_area :test_prev_medical_history, :label => "Previous Medical History:" %>
+
 	</div>
 </div>
 

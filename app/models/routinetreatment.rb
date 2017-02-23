@@ -3,10 +3,10 @@ class Routinetreatment < ActiveRecord::Base
 	before_validation :set_date
 
 #///////////////////////////////////////////////////////////////////////////////////////////////
-	as_enum :vitamin_A, [:half_capsule, :single_dose ], map: :string, source: :vitamin_A
+	as_enum :vitamin_A, [:do_not_use, :half_capsule, :single_dose ], map: :string, source: :vitamin_A
 	as_enum :folic_acid, [:single_dose], map: :string, source: :folic_acid
 	as_enum :albendazole, [:do_not_use, :mg_200, :mg_400], map: :string, source: :albendazole
-	as_enum :amoxicilic_antibiotic, [:mg_125, :mg_250, :mg_500], map: :string, source: :amoxicilic_antibiotic
+	as_enum :amoxicilic_antibiotic, [:do_not_use, :mg_125, :mg_250, :mg_500], map: :string, source: :amoxicilic_antibiotic
 	
 #///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -26,14 +26,92 @@ class Routinetreatment < ActiveRecord::Base
 		self.date = Time.now.to_date
 	end
 
-	def self.set_medication(age, weight)
-		# if age < 12
-		# 	self.vitamin_A = "half_capsule"
-		# else
-		# end
+	def self.vit_dosage(age, weight)
+		@age = age.to_f #expect decimals
+
+		if @age >= 6 #only those aged above 6 months
+			if @age < 12
+				return self.vitamin_A = "half_capsule"
+			else
+			  	return self.vitamin_A = "single_capsule"
+			end
+
+		else	#These are not expected to be in programme
+			return self.vitamin_A = "do_not_use"
+		end
+	end
+
+	def self.amoxicilin_dosage(weight)
+	# the method does not specify on syrup or tablet
+	# It will be specified in views
+		@weight = weight.to_f
+
+		if @weight < 2.0 #consideronly those over 2kg
+			if @weight > 2.0 && @weight < 10.0
+				return self.amoxicilin_antibiotic = "mg_125"
+			elsif @weight >= 10.0 && @weight =< 30.0
+				return self.amoxicilin_antibiotic = "mg_250"
+			else
+				return self.amoxicilin_antibiotic = "mg_500"
+			end
+
+		else #EXCEPT under KG
+			return self.amoxicilin_antibiotic = "do_not_use"
+		end
+
+	end
+
+	def self.folic_dosage
+		self.folic_acid = "single_dose"
+	end
+
+	def self.albendazole_dosage(age, weight)
+		@age = age.to_f
+
+		if @age > 12.0 #Only given to those aged 1 year and above
+			if @age < 24.0
+				return self.albendazole = "mg_200"
+			else
+				return self.albendazole = "mg_400"
+			end
+		else
+			self.albendazole = "do_not_use"
+		end
+	end
+
+	def self.fansidar_dosage(age, weight)
+	#If in Malarial area..that to be included in Facility table
+	#As a matter of fact, it is 25mg / kg
+	# that is if weight=12 then dosage is 25*12=150mg
+	# Most facilities use tablets,  so we just use weight-range
+
+		@weight = weight.to_f
+
+		if age.to_f > 2.0 #Should be over 2 months
+			if @weight > 4.0 && @weight =< 5.0
+				return self.fansidar = "quarter_tablet" #This contains 125mg
+
+			elsif @weight >5.0 && @weight =< 10.0 
+				return self.fansidar = "half_tablet" #This contains 250mg
+
+			elsif @weight > 10.0 && @weight =< 20.0
+				return self.fansidar = "one_tablet" #this conatins 500mg
+
+			elsif @weight >20.0 && @weight =< 30.0
+				return self.fansidar = "one_half_tablet" #this contains 750mg
+
+			elsif @weight >30.0 && @weight =< 45.0
+				return self.fansidar = "two_tablets" #this contains 1000mg
+
+			else
+				return self.fansidar = "three_tablets" #this contains 1500mg
+			end
+
+		end
 	end
 end
 
+#------------------------	END 	----------------------------------
 #please do not un-comment the following code, it is for reference purposes only
 
 #=======================================MIGRATIION FILE========================================

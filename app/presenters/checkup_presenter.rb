@@ -1,19 +1,54 @@
 class CheckupPresenter
-	delegate_to :child_id, :today_weight, :type_of_food, :food_package, :amount_offered, :amount_left, :estimated_amount_vomited, :watery_diarrhoea,
-				:prefix => 'feed_plan', :writer => true
 	
-	delegate_to :child_id, :weight, :MUAC, :z_score, :BMI, :clinician, :remark, :appetite_test, :clinical_status, 
-				:prefix => 'follow_up', :writer => true
-
-	def follow_up
-		@follow_up ||= Followup.new
+	def initialize(params ={})
+		params.each_pair do |attribute, value|
+			self.send :"#{attribute}=", value
+		end unless params.nil?	
 	end
 
-	def feed_plan
-		@feed_plan ||= Feedplan.new
+	def current_child(child)
+		if child
+			@current_child = Child.find_by_id(child.id)
+		end
+	end
+
+	def followup
+		@followup ||= Followup.new
+	end
+
+	def feedplan
+		@feedplan ||= Feedplan.new
+	end
+
+	def test
+		@test ||= Test.new
 	end
 
 	def save
-		@follow_up.save && @feed_plan.save
+		@followup.save
+
+		#======set some fields from other fields======
+			#FOR REMAINING feedplan PARAMS
+			@feedplan.admission_weight = @current_child.anthropometry.weight
+			@feedplan.today_weight = @followup.weight
+			@feedplan.amount_offered = Foodration.amount_of_rutf(@followup.weight).sachets_per_week.to_f
+
+			#FOR REMAINING test PARAMS
+			@test.set_breastfeeding(@current_child)
+			@test.Appetite_test = @followup.appetite_test 
+
+		#==============================================
+		@current_child.feedplans << @feedplan
+		@current_child.followups << @followup
+		@current_child.tests << @test
+		@followup.save && @feedplan.save && @test.save
 	end
+
+	def method_missing(model_attribute, *args)
+		model, *method_name = model_attribute.to_s.split("_" )
+		super unless self.respond_to? model.to_sym
+		self.send(model.to_sym).send(method_name.join("_" ).to_sym, *args)
+
+	end
+
 end

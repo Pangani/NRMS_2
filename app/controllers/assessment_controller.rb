@@ -19,12 +19,12 @@ class AssessmentController < ApplicationController
 		session[:child_id] = @child.id		
 		@presenter = AssessmentPresenter.new(params[:presenter])
 
-		@presenter.current_child
+		@presenter.current_child(@child)
 		if @presenter.save
 			#-----------------------------------------------------------------------------
 		        #CREATE A FEEDPLAN
 		        @ration = Foodration.amount_of_rutf(@child.anthropometry.weight)
-		        FeedPlan.create( 
+		        Feedplan.create( 
 			          :child_id => @child.id,
 			          :admission_weight => @child.anthropometry.weight,
 			          :today_weight => @child.anthropometry.weight,
@@ -33,13 +33,14 @@ class AssessmentController < ApplicationController
 			          :amount_offered => @ration.sachets_per_week,
 			          :amount_left => 0
 		          )
-		        #RoutineTreatment
+		        #Create a tuple in RoutineTreatment..see model
 		        # @treatment = Routinetreatment.create(
 		        # 		:child_id => @child.id
-		        # 		:vitamin_A => Routinetreatment.vit_dosage(@child.age_in_months, @child.anthropometry.weight)
-		        # 		:folic_acid => Routinetreatment.folic_dosage(@child.anthropometry.weight)
+		        # 		:vitamin_A => Routinetreatment.vit_dosage(@child.age_in_months)
+		        # 		:folic_acid => Routinetreatment.folic_dosage
+		        # 		:fansidar => Routinetreatment.fansidar_dosage(@child.age_in_months, @child.anthropometry.weight)
 		        # 		:amoxicilin_antibiotic => Routinetreatment.amoxicilin_dosage(@child.anthropometry.weight)
-		        # 		:albandazole => Routinetreatment.albandazole_dosage(@child.age_in_months, @child.anthropometry.weight)
+		        # 		:albandazole => Routinetreatment.albandazole_dosage(@child.age_in_months)
 		        # 	)
 			
 			flash[:notice] = "Assessment details have been recorded successfully"
