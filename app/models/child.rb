@@ -4,9 +4,9 @@ class Child < ActiveRecord::Base
 	has_one :discharge, :foreign_key => 'child_id', :dependent => :destroy
 	has_many :tests, :foreign_key => 'child_id', :dependent => :destroy
 	has_one :anthropometry, :foreign_key => 'child_id', :dependent => :destroy
-	has_many :feed_plans, :foreign_key => 'child_id', :dependent => :destroy
-	has_many :follow_ups, :foreign_key => 'child_id', :dependent => :destroy
-	has_one :routine_treatment, :foreign_key => 'child_id', :dependent => :destroy
+	has_many :feedplans, :foreign_key => 'child_id', :dependent => :destroy
+	has_many :followups, :foreign_key => 'child_id', :dependent => :destroy
+	has_one :routinetreatment, :foreign_key => 'child_id', :dependent => :destroy
 		
 #/////////////////////////////////////////////////////////////////////
 	#callbacks
@@ -88,7 +88,7 @@ class Child < ActiveRecord::Base
 														:appetite_test => true,
 														:alert => true
 													})
-		return if @elig.blank?
+		return nil if @elig.blank?
 		@elig
 	end
 	#A Child who has Muac < 11.5cm, age between 6months - 11yrs, oedema grade none;+;++

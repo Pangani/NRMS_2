@@ -1,8 +1,10 @@
 
-<h1 class="col-md-8">List of Registered Children</h1>
+<div class="row text-center">
+    <h1 class="col-md-12">Attendance List of Children</h1>
+</div>
 
-<div class="col-md-4" style="padding-top: 30px;"> 
-<%= link_to 'Add New child', url_for(:action => 'new', :controller => 'child') , :class => "btn btn-primary btn-lg" %>
+<div class="col-md-4" style="padding-top: 10px;"> 
+  <%= link_to 'Add New child', url_for(:action => 'new', :controller => 'child') , :class => "btn btn-primary btn-lg" %>
 </div>
 
 <br><br><br>
@@ -13,7 +15,7 @@
             <tr>
               <th>Registration #</th>
               <th>Name</th>
-              <th> child's Gender</th>
+              <th>Sex</th>
               <th>Guardian Name</th>
               <th>T/A</th>
               <th>village</th>

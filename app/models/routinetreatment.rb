@@ -3,11 +3,11 @@ class Routinetreatment < ActiveRecord::Base
 	before_validation :set_date
 
 #///////////////////////////////////////////////////////////////////////////////////////////////
-	as_enum :vitamin_A, [:Yes, :No ], map: :string, source: :vitamin_A
-	as_enum :folic_acid, [:Yes, :No ], map: :string, source: :folic_acid
-	as_enum :albendazole, [:Yes, :No ], map: :string, source: :albendazole
-	as_enum :amoxicilic_antibiotic, [:Yes, :No ], map: :string, source: :amoxicilic_antibiotic
-
+	as_enum :vitamin_A, [:half_capsule, :single_dose ], map: :string, source: :vitamin_A
+	as_enum :folic_acid, [:single_dose], map: :string, source: :folic_acid
+	as_enum :albendazole, [:do_not_use, :mg_200, :mg_400], map: :string, source: :albendazole
+	as_enum :amoxicilic_antibiotic, [:mg_125, :mg_250, :mg_500], map: :string, source: :amoxicilic_antibiotic
+	
 #///////////////////////////////////////////////////////////////////////////////////////////////
 
 	#            ON ADMISSION? 		AGE 	PRESCRIPTION 	DOSE 						TREATMENT
@@ -22,10 +22,15 @@ class Routinetreatment < ActiveRecord::Base
 				# - On admission: Vitamin A, Amoxicilin
 				# - On 2nd visit: Folic acid, albendazole
 #===============================================================================================
-
-
 	def set_date
 		self.date = Time.now.to_date
+	end
+
+	def self.set_medication(age, weight)
+		# if age < 12
+		# 	self.vitamin_A = "half_capsule"
+		# else
+		# end
 	end
 end
 

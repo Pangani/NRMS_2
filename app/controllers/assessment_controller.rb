@@ -15,22 +15,32 @@ class AssessmentController < ApplicationController
 #-----------------------------------------------------------------------------------------
 	# AssessmentPresenter is a ruby class(presenter) that combines 3 models
 	# namely admission, anthropometry and test
-	def create		
+	def create
+		session[:child_id] = @child.id		
 		@presenter = AssessmentPresenter.new(params[:presenter])
 
+		@presenter.current_child
 		if @presenter.save
 			#-----------------------------------------------------------------------------
-		        # #CREATE A FEEDPLAN
-		        # @ration = Foodration.amount_of_rutf(@child.anthropometry.weight)
-		        # FeedPlan.create( 
-			       #    :child_id => @child.id,
-			       #    :admission_weight => @child.anthropometry.weight,
-			       #    :today_weight => @child.anthropometry.weight,
-			       #    :type_of_food => "RUTF",
-			       #    :food_package => "sachet",
-			       #    :amount_offered => @ration.sachets_per_week,
-			       #    :amount_left => 0
-		        #   )
+		        #CREATE A FEEDPLAN
+		        @ration = Foodration.amount_of_rutf(@child.anthropometry.weight)
+		        FeedPlan.create( 
+			          :child_id => @child.id,
+			          :admission_weight => @child.anthropometry.weight,
+			          :today_weight => @child.anthropometry.weight,
+			          :type_of_food => "RUTF",
+			          :food_package => "sachet",
+			          :amount_offered => @ration.sachets_per_week,
+			          :amount_left => 0
+		          )
+		        #RoutineTreatment
+		        # @treatment = Routinetreatment.create(
+		        # 		:child_id => @child.id
+		        # 		:vitamin_A => Routinetreatment.vit_dosage(@child.age_in_months, @child.anthropometry.weight)
+		        # 		:folic_acid => Routinetreatment.folic_dosage(@child.anthropometry.weight)
+		        # 		:amoxicilin_antibiotic => Routinetreatment.amoxicilin_dosage(@child.anthropometry.weight)
+		        # 		:albandazole => Routinetreatment.albandazole_dosage(@child.age_in_months, @child.anthropometry.weight)
+		        # 	)
 			
 			flash[:notice] = "Assessment details have been recorded successfully"
 			redirect_to(:controller => 'child',:action => 'index')

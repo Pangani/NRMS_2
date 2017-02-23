@@ -15,11 +15,20 @@ class AssessmentPresenter
 		@admission ||= Admission.new
 	end
 
+	def current_child
+		if session[:child_id]
+			@current_child = Child.find_by_id(session[:child_id])
+		end
+	end
+
 	def test
 		@test ||= Test.new
 	end
 
 	def save
+		@current_child.admission = @admission
+		@current_child.anthropometry = @anthropometry
+		@current_child.tests << @test
 		@admission.save && @anthropometry.save && @test.save
 	end
 
