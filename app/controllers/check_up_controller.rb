@@ -35,7 +35,6 @@ class CheckUpController < ApplicationController
 
 #==============================check_up/show==========================================
 	def show
-		@follow = Followup.find(params[:id])
 	end
 
 #=====================================================================================

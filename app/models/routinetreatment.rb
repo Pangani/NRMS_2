@@ -42,14 +42,14 @@ class Routinetreatment < ActiveRecord::Base
 	end
 
 	def self.amoxicilin_dosage(weight)
-	# the method does not specify on syrup or tablet
+	# the method does not specify on whether dosage administered is syrup or tablet
 	# It will be specified in views
 		@weight = weight.to_f
 
 		if @weight < 2.0 #consideronly those over 2kg
-			if @weight > 2.0 && @weight < 10.0
+			if @weight > 2.0 && @weight < 10.1
 				return self.amoxicilin_antibiotic = "mg_125"
-			elsif @weight >= 10.0 && @weight =< 30.0
+			elsif @weight = (10.1..30.0).to_a.join(', ')# @weight = 10.1 && @weight =< 30.0
 				return self.amoxicilin_antibiotic = "mg_250"
 			else
 				return self.amoxicilin_antibiotic = "mg_500"
@@ -88,19 +88,19 @@ class Routinetreatment < ActiveRecord::Base
 		@weight = weight.to_f
 
 		if age.to_f > 2.0 #Should be over 2 months
-			if @weight > 4.0 && @weight =< 5.0
+			if @weight = (4.1..5.0).to_a.join(', ') #@weight > 4.0 && @weight =< 5.0 #
 				return self.fansidar = "quarter_tablet" #This contains 125mg
 
-			elsif @weight >5.0 && @weight =< 10.0 
+			elsif @weight = (5.1..10.0).to_a.join(', ')#@weight > 5.0 && @weight < 10.0 
 				return self.fansidar = "half_tablet" #This contains 250mg
 
-			elsif @weight > 10.0 && @weight =< 20.0
+			elsif @weight = (10.1..20.0).to_a.join(', ')#@weight > 10.0 && @weight < 20.0
 				return self.fansidar = "one_tablet" #this conatins 500mg
 
-			elsif @weight >20.0 && @weight =< 30.0
+			elsif  @weight = (20.1..30.0).to_a.join(', ')# @weight > 20.0 && @weight =< 30.0
 				return self.fansidar = "one_half_tablet" #this contains 750mg
 
-			elsif @weight >30.0 && @weight =< 45.0
+			elsif @weight > 30.0 && @weight < 45.1
 				return self.fansidar = "two_tablets" #this contains 1000mg
 
 			else

@@ -2,57 +2,33 @@
 <dl class="dl-horizontal">
      <div class="panel panel-primary panel-transparent">
         <div class="panel-heading">
-        	<h3>CONFIRM ASSESSMENT DETAILS</h3>
+        	<h4>WEEKLY SURVELLANCE SESSION</h4>
         </div>
-
+        <center><h4><em><%= @child.full_name.upcase %></h4></em></center>
         <div class="panel-body">
-        	
-            <div class="row">  
-                  <div class="col-xs-6" >
-                   <em> 
-                    <table>
-                        <div>
-                        	<p>Weight: <%= @follow.weight rescue nil%> Kg</p>
-                        </div>
+            <div class="row">
+              <h5>Anthropometric Assessment</h5>
+            </div>
 
-                        <div>
-                          <p>Height: <%= @follow.height rescue nil %> cm</p>
-                        </div>
+            <div class="row">
+              <h5>Medical Assessment</h5>
+            </div>
 
-                        <div>
-                        	<p>Appetite test: <%= @follow.appetite_test rescue nil%></p>
-                        </div>
-
-                        <div>
-                          <p>MUAC  <em>:<%= @follow.MUAC rescue nil%> mm</em></p>
-                        </div>
-                        
-                        <div>
-                          <p>Z-Score  :  <em><%= @follow.z_score rescue nil%></em></p>
-                        </div>
-
-                        <div>
-                          <p>Oedema : <%= @follow.oedema rescue "-" %></p>
-                        </div>
-
-                        <div>
-                          <p>Comments : <%= @follow.remark rescue nil %></p>
-                        </div>
-
-                    </table>
-                    </em>  
-                  </div>
+            <div class="row">
+              <h5>Nutritional Assessment</h5>
+            </div>
+        </div>
 
     </div>
 
-    <div class="row">
-    	<div id="myButton" class="col-md-6">
-    		<%= link_to 'CONFIRM', url_for(:controller => 'check_up', :action => 'index', :child_id => @child.id) , :class => "btn btn-primary btn-default" %>
-      </div>
-      <div class="col-md-6">
-        <%= link_to 'EDIT', url_for(:controller => 'check_up', :action => 'edit', :id => @follow.id) , :class => "btn btn-default" %>
-      </div>
+    
     </div>
 
 </dl>
 </div>
+
+<style type="text/css">
+  h5{
+    text-decoration: underline;
+  }
+</style>

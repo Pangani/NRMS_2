@@ -1,13 +1,12 @@
 <div class="jumbotron jumbotron-fluid">
 
   <div class="panel panel-transparent">
-      <div class="panel-heading"><h3>WEEKLY SURVELLANCE SESSION</h3></div>
+      <div class="panel-heading"><h3><%= @child.full_name.upcase %> (<em><%= @child.reg_number%></em>)</h3></div>
       <div class="panel-body">
-          <center><h4><em><%= @child.full_name %></h4></em></center>
-
-          <hr>
-            <i>Please fill in the entries below with required data gathered during check-up...</i>
-          <br />
+          <!-- 
+              <span id="anthrop">Anthropometry</span>
+              <span id="medic">Medical</span>
+              <span id="nutrit">Nutrition</span> -->
           <div class="row" >
             <%= simple_form_for :presenter, :url => url_for(:action => 'create', :controller => 'check-up'),
           :method => 'post'  do |f| %>

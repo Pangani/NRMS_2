@@ -3,6 +3,9 @@ class Test < ActiveRecord::Base
 	#before_validation :set_bfeeding
 
 #////////////////////////////////////////////////////////////////////////////////////////////
+validates :vomiting, :alert, :stools, :complementery_food, :presence => true
+
+#////////////////////////////////////////////////////////////////////////////////////////////
 	as_enum :stools, [:three, :four, :five], map: :string, source: :stools
 	as_enum :yes_appetite, [:very_good, :good, :poor, :very_poor], map: :string, source: :yes_appetite
 	as_enum :referred_by, [:Own, :NRU, :otherOTP], :map => :string, source: :referred_by
