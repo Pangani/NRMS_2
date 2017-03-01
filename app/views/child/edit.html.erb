@@ -2,13 +2,15 @@
    	<div class="panel panel-primary panel-transparent">
     <div class="panel-heading">Child Registration</div>
       	<div class="panel-body">
- 			<div>
+ 			<div class="row">
 				 <%= simple_form_for @child, :url => url_for(:action => 'update', :controller => 'child',:id => @child.id),:method => 'post'  do |f| %>
 
 				   	<%= render(:partial => "form", :locals => {:f => f}) %>
-				  <div>
-				  	<%= f.button :submit, 'update ', class: 'btn btn-primary' %>
-				  </div>
+				  <div class="col-md-12">
+              <div class="pull-right">
+                  <%= f.button :submit, 'Save Update ', class: 'btn btn-lg btn-primary' %>
+              </div>
+          </div>
 				  	
   				<% end %>
   			</div>

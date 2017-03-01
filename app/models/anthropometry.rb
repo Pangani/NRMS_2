@@ -2,7 +2,9 @@ class Anthropometry < ActiveRecord::Base
 #Associations
 	belongs_to :child
 	#after_save :setID
-
+#===================================================================================================
+	validates :weight, :height, :MUAC, :z_score, :oedema, :presence => true
+	
 #///////////////////////////////////////////////////////////////////////////////////////////////////
 	#conditions
 	scope :no_oedema, lambda { where(:oedema => "no_oedema")}

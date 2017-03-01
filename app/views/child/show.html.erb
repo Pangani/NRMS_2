@@ -44,7 +44,7 @@
 <dl class="dl-horizontal">
       <div class="panel panel-primary panel-transparent">
         <div class="panel-heading">
-          <h2>CHILD RECORD</h2>
+          <h3>CHILD RECORD</h3>
         </div>
         <style>
           h3 {
@@ -67,7 +67,7 @@
                   </div>
 
                   <div>
-                    <p><strong>Referred By : </strong><%= @child.tests.first.referred_by if @child.tests rescue nil%></p>
+                    <p><strong>Referred By : </strong><%= @child.admission.referred_by if @child.admission rescue nil%></p>
                   </div>
 
                   <div>
@@ -207,12 +207,10 @@
   </div>
     	
   <hr/>
-  <div   class="row-center">
+  <div class="row">
     <%= link_to '<< Back', url_for(:action => 'index',  :id =>@child.id ,:controller => 'child') , :class => "btn btn-primary btn-default" %> |
       
-  <%= link_to 'Edit', url_for(:action => 'edit', :id =>@child.id ,:controller => 'child') , :class => "btn btn-default btn-default" %>   
-
-
+      <%= link_to 'Edit', url_for(:action => 'edit', :id =>@child.id ,:controller => 'child') , :class => "btn btn-default btn-default" %>   
   </div>
 
  

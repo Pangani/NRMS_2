@@ -3,7 +3,7 @@ class Test < ActiveRecord::Base
 	#before_validation :set_bfeeding
 
 #////////////////////////////////////////////////////////////////////////////////////////////
-validates :vomiting, :alert, :stools, :complementery_food, :presence => true
+validates :vomiting, :alert, :stools, :complementery_food, :clinician_name, :presence => true
 
 #////////////////////////////////////////////////////////////////////////////////////////////
 	as_enum :Appetite_test, [:Yes, :No], map: :string, source: :Appetite_test 
@@ -18,11 +18,14 @@ validates :vomiting, :alert, :stools, :complementery_food, :presence => true
 
 #//////////////////////////////////////////////////////////////////////////////////////////
 	def set_breastfeeding(child)
-		@age = child.age_in_months
-		if @age.to_f > 24
-			return self.breastfeeding = "Yes"
-		else
-			return self.breastfeeding = "No"
+		if child
+			@age = child.age_in_months
+
+			if @age.to_f > 24
+				return self.breastfeeding = "Yes"
+			else
+				return self.breastfeeding = "No"
+			end
 		end
 	end
 
@@ -39,7 +42,6 @@ end
 #   def change
 #     create_table :tests do |t|
 #     	t.references :child, :null => false
-#     	t.string "referred_by", :limit => 10, null: false
 #     	t.boolean "Appetite_test", :null => false
 #     	t.string "breastfeeding", :limit => 5, null: false
 #     	t.string "complementery_food", :limit => 5, :null => false

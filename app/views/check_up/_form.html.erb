@@ -14,7 +14,7 @@
 			<%= f.input :followup_weight, :label => "Weight (kgs):", :placeholder => 'current weight', class: 'col-md-4' %>
 			<%= f.input :followup_height, :label => "Height (cm) :", placeholder: 'e.g 125cm' %>
 
-			<%= f.input :followup_z_score, as: :integer, :label => 'Z-score :', :collection => ["-1", "-2", "-3", "0"], :selected => "0" %>
+			<%= f.input :followup_z_score, as: :integer, :label => 'Z-score :', :collection => [-1, -2, -3], :selected => 0 %>
 
 			<%= f.input :followup_oedema, :label => "Oedema:", :collection => ["none", "+", "++", "+++"], :selected => "none" %>
 

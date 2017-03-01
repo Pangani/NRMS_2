@@ -69,14 +69,19 @@
             <br /><br />
             <hr>
             </div>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-4">
+                      <%= link_to 'Edit', url_for(:action => 'edit', :id =>@child.id ,:controller => 'child') , :class => "btn btn-default btn-primary" %>        
+                </div>
+                <div class="col-md-6 col-md-offset-2" id="myButton">
+                      <%= link_to 'CONFIRM' , url_for( :action => 'new', :controller => 'assessment', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
+                </div>
+              </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-    	<div id="myButton" class="col-md-8 col-offset-4">
-    		<%= link_to 'CONFIRM' , url_for( :action => 'new', :controller => 'assessment', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
-      </div>
-    </div>
-    <%= link_to 'Edit', url_for(:action => 'edit', :id =>@child.id ,:controller => 'child') , :class => "btn btn-default btn-default" %>        
+  </div>
 </dl>
 </div>
 

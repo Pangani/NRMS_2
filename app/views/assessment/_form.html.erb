@@ -17,8 +17,6 @@
 
       <%= f.input :admission_admission_criteria, :label => "Admission Criteria:",placeholder: 'Admission Criteria',  collection: ["muac", " z_score", "bilateral_oedema", "bmi_for_age"], selected: "muac" %>
    
-      <%= f.input :test_clinician_name, :label => "Clinician Name:",placeholder: 'Clinician Name' %>
-
   </div>
 
   <div class="col-md-6" >
@@ -33,12 +31,6 @@
         <%= f.select :test_yes_appetite, options_for_select([['Very Good','very_good'],['Good','good'],['Poor','poor'], ['Very Poor', 'very_poor']], params[:test_yes_appetite]),{}, { :class => 'span3 controls controls-row' } %>
       </dt>
      
-      <div class="form-group">
-          <label for="test_breastfeeding">BreastFeeding:</label>
-          <dt><%= f.radio_button(:test_breastfeeding, 'Yes')%> Yes
-              <%= f.radio_button(:test_breastfeeding, 'No' )%> No</dt>
-      </div>
-        	
       <div class="form-group">
           <label for="test_complementery_food">Complementary Food:</label>
           <dt><%= f.radio_button(:test_complementery_food, 'Yes')%> Yes
@@ -68,8 +60,9 @@
               <%= f.radio_button(:test_alert, 'false')%> No</dt>
       </div>
 
-      <%= f.input :test_prev_medical_history, :label => "Previous Medical History:" %>
+      <%= f.input :test_prev_medical_history, as: :text, :label => "Previous Medical History:" %>
 
+      <%= f.input :test_clinician_name, :label => "Clinician Name:",placeholder: 'Clinician Name' %>
   </div>
 
 </div>

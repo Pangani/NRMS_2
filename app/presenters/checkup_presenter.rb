@@ -46,12 +46,6 @@ class CheckupPresenter
 		@followup.save && @feedplan.save && @test.save
 	end
 
-	def show
-		@followup = Followup.find_by_child_id(@child.id)
-		@test = Test.find_by_child_id(@child.id)
-		@feedplan = Feedplan.find_by_child_id(@child.id)
-	end
-
 	# def edit
 	# 	@followup = Followup.find_by_id(params[:id)
 	# end

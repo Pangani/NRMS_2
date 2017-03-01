@@ -26,10 +26,13 @@ class AssessmentPresenter
 	end
 
 	def save
-		@current_child.admission = @admission
-		@current_child.anthropometry = @anthropometry
-		@current_child.tests << @test
+		@test.set_breastfeeding(@child)
+
 		@admission.save && @anthropometry.save && @test.save
+
+			@current_child.admission = @admission
+			@current_child.anthropometry = @anthropometry
+			@current_child.tests << @test
 	end
 
 	def method_missing(model_attribute, *args)
