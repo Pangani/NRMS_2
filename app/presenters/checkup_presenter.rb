@@ -39,11 +39,22 @@ class CheckupPresenter
 			@test.Appetite_test = @followup.appetite_test 
 
 		#==============================================
+
 		@current_child.feedplans << @feedplan
 		@current_child.followups << @followup
 		@current_child.tests << @test
 		@followup.save && @feedplan.save && @test.save
 	end
+
+	def show
+		@followup = Followup.find_by_child_id(@child.id)
+		@test = Test.find_by_child_id(@child.id)
+		@feedplan = Feedplan.find_by_child_id(@child.id)
+	end
+
+	# def edit
+	# 	@followup = Followup.find_by_id(params[:id)
+	# end
 
 	def method_missing(model_attribute, *args)
 		model, *method_name = model_attribute.to_s.split("_" )

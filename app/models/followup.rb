@@ -19,6 +19,17 @@ class Followup < ActiveRecord::Base
 	as_enum :clinical_status, [:clinically_well, :not_well], map: :string, source: :clinical_status
 
 #///////////////////////////////////////////////////////////////////////////////////
+
+	def weight_gain(child)
+		@last_weight = child.follow_ups.find_by_updated_at(Date.today - 7.days) rescue child.anthropometry.weight 
+
+		@f_weight = (self.weight.to_f - @last_weight.to_f) / @last_weight.to_f
+		@gain = @f_weight * 100 #In percentage
+
+		return if @gain.blank?
+		@gain
+	end
+
 private
 	def set_last_update
 		self.last_update = Time.now.to_date

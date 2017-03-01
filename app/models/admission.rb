@@ -12,6 +12,7 @@ class Admission < ActiveRecord::Base
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#Validations
 	as_enum :admission_type, [:new_admission, :relapse, :readmission], map: :string, source: :admission_type 
+	as_enum :referred_by, [:Own, :NRU, :otherOTP], :map => :string, source: :referred_by
 	as_enum :admission_criteria, [:muac, :z_score, :bilateral_oedema, :bmi_for_age, :other], map: :string, source: :admission_criteria
 
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////

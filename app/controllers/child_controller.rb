@@ -46,7 +46,8 @@ class ChildController < ApplicationController
       else
         @found_person = @found_results
       end
-
+      # we need also to separate those that are admitted into programme
+      # because the mthos searches for all
       #if assigned
       if @found_person
         session[:child_id] = @found_person.first.id

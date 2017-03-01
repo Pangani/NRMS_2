@@ -54,8 +54,8 @@
 		        <div class="form-group">
 					<label for="feedplan_watery_diarrhoea">Has watery Diarrhoea? : </label>
 						<dt>
-			              <%= f.radio_button(:feedplan_watery_diarrhoea, 'Yes')%> Yes
-			              <%= f.radio_button(:feedplan_watery_diarrhoea, 'No')%> No
+			              <%= f.radio_button(:feedplan_watery_diarrhoea, 1)%> Yes
+			              <%= f.radio_button(:feedplan_watery_diarrhoea, 0)%> No
 			          	</dt>
 		        </div>
 
@@ -79,8 +79,8 @@
 			    <div class="form-group">
 			        <label for="test_vomiting">Is a child Vomiting? :</label>
 			          	<dt>
-			              	<%= f.radio_button(:test_vomiting, 'Yes')%> Yes
-			              	<%= f.radio_button(:test_vomiting, 'No')%> No
+			              	<%= f.radio_button(:test_vomiting, 1)%> Yes
+			              	<%= f.radio_button(:test_vomiting, 0)%> No
 			          	</dt>
 			    </div>
 

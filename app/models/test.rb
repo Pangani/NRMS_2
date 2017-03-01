@@ -6,12 +6,11 @@ class Test < ActiveRecord::Base
 validates :vomiting, :alert, :stools, :complementery_food, :presence => true
 
 #////////////////////////////////////////////////////////////////////////////////////////////
+	as_enum :Appetite_test, [:Yes, :No], map: :string, source: :Appetite_test 
 	as_enum :stools, [:three, :four, :five], map: :string, source: :stools
 	as_enum :yes_appetite, [:very_good, :good, :poor, :very_poor], map: :string, source: :yes_appetite
-	as_enum :referred_by, [:Own, :NRU, :otherOTP], :map => :string, source: :referred_by
 	as_enum :complementery_food, [:Yes, :None], :map => :string, source: :complementery_food
 	as_enum :breastfeeding, [:Yes, :No], :map => :string, source: :breastfeeding
-	as_enum :vomiting, [:Yes, :No], :map => :string, source: :vomiting
 
 #///////////////////////////////////////////////////////////////////////////////////////////
 	scope :appetite_pass, lambda {where(:Appetite_test => true)}

@@ -27,23 +27,32 @@ class CheckUpController < ApplicationController
 
 		if @presenter.save
 			flash[:notice] = "successfully updated the assessment details for #{@child.full_name}"
-			redirect_to(:action => 'index', :child_id => @child.id )
+			redirect_to(:action => 'show', :child_id => @child.id )
 		else
+			flash[:notice] = "This is annoying!!! Whats wrong now?"
 			render('new')
 		end
 	end
 
 #==============================check_up/show==========================================
 	def show
+		@followup = Followup.find_by_child_id(params[:child_id])
+		@test = Test.find_by_child_id(params[:child_id])
+		@feedplan = Feedplan.find_by_child_id(params[:child_id])
 	end
 
 #=====================================================================================
 	def display
+		@follow = Followup.where(params[:child_id])
+		
+		@followup = Followup.find_by_child_id(params[:child_id])
+		@test = Test.find_by_child_id(params[:child_id])
+		@feedplan = Feedplan.find_by_child_id(params[:child_id])
 	end
 
 #===============================check_up/edit=========================================
 	def edit
-    	@follow =Followup.find(params[:id])
+		@presenter = CheckupPresenter.edit
   	end
 
 #-------------------------------------------------------------------------------------

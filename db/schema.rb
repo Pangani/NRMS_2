@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222160539) do
+ActiveRecord::Schema.define(version: 20170301080259) do
 
   create_table "admissions", force: :cascade do |t|
     t.integer  "child_id",           limit: 4
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20170222160539) do
 
   create_table "tests", force: :cascade do |t|
     t.integer "child_id",             limit: 4
-    t.boolean "Appetite_test"
+    t.string  "Appetite_test",        limit: 255
     t.string  "breastfeeding",        limit: 5
     t.string  "complementery_food",   limit: 5
     t.integer "vomiting",             limit: 1
