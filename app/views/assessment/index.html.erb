@@ -1,0 +1,19 @@
+<div class="jumbotron jumbotron-fluid">
+	<div class="panel panel-primary panel-transparent">
+		<div class="panel-heading">
+			ANTHROPOMETRIC AND MEDICAL ASSESSMENT
+		</div>
+		
+		<div class="panel-body">
+
+				<%= simple_form_for :presenter, :url => url_for(:action => 'create', :controller => 'assessment'), :method => 'post' do |f| %>
+
+				    	<%= render( :partial => "form", :locals => {:f => f}) %>
+	    
+					<%= f.button :submit, 'Complete Registration ', class: 'btn btn-primary btn-lg'%>
+					 
+				<% end %>
+		</div>
+	</div>
+</div>
+ 

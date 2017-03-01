@@ -44,6 +44,10 @@
                 <!-- holds some graphs (weight graph) -->
                 <div class="col-md-6">
                   The plot of weight against visits
+
+
+
+                  <div>  <%= line_chart @child_follows.group("date(created_at)").sum(:weight), xtitle: "checkup date", ytitle: "Weight (kg)" %> </div>
                   <br>
                 </div>  
             </div>

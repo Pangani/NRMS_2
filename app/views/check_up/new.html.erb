@@ -7,6 +7,16 @@
               <span id="anthrop">Anthropometry</span>
               <span id="medic">Medical</span>
               <span id="nutrit">Nutrition</span> -->
+
+              <div class="container container-fluid">
+                
+                <div>  <%= line_chart @follow.group("date(created_at)").sum(:weight), xtitle: "checkup date", ytitle: "Weight (kg)" %> </div>
+
+
+                <div>  <%= line_chart @follow.group("created_at").sum("height") , xtitle: "checkup date", ytitle: "Height (cm)" %> </div>
+                s
+                <div>  <%= line_chart @follow.group("date(created_at)").sum(:muac) , xtitle: "checkup date", ytitle: "MUAC (cm)"%> </div>
+              </div>
           <div class="row" >
             <%= simple_form_for :presenter, :url => url_for(:action => 'create', :controller => 'check-up'),
           :method => 'post'  do |f| %>

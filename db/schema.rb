@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222160539) do
+ActiveRecord::Schema.define(version: 20170301171650) do
 
   create_table "admissions", force: :cascade do |t|
     t.integer  "child_id",           limit: 4
     t.string   "admission_type",     limit: 255, default: "new_admission", null: false
-    t.datetime "date_of_admission"
-    t.string   "admission_criteria", limit: 255
-    t.string   "referred_by",        limit: 255
+    t.datetime "date_of_admission",                                        null: false
+    t.string   "admission_criteria", limit: 255,                           null: false
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
   end
@@ -27,9 +26,9 @@ ActiveRecord::Schema.define(version: 20170222160539) do
 
   create_table "anthropometries", force: :cascade do |t|
     t.integer  "child_id",   limit: 4
-    t.decimal  "height",                 precision: 10
-    t.decimal  "weight",                 precision: 10
-    t.integer  "z_score",    limit: 3
+    t.decimal  "height",                 precision: 10,                       null: false
+    t.decimal  "weight",                 precision: 10,                       null: false
+    t.integer  "z_score",    limit: 3,                                        null: false
     t.decimal  "MUAC",                   precision: 10,                       null: false
     t.string   "oedema",     limit: 255,                default: "no_oedema", null: false
     t.decimal  "BMI",                    precision: 10
@@ -59,12 +58,12 @@ ActiveRecord::Schema.define(version: 20170222160539) do
 
   create_table "discharges", force: :cascade do |t|
     t.integer  "child_id",           limit: 4
-    t.datetime "date_of_discharge"
+    t.datetime "date_of_discharge",                                  null: false
     t.string   "programme",          limit: 25,                      null: false
     t.text     "proposed_treatment", limit: 65535
     t.text     "proposed_diet",      limit: 65535
     t.string   "outcome",            limit: 60,    default: "cured", null: false
-    t.integer  "length_of_stay",     limit: 4
+    t.integer  "length_of_stay",     limit: 4,                       null: false
   end
 
   add_index "discharges", ["child_id"], name: "index_discharges_on_child_id", using: :btree
@@ -113,6 +112,17 @@ ActiveRecord::Schema.define(version: 20170222160539) do
     t.datetime "updated_at",                                         null: false
   end
 
+  create_table "referrals", force: :cascade do |t|
+    t.integer  "child_id",      limit: 4
+    t.date     "date_referred"
+    t.text     "reason",        limit: 65535
+    t.string   "confirmed_by",  limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "referrals", ["child_id"], name: "index_referrals_on_child_id", using: :btree
+
   create_table "routinetreatments", force: :cascade do |t|
     t.integer  "child_id",              limit: 4
     t.date     "date",                              null: false
@@ -129,15 +139,16 @@ ActiveRecord::Schema.define(version: 20170222160539) do
 
   create_table "tests", force: :cascade do |t|
     t.integer "child_id",             limit: 4
-    t.boolean "Appetite_test"
-    t.string  "breastfeeding",        limit: 5
-    t.string  "complementery_food",   limit: 5
-    t.integer "vomiting",             limit: 1
-    t.boolean "alert"
+    t.string  "referred_by",          limit: 10,                   null: false
+    t.boolean "Appetite_test",                                     null: false
+    t.string  "breastfeeding",        limit: 5,                    null: false
+    t.string  "complementery_food",   limit: 5,                    null: false
+    t.integer "vomiting",             limit: 1,                    null: false
+    t.boolean "alert",                                             null: false
     t.string  "stools",               limit: 10,                   null: false
     t.string  "yes_appetite",         limit: 255, default: "good"
     t.text    "prev_medical_history", limit: 255
-    t.string  "clinician_name",       limit: 30
+    t.string  "clinician_name",       limit: 30,                   null: false
   end
 
   add_index "tests", ["child_id"], name: "index_tests_on_child_id", using: :btree
@@ -165,6 +176,7 @@ ActiveRecord::Schema.define(version: 20170222160539) do
   add_foreign_key "discharges", "children", on_delete: :cascade
   add_foreign_key "feedplans", "children", on_delete: :cascade
   add_foreign_key "followups", "children", on_delete: :cascade
+  add_foreign_key "referrals", "children", on_delete: :cascade
   add_foreign_key "routinetreatments", "children", on_delete: :cascade
   add_foreign_key "tests", "children", on_delete: :cascade
 end
