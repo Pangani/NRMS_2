@@ -1,29 +1,67 @@
 <div class="jumbotron"  >
 <dl class="dl-horizontal">
-     <div class="panel panel-primary panel-transparent">
+  <div class="panel panel-primary panel-transparent">
         <div class="panel-heading">
         	<h4>WEEKLY SURVELLANCE SESSION</h4>
         </div>
         <center><h4><em><%= @child.full_name.upcase %></h4></em></center>
         <div class="panel-body">
-            <div class="row">
+          <div class="row">
+            <div class="col-xs-6">
               <h5>Anthropometric Assessment</h5>
+
+                <p><i><strong>Today's Weight: </strong> <%= @presenter.followup.weight rescue nil%></i></p>
+                <p><i><strong>Today's Height: </strong> <%= @presenter.followup.height rescue nil%></i></p>
+                <p><i><strong>MUAC: </strong> <%= @presenter.followup.MUAC rescue nil%></i></p>
+                <p><i><strong>Z Score: </strong> <%= @presenter.followup.z_score rescue nil%></i></p>
+                  <% if @child.age > 5%>
+                    <p><i><strong>BMI: </strong> <%= @presenter.followup.BMI rescue nil%></i></p>
+                  <% end %>
+                <p><i><strong>Oedema Status: </strong> <%= @presenter.followup.oedema rescue nil%></i></p>
             </div>
 
-            <div class="row">
-              <h5>Medical Assessment</h5>
-            </div>
+            <div class="col-xs-6">
+                <h5>Medical Assessment</h5>
+                
+                <p><i><strong>Complemenary Food: </strong> <%= @presenter.test.complementery_food rescue nil%></i></p>
+                <p><i><strong>Is a child vomiting?: </strong> <%= @presenter.test.vomiting rescue nil%></i></p>
 
-            <div class="row">
+                <p><i><strong>Having Diarrhoea? : </strong> <%= @presenter.feedplan.weight rescue nil%></i></p>
+
+                <p><i><strong>Stools : </strong> <%= @presenter.test.stools rescue nil%></i></p>
+              
+                <p><i><strong>Clinical Status: </strong> <%= @presenter.followup.clinical_status rescue nil%></i></p>    
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-6">
               <h5>Nutritional Assessment</h5>
+
+              <p><i><strong>Food Package : </strong> <%= @presenter.feedplans.food_package rescue nil%></i></p>
+
+              <p><i><strong>Amount left : </strong> <%= @presenter.feedplan.amount_left rescue nil%></i></p>
+              
+              <p><i><strong>Examined By : </strong> <%= @presenter.followup.clinician rescue nil%></i></p>
+
+              <p><i><strong>Comments : </strong> <%= @presenter.followup.clinical_status rescue nil%></i></p>
             </div>
+          </div>
         </div>
 
-    </div>
+        <div class="row">
+          <div class="col-md-6" id="myButton">
+            <%= link_to 'Edit', url_for(:action => 'edit', :id =>@child.id ,:controller => 'child') , :class => "btn btn-default btn-default" %> 
+          </div>
+
+          <div id="myButton" class="col-md-6">
+            <%= link_to 'CONFIRM' , url_for( :action => 'display', :controller => 'check-up', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
+          </div>
+        </div>
+        
+      </div>
 
     
-    </div>
-
 </dl>
 </div>
 

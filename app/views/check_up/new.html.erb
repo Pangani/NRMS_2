@@ -1,7 +1,5 @@
-<div class="jumbotron jumbotron-fluid">
-
-  <div class="panel panel-transparent">
-      <div class="panel-heading"><h3><%= @child.full_name.upcase %> (<em><%= @child.reg_number%></em>)</h3></div>
+      <center><h3><%= @child.full_name.upcase %> (<em><%= @child.reg_number%></em>)</h3></center>
+    <div class="panel panel-transparent">
       <div class="panel-body">
           <!-- 
               <span id="anthrop">Anthropometry</span>
@@ -9,14 +7,12 @@
               <span id="nutrit">Nutrition</span> -->
           <div class="row" >
             <%= simple_form_for :presenter, :url => url_for(:action => 'create', :controller => 'check-up'),
-          :method => 'post'  do |f| %>
+                :method => 'post'  do |f| %>
 
               <%= render(:partial => "form", :locals => {:f => f}) %>
 
-              <div class="col-md-12 col-offset-8">
-                  <%= f.button :submit, 'Done', class: 'btn btn-primary btn-lg' %>
-              </div>
-      <% end %>
+      
+            <% end %>
           </div>
           
       </div>

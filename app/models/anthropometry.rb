@@ -14,11 +14,13 @@ class Anthropometry < ActiveRecord::Base
 	as_enum :oedema, [:no_oedema, :level_one, :level_two, :level_three], map: :string, source: :oedema
 
 #///////////////////////////////////////////////////////////////////////////////////////////////////
-	def setID
-		@child = Child.last
-		@child.anthropometry = Anthropometry.find_by_id(@child.id)
-	end
+	def self.BMI
+		@weight = self.weight.to_f
+		@height = self.height.to_f
 
+		@bmi = @weight / (@height * @height)
+		return if @bmi.blank?
+	end
 end
 
 #please do not un-comment the following code, it is for reference purposes only
