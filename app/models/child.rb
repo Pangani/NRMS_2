@@ -13,7 +13,7 @@ class Child < ActiveRecord::Base
 
 #////////////////////////////////////////////////////////////////////
 	#validations
-	validates :reg_number, uniqueness: true, presence: true
+	validates :reg_number, :uniqueness => true, :presence => true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :guardian_name, presence: true
@@ -132,14 +132,14 @@ class Child < ActiveRecord::Base
 		end
 	end
 
-	def reg_number
+	#def reg_number
 		
 		# "Balaka","Blantyre","Chikwawa","Chiradzulu","Chitipa","Dedza",
   #       "Dowa", "Karonga","Likoma","Lilongwe","Machinga","Mangochi",
   #       "Mchinji","Mulanje", "Mwanza", "Mzimba","Neno","Nkhata Bay",
   #       "Nkhotakota","Nsanje","Ntcheu","Ntchisi","Phalombe","Rumphi",
   #       "Salima","Thyolo","Zomba"
-	end
+	#end
 #//////////////////////////////////////////////////////////////////////
 	#methods for a multi-step form of registering a child
 	def current_step

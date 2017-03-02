@@ -3,7 +3,7 @@ class Feedplan < ActiveRecord::Base
 	before_validation :setDate
 
 #///////////////////////////////////////////////////////////////////////////////////
-validates :amount_left, :watery_diarrhoea, :food_package, presence: true, :message => "can't be blank!"
+validates :amount_left, :watery_diarrhoea, :food_package, presence: true
 
 #///////////////////////////////////////////////////////////////////////////////////
 	as_enum :food_package, [:sachet, :bottle ], map: :string, source: :food_package

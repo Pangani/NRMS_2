@@ -4,6 +4,8 @@ class Anthropometry < ActiveRecord::Base
 	#after_save :setID
 #===================================================================================================
 	validates :weight, :height, :MUAC, :z_score, :oedema, :presence => true
+	validates_length_of :weight, :within => 1..30
+	validates_numericality_of :weight, :height, :MUAC, :z_score
 	
 #///////////////////////////////////////////////////////////////////////////////////////////////////
 	#conditions

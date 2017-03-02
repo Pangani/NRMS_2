@@ -35,14 +35,14 @@ class AssessmentController < ApplicationController
 		          )
 		        
 		        #Create a tuple in RoutineTreatment..see model
-		        @treatment = Routinetreatment.create(
-		        		:child_id => @child.id
-		        		:vitamin_A => Routinetreatment.vit_dosage(@child.age_in_months)
-		        		:folic_acid => Routinetreatment.folic_dosage
-		        		:fansidar => Routinetreatment.fansidar_dosage(@child.age_in_months, @child.anthropometry.weight)
-		        		:amoxicilin_antibiotic => Routinetreatment.amoxicilin_dosage(@child.anthropometry.weight)
-		        		:albandazole => Routinetreatment.albandazole_dosage(@child.age_in_months)
-		        	)
+		        # @treatment = Routinetreatment.create(
+		        # 		:child_id => @child.id,
+		        # 		:vitamin_A => Routinetreatment.vit_dosage(@child.age_in_months),
+		        # 		:folic_acid => Routinetreatment.folic_dosage,
+		        # 		:fansidar => Routinetreatment.fansidar_dosage(@child.age_in_months, @child.anthropometry.weight),
+		        # 		:amoxicilin_antibiotic => Routinetreatment.amoxicilin_dosage(@child.anthropometry.weight),
+		        # 		:albandazole => Routinetreatment.albandazole_dosage(@child.age_in_months)
+		        # 	)
 			
 			flash[:notice] = "Assessment details have been recorded successfully"
 			redirect_to(:controller => 'child',:action => 'index')
