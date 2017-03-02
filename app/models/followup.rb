@@ -4,12 +4,10 @@ class Followup < ActiveRecord::Base
 	# after_save :touch_child
 	
 #////////////////////////////////////////////////////////////////////////////////////
-	validates :weight, presence: true
-	validates :height, presence: true
-	validates :MUAC, presence: true
-	validates :z_score, presence: true
-	validates :clinician, presence: true
-	validates :clinical_status, :presence => true
+	validates :weight, :height, :MUAC, :z_score, :clinician, :presence: true, :message => "can't be blank!"
+	validates_length_of :z_score, :within => -3..4
+	validates_length_of :height, :maximum => 200
+	validates_numericality_of :weight, :height, :MUAC, :z_score, :message => "This is not number!"
 
 #////////////////////////////////////////////////////////////////////////////////////
 	scope :latest_update_first, lambda{ order("follow_ups.updated_at ASC")}
