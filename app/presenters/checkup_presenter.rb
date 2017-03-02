@@ -35,7 +35,6 @@ class CheckupPresenter
 			@feedplan.amount_offered = @ration.sachets_per_week.to_f if !@ration.blank?
 
 			#FOR REMAINING test PARAMS
-			@test.set_breastfeeding(@current_child)
 			@test.Appetite_test = @followup.appetite_test 
 
 		#==============================================
