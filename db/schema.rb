@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301080259) do
+ActiveRecord::Schema.define(version: 20170307095900) do
 
   create_table "admissions", force: :cascade do |t|
     t.integer  "child_id",           limit: 4
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 20170301080259) do
 
   add_index "discharges", ["child_id"], name: "index_discharges_on_child_id", using: :btree
 
+  create_table "facilities", force: :cascade do |t|
+    t.string   "name",          limit: 255, null: false
+    t.string   "district",      limit: 255, null: false
+    t.string   "location",      limit: 255, null: false
+    t.integer  "facility_code", limit: 4,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "facilities", ["facility_code"], name: "index_facilities_on_facility_code", using: :btree
+
   create_table "feedplans", force: :cascade do |t|
     t.integer  "child_id",                 limit: 4
     t.decimal  "admission_weight",                     precision: 10
@@ -112,6 +123,17 @@ ActiveRecord::Schema.define(version: 20170301080259) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
   end
+
+  create_table "referrals", force: :cascade do |t|
+    t.integer  "child_id",      limit: 4
+    t.date     "date_referred",             null: false
+    t.string   "reason",        limit: 255, null: false
+    t.string   "confirmed_by",  limit: 255, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "referrals", ["child_id"], name: "index_referrals_on_child_id", using: :btree
 
   create_table "routinetreatments", force: :cascade do |t|
     t.integer  "child_id",              limit: 4
@@ -165,6 +187,7 @@ ActiveRecord::Schema.define(version: 20170301080259) do
   add_foreign_key "discharges", "children", on_delete: :cascade
   add_foreign_key "feedplans", "children", on_delete: :cascade
   add_foreign_key "followups", "children", on_delete: :cascade
+  add_foreign_key "referrals", "children", on_delete: :cascade
   add_foreign_key "routinetreatments", "children", on_delete: :cascade
   add_foreign_key "tests", "children", on_delete: :cascade
 end

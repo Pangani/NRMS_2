@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'childmonitoring/index'
+
   devise_for :users
   root 'home#index'
 
