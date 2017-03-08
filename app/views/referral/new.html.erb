@@ -10,10 +10,10 @@
 	            <div class="col-xs-6">
 	              <em>
 	                <div>
-	                  <p><strong>Full Name: </strong></p>
+	                  <p><strong>Full Name: </strong><%= @child.full_name%></p>
 	                </div>
 	                <div>
-	                  <p><strong>ID Number: </strong></p>
+	                  <p><strong>ID Number: </strong><%= @child.reg_number %></p>
 	                </div>
 	              </em>
 	            </div>
@@ -21,10 +21,10 @@
 	            <div class="col-xs-6">
 	              <em>
 	                <div>
-	                  <p><strong>Age : </strong></p>
+	                  <p><strong>Age : </strong><%= @child.age_in_months %></p>
 	                </div>
 	                <div>
-	                  <p><strong>Facility Name: </strong> Nthumbwe Health Centre </p>
+	                  <p><strong>Facility Name: </strong><%= Facility.name rescue "Nthumbwe Health Centre" %></p>
 	                </div>
 	               </div>
 	              </em>

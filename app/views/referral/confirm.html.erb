@@ -9,10 +9,10 @@
 	            <div class="col-xs-6">
 	              <em>
 	                <div>
-	                  <p><strong>Full Name: </strong></p>
+	                  <p><strong>Full Name: </strong><%= @child.full_name %></p>
 	                </div>
 	                <div>
-	                  <p><strong>ID Number: </strong></p>
+	                  <p><strong>ID Number: </strong><%= @child.reg_number %></p>
 	                </div>
 	              </em>
 	            </div>
@@ -20,10 +20,10 @@
 	            <div class="col-xs-6">
 	              <em>
 	                <div>
-	                  <p><strong>Age : </strong></p>
+	                  <p><strong>Age : </strong><%= @child.age_in_months %></p>
 	                </div>
 	                <div>
-	                  <p><strong>Facility Name: </strong> Nthumbwe Health Centre </p>
+	                  <p><strong>Facility Name: </strong><%= Facility.name rescue "Nthumbwe Health Centre" %> </p>
 	                </div>
 	              </em>
 	            </div>
@@ -36,22 +36,22 @@
 		    		<em>
 			    		<div class="col-xs-4">
 				    		<div>
-				    			<p><strong>Date referred: </strong></p>
+				    			<p><strong>Date referred: </strong><%= @referral.date_referred rescue nil%></p>
 				    		</div>
 				    	</div>
 				    	<div class="col-xs-4">
 				    		<div>
-				    			<p><strong>Referral to: </strong></p>
+				    			<p><strong>Referral to: </strong><%= @referral.referred_to rescue nil%></p>
 				    		</div>
 				    	</div>
 				    	<div class="col-xs-4">
 				    		<div>
-				    			<p><strong>Confirmed By: </strong></p>
+				    			<p><strong>Confirmed By: </strong><%= @referral.confirmed_by rescue nil%></p>
 				    		</div>
 				    	</div>
 				    	<div class="col-xs-8">
 				    		<div>
-				    			<p><strong>Reason: </strong></p>
+				    			<p><strong>Reason: </strong><%= @referral.reason rescue nil %></p>
 				    		</div>
 				    	</div>
 			    	</em>
@@ -65,13 +65,13 @@
 		    	<div class="col-md-12">
 		    		<div class="col-md-5 col-md-offset-1">
 		    			<div class="pull-left">
-		    				<i>jdjd</i>
+		    				<%= link_to 'Edit', url_for(:action => 'edit', :id =>@referral.id ,:controller => 'child') , :class => "btn btn-default btn-primary" %>
 		    			</div>
 		    		</div>
 
 		    		<div class="col-md-5">
 		    			<div class="pull-right">
-		    				<i>djjd</i>
+		    				<%= link_to 'CONFIRM' , url_for( :action => 'show', :id => @referral.id), :class => 'btn btn-primary btn-default' %>
 		    			</div>
 		    		</div>
 		    	</div>

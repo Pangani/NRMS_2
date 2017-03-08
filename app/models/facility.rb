@@ -3,8 +3,13 @@ class Facility < ActiveRecord::Base
 	validates_numericality_of :facility_code, :within => 1...100
 
 #==================================================================================================
-	def code_for_reg
-		@fac = Facility.find_by_id(1)
+	def name
+		@facility = Facility.first
+		return @facility.name if @facility.blank?
+	end
+
+	def district_code
+		@fac = Facility.first
 		districts = {}
 		districts = {
 			"Balaka" => 1,"Blantyre" => 2,"Chikwawa" => 3,"Chiradzulu" => 4,"Chitipa" => 5,"Dedza" => 6,
@@ -13,7 +18,12 @@ class Facility < ActiveRecord::Base
 	        "Nkhotakota" => 19,"Nsanje" => 20,"Ntcheu" => 21,"Ntchisi" => 22,"Phalombe" => 23,"Rumphi" => 24,
 	        "Salima" => 25,"Thyolo" => 26,"Zomba" => 27
     	}
-    	return district[@fac.district] + @fac.facility_code if @fac.blank?
+    	return district[@fac.district] if @fac.blank?
+	end
+
+	def facility_code
+		@facility = Facility.first
+		return @facility.facility_code if @facility.blank?
 	end
 
 end

@@ -11,10 +11,10 @@
 	            <div class="col-xs-6">
 	              <em>
 	                <div>
-	                  <p><strong>Full Name: </strong></p>
+	                  <p><strong>Full Name: <%= @child.full_name rescue nil%></strong></p>
 	                </div>
 	                <div>
-	                  <p><strong>ID Number: </strong></p>
+	                  <p><strong>ID Number: <%= @child.reg_number rescue nil%></strong></p>
 	                </div>
 	              </em>
 	            </div>
@@ -22,10 +22,10 @@
 	            <div class="col-xs-6">
 	              <em>
 	                <div>
-	                  <p><strong>Age : </strong></p>
+	                  <p><strong>Age: <%= @child.age_in_months rescue nil%></strong></p>
 	                </div>
 	                <div>
-	                  <p><strong>Facility Name: </strong> Nthumbwe Health Centre </p>
+	                  <p><strong>Facility Name: </strong> <%= Facility.name rescue "Nthumbwe Health Centre" %> </p>
 	                </div>
 	              </em>
 	            </div>
@@ -47,9 +47,9 @@
 		    			<tbody>
 		    				<%= for ref in @referral %> 
 		    				<tr>
-		    					<td><%= ref.date_referred %></td>
-		    					<td><%= ref.reason } %></td>
-		    					<td><%= ref.confirmed_by %></td>
+		    					<td><%= ref.date_referred rescue nil%></td>
+		    					<td><%= ref.reason } rescue nil%></td>
+		    					<td><%= ref.confirmed_by rescue nil%></td>
 		    				</tr>
 		    			</tbody>
 		    		</table>
