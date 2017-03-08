@@ -1,2 +1,49 @@
-<h1>Referral#edit</h1>
-<p>Find me in app/views/referral/edit.html.erb</p>
+<div class="jumbotron">
+
+  <div class="panel panel-transparent">
+      	<div class="panel-heading">
+      		<h4>REFERRAL CARD</h4>
+      	</div>
+      	<!-- panel body (pd) -->
+	      <div class="panel-body">
+	          <div class="row">
+	            <div class="col-xs-6">
+	              <em>
+	                <div>
+	                  <p><strong>Full Name: </strong></p>
+	                </div>
+	                <div>
+	                  <p><strong>ID Number: </strong></p>
+	                </div>
+	              </em>
+	            </div>
+	  
+	            <div class="col-xs-6">
+	              <em>
+	                <div>
+	                  <p><strong>Age : </strong></p>
+	                </div>
+	                <div>
+	                  <p><strong>Facility Name: </strong> Nthumbwe Health Centre </p>
+	                </div>
+	               </div>
+	              </em>
+	            </div>
+	          </div>
+	          <hr>
+	            
+	          <div class="row">
+	            <%= simple_form_for @referral, :url => url_for(:action => 'edit', :id => @referral.id ),
+	              :method => 'post'  do |f| %>
+
+	                  <%= render(:partial => "referral", :locals => {:f => f}) %>
+	            <% end %>
+	          </div>
+	      </div>
+	      <!-- pd ends -->
+	      <!-- #link_to '<< Back', url_for(:action => 'index', :controller => 'child'), class: 'btn btn-primary btn-medium'%> -->
+	  </div>
+
+</div>
+
+

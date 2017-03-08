@@ -1,2 +1,52 @@
-<h1>Referral#index</h1>
-<p>Find me in app/views/referral/index.html.erb</p>
+<h4>Still Under Construction/.</h4>
+
+<div class="jumbotron">
+	<div class="panel panel-transparent">
+		<div class="panel-heading">
+			<h3>REFERRALS SUMMARY</h3>
+		</div>
+
+		<div class="panel-body">
+			<em><p>The following are the names of chidren who were once referred to any program</p></em>
+
+		    <hr>
+		    <i>Click VIEW to show more referral details on the corresponding child...</i>
+		    <br><br>
+
+		    <div class="row">
+		    	<div class="col-md-12">
+		    		<table id="referral" class="table table-striped">
+		    			<thead>
+		    				<tr>
+		    					<th>Full Name</th>
+		    					<th>Date Referred</th>
+			    				<th>Confirmed By</th>
+			    				<th>Action</th>
+		    				</tr>
+		    			</thead>
+
+		    			<tbody>
+		    				<% for ref in @c_referral %> 
+			    				<tr>
+			    					<td><%= ref.full_name  rescue nil%></td>
+			    					<td><%= ref.referrals.collect{|t| t.date_referred } rescue nil%></td>
+			    					<td><%= ref.referrals.collect{|t| t.confirmed_by } rescue nil %></td>
+			    					<td ><%= link_to("Show", {:controller => 'referral', :action =>'show', :id =>@child.id}, :class => 'fa  fa-eye fa-lg') %></td>
+			    				</tr>
+			    			<% end -%>
+		    			</tbody>
+		    		</table>
+		    	</div>
+		    	
+		    </div>
+		</div>
+	</div>
+	
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+    $('#referral').DataTable();
+} );
+
+</script>

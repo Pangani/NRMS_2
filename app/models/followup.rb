@@ -28,6 +28,7 @@ class Followup < ActiveRecord::Base
 	end
 
 #------------------------------------------------------------------------------------
+	# ALARM TRIGGER 
 	# If a child looses weight or remains static for 2 consecutive weeks,
 	# 	-review for any medical complications and refer to medical services if need to
 	# 	-refer directly to NRU having also considered other NRU referral criteria

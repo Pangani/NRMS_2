@@ -28,9 +28,13 @@ validates :vomiting, :alert, :stools, :presence => true
 			end
 		end
 	end
+# -----------------------------------------------------------------------------------------
+	# ALARM TRIGGER 
+	# if medical condition deteriorates
+	# 	- vomiting is always there
+	# 	- stools are three or more times for 2 weeks now
 
-	# def self.complementery_food
-	# end
+#------------------------------------------------------------------------------------------
 end
 
 #please do not un-comment the following code, it is for reference only

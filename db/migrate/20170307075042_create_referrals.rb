@@ -3,6 +3,7 @@ class CreateReferrals < ActiveRecord::Migration
     create_table :referrals do |t|
     	t.references :child
     	t.date "date_referred",null: false
+      t.string "referred_to", null: false
 	    t.string "reason", null:false
 	    t.string "confirmed_by",:null => false
 

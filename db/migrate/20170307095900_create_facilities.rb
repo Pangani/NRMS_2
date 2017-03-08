@@ -5,6 +5,8 @@ class CreateFacilities < ActiveRecord::Migration
     	t.string "district", null: false
     	t.string "location", null: false
     	t.integer "facility_code", null: false
+      t.boolean "has_nru"
+      t.boolean "has_sfp"
 
       t.timestamps null: false
     end

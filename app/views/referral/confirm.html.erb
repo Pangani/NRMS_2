@@ -1,9 +1,7 @@
-<h4>#Still Under Construction</h4>
-
 <div class="jumbotron">
 	<div class="panel panel-transparent">
 		<div class="panel-heading">
-			<h4>REFERRAL DETAILS</h4>
+			<h4> CONFIRM REFERRAL DETAILS</h4>
 		</div>
 
 		<div class="panel-body">
@@ -35,24 +33,29 @@
 		    <br><br>
 		    <div class="row">
 		    	<div class="col-md-12">
-		    		<table class="table">
-		    			<thead>
-		    				<tr>
-		    					<th>Date Referred</th>
-			    				<th>Reason for Referral</th>
-			    				<th>Confirmed By</th>
-		    				</tr>
-		    			</thead>
+		    		<em>
+			    		<div class="col-xs-4">
+				    		<div>
+				    			<p><strong>Date referred: </strong></p>
+				    		</div>
+				    	</div>
+				    	<div class="col-xs-4">
+				    		<div>
+				    			<p><strong>Referral to: </strong></p>
+				    		</div>
+				    	</div>
+				    	<div class="col-xs-4">
+				    		<div>
+				    			<p><strong>Confirmed By: </strong></p>
+				    		</div>
+				    	</div>
+				    	<div class="col-xs-8">
+				    		<div>
+				    			<p><strong>Reason: </strong></p>
+				    		</div>
+				    	</div>
+			    	</em>
 
-		    			<tbody>
-		    				<%= for ref in @referral %> 
-		    				<tr>
-		    					<td><%= ref.date_referred %></td>
-		    					<td><%= ref.reason } %></td>
-		    					<td><%= ref.confirmed_by %></td>
-		    				</tr>
-		    			</tbody>
-		    		</table>
 		    	</div>
 		    </div>
 
@@ -81,4 +84,3 @@
 		<p>Time: <b></b></p>
 	</div> -->
 </div>
-	

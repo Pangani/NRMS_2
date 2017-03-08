@@ -7,6 +7,7 @@ class Child < ActiveRecord::Base
 	has_many :feedplans, :foreign_key => 'child_id', :dependent => :destroy
 	has_many :followups, :foreign_key => 'child_id', :dependent => :destroy
 	has_one :routinetreatment, :foreign_key => 'child_id', :dependent => :destroy
+	has_many :referrals, :foreign_key => 'child_id', :dependent => :destroy
 		
 #/////////////////////////////////////////////////////////////////////
 	#callbacks

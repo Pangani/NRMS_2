@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20170307095900) do
     t.string   "district",      limit: 255, null: false
     t.string   "location",      limit: 255, null: false
     t.integer  "facility_code", limit: 4,   null: false
+    t.boolean  "has_nru"
+    t.boolean  "has_sfp"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 20170307095900) do
   create_table "referrals", force: :cascade do |t|
     t.integer  "child_id",      limit: 4
     t.date     "date_referred",             null: false
+    t.string   "referred_to",   limit: 255, null: false
     t.string   "reason",        limit: 255, null: false
     t.string   "confirmed_by",  limit: 255, null: false
     t.datetime "created_at",                null: false
