@@ -24,14 +24,13 @@ class AssessmentController < ApplicationController
 			#-----------------------------------------------------------------------------
 		        #CREATE A FEEDPLAN
 		        @ration = Foodration.amount_of_rutf(@child.anthropometry.weight)
-		        @feed = Feedplan.create( 
+		        @feed = Feedplan.new( 
 			          :child_id => @child.id,
 			          :admission_weight => @child.anthropometry.weight,
 			          :today_weight => @child.anthropometry.weight,
 			          :type_of_food => "RUTF",
 			          :food_package => "sachet",
 			          :amount_offered => @ration.sachets_per_week,
-			          :amount_left => 0
 		          )
 		        
 		        #Create a tuple in RoutineTreatment..see model
@@ -41,11 +40,11 @@ class AssessmentController < ApplicationController
 		        		:folic_acid => Routinetreatment.folic_dosage,
 		        		:fansidar => Routinetreatment.fansidar_dosage(@child.age_in_months, @child.anthropometry.weight),
 		        		:amoxicilin_antibiotic => Routinetreatment.amoxicilin_dosage(@child.anthropometry.weight),
-		        		:albandazole => Routinetreatment.albendazole_dosage(@child.age_in_months)
+		        		:albendazole => Routinetreatment.albendazole_dosage(@child.age_in_months)
 		        	)
 
 		    # Make sure the feedplan and routinetreatment plan was created
-		    # Notify if one fils
+		    # Notify if one fails
 			if @treatment.save && @feed.save #Both saved
 				flash[:notice] = "Assessment details have been recorded successfully"
 				redirect_to(:controller => 'child',:action => 'index')
@@ -59,7 +58,7 @@ class AssessmentController < ApplicationController
 				redirect_to(:controller => 'child',:action => 'index')
 
 			else #Both failed...
-				flash[:notice] = "Assessment details have been recorded successfully"
+				flash[:notice] = "Both treatments have been failed miserably..."
 				redirect_to(:controller => 'child',:action => 'index')	
 			end
 			

@@ -1,99 +1,201 @@
 <div class="jumbotron"  >
 <dl class="dl-horizontal">
-      <div class="panel panel-primary panel-transparent">
-        <div class="panel-heading">
-          <h4>TREATMENT PLAN</h4>
-        </div>
-        <style>
-          h4 {
-            text-decoration: underline;
-          }
-        </style>
-      </div>
+  <div class="panel panel-primary panel-transparent">
+    <div class="panel-heading">
+      <h4>TREATMENT PLAN</h4>
+    </div>
+    <style>
+      h4 {
+        text-decoration: underline;
+      }
+    </style>
+  </div>
 
-      <div class="panel panel-transparent" >
-        <div class="panel-body">
-            <div class="row">
-                <center>
-                    <h5>FULL NAME: <%= @child.full_name%></h5>
-                </center>
-              <em>
-                <div class="col-xs-6">
-                  <div>
-                    <p>Stay in programme : </p>
-                  </div>
-
-                  <div>
-                    <p>Age: <%= @child.age_in_months%></p>
-                  </div>
-                </div>
-
-                <div class="col-xs-6">
-                  <div>
-                    <p>Current Weight: <%= @child.follow_ups.last.weight rescue @child.anthropometry.weight %> kgs</p>
-                  </div>
-                </div>
-              </em>
-            </div>
-        </div>
-      </div>
-
-      <div class="panel panel-transparent">
-          <h4>Nutritional Treatment</h4>
-          <div class="panel-body">
-            <i>The amount of RUTF to be given are based on the weight of a child...</i>
-            <br><br>
-            <div class="row" >
-              <div class="col-md-6" >
-                <em>
-                  <div>
-                    <p>Type of Food : <%= @child.feedplans.last.type_of_food rescue nil %></p>
-                  </div>
-                  <div>
-                    <p>Food package : <%= @child.feedplans.last.food_package rescue "sachets" %></p>
-                  </div>
-                  <div>
-                    <p>Amount Offered : <%= @child.feeplans.last.amount_offered rescue nil %></p>
-                  </div>
-                </em>
-                
+  <div class="panel panel-transparent" >
+    <div class="panel-body">
+        <div class="row">
+            <center>
+                <h5>FULL NAME: <%= @child.full_name.upcase %></h5>
+            </center>
+          <em>
+            <div class="col-xs-6">
+              <div>
+                <p>Stay in programme : <%=  Date.today.day - @child.created_at.to_date.day %> Days</p>
               </div>
 
-              <div class="col-md-6">
-                  <h5>Weight of a child</h5>
-                  
+              <div>
+                <p>Age: <%= @child.age_in_months%> months old</p>
               </div>
             </div>
-          </div>
-      </div>
+
+            <div class="col-xs-6">
+              <div>
+                <p>Current Weight: <%= @child.followups.weight rescue @child.anthropometry.weight %> kg</p>
+              </div>
+            </div>
+          </em>
+        </div>
+    </div>
+  </div>
+
+  <div class="panel panel-transparent">
+      <h4>Nutritional Treatment</h4>
+      <div class="panel-body">
+        <i>The amount of RUTF to be given are based on the weight of a child...</i>
+        <br><br>
+        <div class="row" >
+          <div class="col-md-6" >
+            <em>
+              <div>
+                <p>Type of Food : <%= @child.feedplans.last.type_of_food rescue "RUTF ration" %></p>
+              </div>
+              <div>
+                <p>Food package : <%= @child.feedplans.last.food_package rescue "sachets" %></p>
+              </div>
+              <div>
+                <p>Amount Offered : <%= @child.feedplans.last.amount_offered rescue nil%></p>
+              </div>
+            </em>
             
-      <div class="panel panel-transparent" %>
-        <h4>Medical Treatment</h4>
-        <div class="panel-body">
-            <div class="row" >
-              <i>The following routine medicines are administered based on age and current weight...</i>
-              <br><br>
-              <div class="col-md-12" >
-                <em>
-                  <!-- Trigger Alarm when it is time for provision of each medication
-                        Let the system be notified when given that medication (In its specified time ofcourse !!!)  -->
-                  <div>
-                    <p>Dosage of Vitamin A : <%= @child.routinetreatment.vitamin_A rescue nil %></p>
-                  </div>
-                  <div>
-                    <p>Dosage of Folic acid : <%= @child.routinetreatment.folic_acid rescue nil %></p>
-                  </div>
-                  <div>
-                    <p>Dosage of Amoxicilin Antibiotic : <%= @child.routinetreatment.amoxicilin_antibiotic rescue nil %></p>
-                  </div>
-                  <div>
-                    <p>Dosage of Albendazole : <%= @child.routinetreatment.albendazole rescue nil %></p>
-                  </div>
-                </em>  
-              </div>
-            </div>
+          </div>
+
+          <div class="col-md-6">
+              <h5>RUTF Distribution</h5>
+          </div>
         </div>
       </div>
+  </div>
+        
+  <div class="panel panel-transparent" %>
+    <h4>Medical Treatment</h4>
+    <div class="panel-body">
+      <div class="row" >
+        <i>The following routine medicines are administered based on age and current weight...</i>
+        <br><br>
+        <div class="col-md-12" >
+          <em>
+            <!-- Trigger Alarm when it is time for provision of each medication
+                  Let the system be notified when given that medication (In its specified time ofcourse !!!)  -->
+            <!-- Prescription of Vitamin A -->
+            <div class="row">
+              <div class="col-md-4"> <p>Prescription of Vitamin A   : </p> </div>
+              <div class="col-md-8"> 
+                <p><strong>
+                        <%if @child.routinetreatment.vitamin_A = "DO_NOT_USE"%>
+                            DO NOT USE ( <%= @child.first_name%> is less than 6 months old)
+                        <% elsif @child.routinetreatment.vitamin_A ="Half_capsule" %>
+                            Half-capsule or 3 drops (SINGLE DOSE at ADMISSION)
+                        <%else%>
+                            1-capsule or 6 drops (SINGLE DOSE at ADMISSION)
+                        <% end %>
+                </strong></p>
+              </div>
+            </div><br>
+
+            <!-- Prescription of Folic acid -->
+            <div class="row">
+              <div class="col-md-4"><p>Prescription of Folic acid :</p></div>
+              <div class="col-md-8"> 
+                <p><strong><%if @child.routinetreatment.folic_acid %> 5mg single dose ON 2nd VISIT<% end-%></strong>(<i>Do not give within 7 days of fansidar</i>)</p></div>
+            </div><br>
+
+            <!-- prescription of Amoxicilin -->
+            <div class="row">
+              <div class="col-md-4">
+                  <p>Prescription of Amoxicilin Antibiotic   : </p>
+              </div>
+              <div class="col-md-8">
+                  *Dose: <%= @child.routinetreatment.amoxicilin_antibiotic rescue nil %> (3 times per day)
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Weight(kg)</th>
+                        <th>Syrup(125 mg/5ml)</th>
+                        <th>Syrup(250 mg/5ml)</th>
+                        <th>Tablets(250mg)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= @child.followups.last.weight rescue @child.anthropometry.weight %></td>
+                        <!-- Syrup 250mg/5ml -->
+                        <td>
+                          <% if  @child.anthropometry.weight < 6.0 %>
+                              <i>2.5 ml</i> 
+                          <% elsif @child.anthropometry.weight > 5.9 &&  @child.anthropometry.weight < 10%>
+                              <i>5 ml</i>
+                          <% elsif  @child.anthropometry.weight > 9.9 &&  @child.anthropometry.weight < 30 %>
+                              <i>10 ml</i>
+                          <% else%>
+                              <i>give tablets</i>
+                          <% end %>
+
+                        </td>
+                        <!-- Syrup 250mg/5ml -->
+                        <td>
+                          <% if  @child.anthropometry.weight < 6.0 %>
+                              <i>1.25 ml</i>
+                          <% elsif @child.anthropometry.weight > 5.9 &&  @child.anthropometry.weight < 10%>
+                              <i>2.5 ml</i>
+                          <% elsif  @child.anthropometry.weight > 9.9 &&  @child.anthropometry.weight < 30 %>
+                              <i>5 ml</i>
+                          <% else%>
+                              <i>give tablets</i>
+                          <% end %>
+                        </td>
+                        <!-- Tablets -->
+                        <td>
+                          <% if  @child.anthropometry.weight < 6.0 %>
+                              <i>quarter (1/4) tablet</i>
+                          <% elsif @child.anthropometry.weight > 5.9 &&  @child.anthropometry.weight < 10%>
+                              <i>half(1/2) tablet</i>
+                          <% elsif  @child.anthropometry.weight > 9.9 &&  @child.anthropometry.weight < 30 %>
+                              <i>1 tablet</i>
+                          <% else%>
+                              <i>2 tablets</i>
+                          <% end %>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div><br>
+
+            <!-- Prescription of Albendazole -->
+            <div class="row">
+              <div class="col-md-4"><p>Prescription of Albendazole   : </p></div>
+              <div class="col-md-8">
+                <p><strong><%= @child.routinetreatment.albendazole rescue nil %></strong></p>
+              </div>
+            </div><br>
+
+            <!-- Prescription of Fansidar -->
+            <div class="row">
+              <div class="col-md-4"> <p>Prescription of Fansidar   : </p></div>
+              <div class="col-md-8">
+                <p><strong><%if @child.routinetreatment.fansidar = "quarter_tablet"%>
+                    quarter(1/4) tablet - 125mg (SINGLE DOSE at ADMISSION)
+                  <% elsif @child.routinetreatment.fansidar = "half_tablet" %>
+                    half-tablet - 250mg (SINGLE DOSE at ADMISSION)
+                  <% elsif @child.routinetreatment.fansidar = "one_tablet" %>
+                    1 tablet - 500mg (SINGLE DOSE at ADMISSION)
+                  <% elsif @child.routinetreatment.fansidar = "one_AND_half_tablet" %>
+                    One and half-tablet - 750mg (SINGLE DOSE at ADMISSION)
+                  <% elsif @child.routinetreatment.fansidar = "two_tablets" %>
+                    2 tablets - 1000mg (SINGLE DOSE at ADMISSION)
+                  <% elsif @child.routinetreatment.fansidar = "three_tablets" %>
+                    3 tablets - 1500mg (SINGLE DOSE at ADMISSION)
+                  <% else %>
+                    DO NOT USE (The child is less than 2 months...too young to use)
+                  <% end %>
+                </strong></p>
+              </div>
+            </div><br>
+          </em>  
+        </div>
+      </div>
+    </div>
+  </div>
      
       <br />
       <hr>

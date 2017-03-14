@@ -55,7 +55,7 @@ class Child < ActiveRecord::Base
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#Variables with multiple options
 	as_enum :maternal_HIV_serostatus, [:RR, :NR, :unknown], :map=> :string, source: :maternal_HIV_serostatus
-	as_enum :twin_child, [:Yes, :no], map: :string, source: :twin_child
+	as_enum :twin_child, [:Yes, :No], map: :string, source: :twin_child
 	as_enum :sex, [:Male, :Female], :map => :string, source: :sex
 	as_enum :HIV_serostatus, [:RR, :NR, :unknown], :map => :string, source: :HIV_serostatus
 	as_enum :on_ART, [:Yes, :No], map: :string, source: :on_ART

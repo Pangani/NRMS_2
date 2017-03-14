@@ -3,6 +3,7 @@ class DiagnosisController < ApplicationController
 	respond_to :js, only: :treatment
 
 	def index
+		@feed = Feedplan.joins(:child).where(:child_id => @child.id)
 	end
 
 	def new

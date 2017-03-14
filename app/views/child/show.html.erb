@@ -198,6 +198,7 @@
     <div class="col-xs-4 col-offset-8">
       <% if @child.done_assessment %> 
         <%= link_to 'View Session Card', url_for(:action => 'index', :child_id =>@child.id ,:controller => 'check_up') , :class => "btn btn-default btn-default" %>
+        <%= link_to 'View Treatment Plan', url_for(:action => 'index', :child_id =>@child.id ,:controller => 'diagnosis') , :class => "btn btn-default btn-default" %>
         
       <% else %>
         <%= link_to 'Continue Assessment', url_for(:child_id =>@child.id ,:controller => 'Assessment') , :class => "btn btn-default btn-default" %>
