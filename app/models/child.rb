@@ -133,14 +133,16 @@ class Child < ActiveRecord::Base
 		end
 	end
 
-	#def reg_number
-		
-		# "Balaka","Blantyre","Chikwawa","Chiradzulu","Chitipa","Dedza",
-  #       "Dowa", "Karonga","Likoma","Lilongwe","Machinga","Mangochi",
-  #       "Mchinji","Mulanje", "Mwanza", "Mzimba","Neno","Nkhata Bay",
-  #       "Nkhotakota","Nsanje","Ntcheu","Ntchisi","Phalombe","Rumphi",
-  #       "Salima","Thyolo","Zomba"
-	#end
+	# def full_code
+	# 	@dis_code = Facility.district_code
+	# 	@fac_code = Facility.facility_code
+
+	# 	return @dis_code + @fac_code
+	# end
+	
+	# def reg_number
+	# 	return self.reg_number = self.full_code
+	# end
 #//////////////////////////////////////////////////////////////////////
 	#methods for a multi-step form of registering a child
 	def current_step

@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'referral/index'
-
-  get 'childmonitoring/index'
 
   devise_for :users
   root 'home#index'
@@ -66,9 +63,10 @@ Rails.application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    namespace :admin do
+      # Directs /admin/products/* to Admin::ProductsController
+      # (app/controllers/admin/products_controller.rb)
+      root 'dashboard#index'
+      resources :settings
+    end
 end

@@ -24,7 +24,7 @@ class AssessmentController < ApplicationController
 			#-----------------------------------------------------------------------------
 		        #CREATE A FEEDPLAN
 		        @ration = Foodration.amount_of_rutf(@child.anthropometry.weight)
-		        Feedplan.create( 
+		        @feed = Feedplan.create( 
 			          :child_id => @child.id,
 			          :admission_weight => @child.anthropometry.weight,
 			          :today_weight => @child.anthropometry.weight,
@@ -35,17 +35,34 @@ class AssessmentController < ApplicationController
 		          )
 		        
 		        #Create a tuple in RoutineTreatment..see model
-		        # @treatment = Routinetreatment.create(
-		        # 		:child_id => @child.id,
-		        # 		:vitamin_A => Routinetreatment.vit_dosage(@child.age_in_months),
-		        # 		:folic_acid => Routinetreatment.folic_dosage,
-		        # 		:fansidar => Routinetreatment.fansidar_dosage(@child.age_in_months, @child.anthropometry.weight),
-		        # 		:amoxicilin_antibiotic => Routinetreatment.amoxicilin_dosage(@child.anthropometry.weight),
-		        # 		:albandazole => Routinetreatment.albandazole_dosage(@child.age_in_months)
-		        # 	)
+		        @treatment = Routinetreatment.create(
+		        		:child_id => @child.id,
+		        		:vitamin_A => Routinetreatment.vit_dosage(@child.age_in_months),
+		        		:folic_acid => Routinetreatment.folic_dosage,
+		        		:fansidar => Routinetreatment.fansidar_dosage(@child.age_in_months, @child.anthropometry.weight),
+		        		:amoxicilin_antibiotic => Routinetreatment.amoxicilin_dosage(@child.anthropometry.weight),
+		        		:albandazole => Routinetreatment.albendazole_dosage(@child.age_in_months)
+		        	)
+
+		    # Make sure the feedplan and routinetreatment plan was created
+		    # Notify if one fils
+			if @treatment.save && @feed.save #Both saved
+				flash[:notice] = "Assessment details have been recorded successfully"
+				redirect_to(:controller => 'child',:action => 'index')
+
+			elsif @treatment.save && !@feed.save # Feed failed
+				flash[:notice] = "Nutritional treatment plan failed to be created..."
+				redirect_to(:controller => 'child',:action => 'index')
+
+			elsif !@treatment.save && @feed.save # Treatment failed..
+				flash[:notice] = "Medical treatment plan failed to be created..."
+				redirect_to(:controller => 'child',:action => 'index')
+
+			else #Both failed...
+				flash[:notice] = "Assessment details have been recorded successfully"
+				redirect_to(:controller => 'child',:action => 'index')	
+			end
 			
-			flash[:notice] = "Assessment details have been recorded successfully"
-			redirect_to(:controller => 'child',:action => 'index')
 		else
 			flash[:notice] = "Sorry failed to save...there must be an internal error!"
 			render ('new')

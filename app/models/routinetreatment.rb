@@ -26,7 +26,7 @@ class Routinetreatment < ActiveRecord::Base
 		self.date = Time.now.to_date
 	end
 
-	def vit_dosage(age, weight)
+	def self.vit_dosage(age, weight)
 		@age = age.to_f #expect decimals
 
 		@vitamin_A = nil
@@ -42,7 +42,7 @@ class Routinetreatment < ActiveRecord::Base
 		end
 	end
 
-	def amoxicilin_dosage(weight)
+	def self.amoxicilin_dosage(weight)
 	# the method does not specify on whether dosage administered is syrup or tablet
 	# It will be specified in views
 		@weight = weight.to_f
@@ -64,12 +64,12 @@ class Routinetreatment < ActiveRecord::Base
 
 	end
 
-	def folic_dosage
+	def self.folic_dosage
 		@folic_acid = nil
 		return @folic_acid = "single_dose"
 	end
 
-	def albendazole_dosage(age, weight)
+	def self.albendazole_dosage(age, weight)
 		@age = age.to_f
 
 		albendazole = nil
@@ -85,7 +85,7 @@ class Routinetreatment < ActiveRecord::Base
 		end
 	end
 
-	def fansidar_dosage(age, weight)
+	def self.fansidar_dosage(age, weight)
 	#If in Malarial area..that to be included in Facility table
 	#As a matter of fact, it is 25mg / kg
 	# that is if weight=12 then dosage is 25*12=150mg

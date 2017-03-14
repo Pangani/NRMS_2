@@ -17,7 +17,7 @@ class ReferralController < ApplicationController
 			redirect_to(:action => 'show', :id => @referral.id)
 		else
 			render('new')
-			flash[:notice] = "Please check in all fields that are filled with appropiate details"
+			flash[:notice] = "Please check in all fields that are filled with appropiate details..."
 		end
 	end
 

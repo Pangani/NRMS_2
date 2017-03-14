@@ -2,31 +2,27 @@ class DiagnosisController < ApplicationController
 	before_action :find_child
 	respond_to :js, only: :treatment
 
-	
 	def index
-		if @child.routine_treatment && @child.feed_plans
-			@treatment = Child.joins(:routine_treatment, :feed_plans).where(:child_id => @child.id)
-		else
-			@message = "No Treatment Plan..."
-			render('new')
-		end
-		#if @child.age_in_months < 
 	end
 
 	def new
-		@treatment = Routinetreatment.joins(:child).new(:child_id => @child.id)
+		# @treatment = Routinetreatment.joins(:child).new(:child_id => @child.id)
 	end
 
 	def create
-		@treatment = Routinetreatment.new(treatment_params)
+		# @treatment = Routinetreatment.new(treatment_params)
 
-		if @treatment.save && @feed.save
+		# if @treatment.save && @feed.save
 
-			flash[:notice] = "Treatment plan for #{child.full_name} has been successfully created"
-			redirect_to(:action => 'treatment', :child_id => @child.id)
-		else
-			render('new')
-		end
+		# 	flash[:notice] = "Treatment plan for #{child.full_name} has been successfully created"
+		# 	redirect_to(:action => 'treatment', :child_id => @child.id)
+		# else
+		# 	render('new')
+		# end
+	end
+
+	def edit
+		@treatment = Routinetreatment.joins(:child).find_by_id(params)
 	end
 
 private
@@ -39,8 +35,8 @@ private
 	end
 
 	def find_child
-		if params[:child_id]
-			@child = Child.find(params[:child_id])
+		if session[:child_id]
+			@child = Child.find_by_id(session[:child_id])
 		end
 	end
 end

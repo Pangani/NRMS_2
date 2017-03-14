@@ -2,116 +2,113 @@
 <dl class="dl-horizontal">
       <div class="panel panel-primary panel-transparent">
         <div class="panel-heading">
-          <h2>TREATMENT PLAN</h2>
+          <h4>TREATMENT PLAN</h4>
         </div>
         <style>
-          h3 {
+          h4 {
             text-decoration: underline;
           }
-
         </style>
+      </div>
+
+      <div class="panel panel-transparent" >
         <div class="panel-body">
-            <br>     
-            <center>
-              <h4>FULL NAME: <%= @child.full_name %></h4>
-            </center>
-            <br>
             <div class="row">
-              <div class="col-xs-6">
-                <div>
-                  <p>Stay in programme : <%= ((Time.now.to_date - @child.admission.created_at.to_date).to_i) %> days</p>
+                <center>
+                    <h5>FULL NAME: <%= @child.full_name%></h5>
+                </center>
+              <em>
+                <div class="col-xs-6">
+                  <div>
+                    <p>Stay in programme : </p>
+                  </div>
+
+                  <div>
+                    <p>Age: <%= @child.age_in_months%></p>
+                  </div>
                 </div>
 
-                <div>
-                  <p>Age : <%= @child.age_in_months %> months old</p>
+                <div class="col-xs-6">
+                  <div>
+                    <p>Current Weight: <%= @child.follow_ups.last.weight rescue @child.anthropometry.weight %> kgs</p>
+                  </div>
                 </div>
-
-              </div>
-
-              <div class="col-xs-6">
-                <div>
-                  <p>Admission Weight: <%= @child.anthropometry.weight  rescue nil %> kgs</p>
-                </div>
-
-                <div>
-                  <p>Current Weight: <%= @child.follow_ups.last.weight rescue @child.anthropometry.weight %> kgs</p>
-                </div>
-
-              </div>
+              </em>
             </div>
+        </div>
+      </div>
 
+      <div class="panel panel-transparent">
+          <h4>Nutritional Treatment</h4>
+          <div class="panel-body">
+            <i>The amount of RUTF to be given are based on the weight of a child...</i>
+            <br><br>
             <div class="row" >
-              <h3><i>Nutritional Treatment</i></h3>
               <div class="col-md-6" >
                 <em>
                   <div>
-                    <p>Type of Food : <%= @child.feed_plans.last.type_of_food rescue nil %></p>
+                    <p>Type of Food : <%= @child.feedplans.last.type_of_food rescue nil %></p>
                   </div>
                   <div>
-                    <p>Food package : <%= @child.feed_plans.last.food_package rescue "sachets" %></p>
+                    <p>Food package : <%= @child.feedplans.last.food_package rescue "sachets" %></p>
                   </div>
                   <div>
-                    <p>Amount Offered : <%= @child.feed_plans.last.amount_offered rescue nil %></p>
+                    <p>Amount Offered : <%= @child.feeplans.last.amount_offered rescue nil %></p>
                   </div>
                 </em>
                 
               </div>
 
               <div class="col-md-6">
-                  graph here!
+                  <h5>Weight of a child</h5>
+                  
               </div>
             </div>
+          </div>
+      </div>
             
+      <div class="panel panel-transparent" %>
+        <h4>Medical Treatment</h4>
+        <div class="panel-body">
             <div class="row" >
-              <h3><i>Medical Treatment</i></h3>
+              <i>The following routine medicines are administered based on age and current weight...</i>
+              <br><br>
               <div class="col-md-12" >
                 <em>
+                  <!-- Trigger Alarm when it is time for provision of each medication
+                        Let the system be notified when given that medication (In its specified time ofcourse !!!)  -->
                   <div>
-                    <p>Dosage of Vitamin A : <%= @child.routine_treatment.vitamin_A rescue nil %></p>
+                    <p>Dosage of Vitamin A : <%= @child.routinetreatment.vitamin_A rescue nil %></p>
                   </div>
                   <div>
-                    <p>Dosage of Folic acid : <%= @child.routine_treatment.folic_acid rescue nil %></p>
+                    <p>Dosage of Folic acid : <%= @child.routinetreatment.folic_acid rescue nil %></p>
                   </div>
                   <div>
-                    <p>Dosage of Amoxicilin Antibiotic : <%= @child.routine_treatment.amoxicilin_antibiotic rescue nil %></p>
+                    <p>Dosage of Amoxicilin Antibiotic : <%= @child.routinetreatment.amoxicilin_antibiotic rescue nil %></p>
                   </div>
                   <div>
-                    <p>Dosage of Albendazole : <%= @child.routine_treatment.albendazole rescue nil %></p>
+                    <p>Dosage of Albendazole : <%= @child.routinetreatment.albendazole rescue nil %></p>
                   </div>
-                </em>
-                
+                </em>  
               </div>
             </div>
+        </div>
+      </div>
      
-            <br />
-            <hr>
+      <br />
+      <hr>
 
-            <div class="row">
-              <em>
-                <h3><i>Medical Tips: </i></h3>
+          <div class="row">
+            <em>
+              <h3>Medical Tips: </h3>
+              
                 
-                  <% if @child.tests.first.breastfeeding = 'Yes' %>
-                      <p>
-                       - Always give <%= @child.first_name %> the breast-milk before given RUTF, for atleast 20-30 minutes
-                      </p>
-                  <% end %>
-                 
-                  <% if @child.tests.first.complementery_food = 'Yes' %>
-                      <p>
-                        - If <%= @child.first_name %> asks for other foods, it should always be given after RUTF
-                      </p>
-                   <% end %>
-              </em>
-            </div>
+            </em>
+          </div>
            <!-- section for the assessment-->
           
         </div>
-              <div class="col-xs-6">
-                <em>
-                  
-                </em>
-              </div>
-            </div> 
+              
         </div>
       </div>
 
