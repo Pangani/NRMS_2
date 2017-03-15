@@ -44,12 +44,25 @@ class Child < ActiveRecord::Base
 
 	scope :hiv_both, lambda{where("HIV_serostatus = 'RR' AND maternal_HIV_serostatus = 'RR'")}
 	scope :is_exposed, lambda{where("HIV_serostatus = 'unknown' AND maternal_HIV_serostatus = 'RR'")}
-	scope :search, lambda { |query|
-		where(["reg_number LIKE ?", "%#{query}%"])
-		}
-	scope :child_assess, lambda { |query|
-		where(["id LIKE ?", "%#{query}%"])
-	}
+	#scope :search, lambda { |query|
+		#where(["reg_number LIKE ?", "%#{query}%"])
+		#}
+	#scope :child_assess, lambda { |query|
+		#where(["id LIKE ?", "%#{query}%"])
+	#}
+
+
+
+
+
+def self.search(search)
+  if search
+    where('reg_number LIKE ?', "%#{search}%")
+  else
+    nil
+  end
+end
+
 
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#Variables with multiple options

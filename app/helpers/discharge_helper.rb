@@ -1,0 +1,2 @@
+module DischargeHelper
+end
