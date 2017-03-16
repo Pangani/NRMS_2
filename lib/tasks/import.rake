@@ -11,3 +11,4 @@ end
 # 	
 
 #Then run "bundle exec rake db:import_csv"
+# This populates the Foodration database with data from the rutf_ration.csv file
