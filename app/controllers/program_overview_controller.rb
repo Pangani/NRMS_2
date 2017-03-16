@@ -6,6 +6,15 @@ class ProgramOverviewController < ApplicationController
   end
 
   def discharge
+    
+    #========================================================================================
+      @discharge = Discharge.joins(:child).all
+      @child_cured = Discharge.joins(:child).while_cured
+      @child_dead = Discharge.joins(:child).while_dead
+      @child_defaulted = Discharge.joins(:child).while_defaulted
+      @child_nonresponse = Discharge.joins(:child).while_nonresponse
+      @child_transferred= Discharge.joins(:child).while_transferred
+
   end
 
   def treatment_referral
