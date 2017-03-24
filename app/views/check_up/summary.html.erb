@@ -20,8 +20,11 @@
           </div>
       </div>
 
-
-      <h5><em>Summary of Visits</em></h5>
+      <div class="row-fluid">
+       <h5 class="col-md-6"><em>Summary of Visits</em></h5> 
+       <h5 class="col-md-6"> The plot of weight against visits</h5>
+      </div>
+      
       <div class="panel panel-transparent">
         <div class="panel-body">
             <div class="row">
@@ -42,13 +45,16 @@
                 </div>
 
                 <!-- holds some graphs (weight graph) -->
+
                 <div class="col-md-6">
-                  The plot of weight against visits
+                 
 
+                <div class="container-fluid">
+                 
 
-
-                  <div>  <%= line_chart @child_follows.group(:created_at).sum(:weight), xtitle: "checkup date", ytitle: "Weight (kg)" %> </div>
+                  <div>  <%= line_chart @child_follows.group(:created_at).sum(:weight),  xtitle: "checkup date", ytitle: "Weight (kg)", download: "boom" %> </div>
                   <br>
+
                 </div>  
             </div>
             <!-- DIV to hold the table for OTP session card -->
@@ -96,8 +102,21 @@
   </dl>
 </div>
 
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
 <style type="text/css">
   h5 {
     text-decoration: underline;
   }
+
+
 </style>
