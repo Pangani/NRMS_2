@@ -22,9 +22,7 @@ gem 'active_median'
 gem 'authlogic'
 gem 'cancan'
 gem 'devise'
-gem 'rails_admin', '~> 1.0'
 
-gem 'wicked'
 
 gem 'immigrant', '~> 0.3.5'
 
