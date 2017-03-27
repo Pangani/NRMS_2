@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
- 
+
+  get 'referral/index'
+
+  get 'childmonitoring/index'
+
+
   devise_for :users
   root 'home#index'
 

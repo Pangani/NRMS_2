@@ -10,12 +10,17 @@
 
               <%= render(:partial => "form", :locals => {:f => f}) %>
 
-              <div class="col-md-12 col-offset-8">
-                  <%= f.button :submit, 'Register ', class: 'btn btn-primary btn-lg' %>
+              <div class="col-md-12">
+                  <div class="pull-left">
+                    <%= link_to '<< Back', url_for(:action => 'index', :controller => 'child'), class: 'btn btn-primary btn-medium'%>
+                  </div>
+                  <div class="pull-right">
+                    <%= f.button :submit, 'Register ', class: 'btn btn-primary btn-lg' %>
+                  </div>
               </div>
       <% end %>
       </div>
-      <%= link_to '<< Back', url_for(:action => 'index', :controller => 'child'), class: 'btn btn-primary btn-medium'%>
+      
     </div>
   </div>
 

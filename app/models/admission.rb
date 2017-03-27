@@ -2,7 +2,6 @@ class Admission < ActiveRecord::Base
 	belongs_to :child
 	before_validation :set_admission_date
 	#after_save :setID
-
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	scope :Is_muac, lambda{where(:admission_criteria => "muac")}
 	scope :Is_z_score, lambda{where(:admission_criteria => "z_score")}
@@ -10,8 +9,10 @@ class Admission < ActiveRecord::Base
 	scope :Is_bmi, lambda{where(:admission_criteria => "bmi_for_age")}
 
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	validates :admission_type, :referred_by, :admission_criteria, :presence => true
 	#Validations
 	as_enum :admission_type, [:new_admission, :relapse, :readmission], map: :string, source: :admission_type 
+	as_enum :referred_by, [:Own, :NRU, :otherOTP], :map => :string, source: :referred_by
 	as_enum :admission_criteria, [:muac, :z_score, :bilateral_oedema, :bmi_for_age, :other], map: :string, source: :admission_criteria
 
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////

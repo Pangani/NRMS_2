@@ -8,7 +8,7 @@
             <i>Please EDIT the entries below with required data gathered during check-up...</i>
           <br />
           <div class="row">
-            <%= simple_form_for :presenter, :url => url_for(:action => 'update', :controller => 'check-up', :id => @follow.id),
+            <%= simple_form_for :presenter, :url => url_for(:action => 'update', :controller => 'check-up', :id => @presenter.id),
           :method => 'post'  do |f| %>
 
               <%= render(:partial => "form", :locals => {:f => f}) %>

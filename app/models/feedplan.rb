@@ -6,7 +6,7 @@ class Feedplan < ActiveRecord::Base
 validates :amount_left, :watery_diarrhoea, :food_package, presence: true
 
 #///////////////////////////////////////////////////////////////////////////////////
-	as_enum :food_package, [:sachet, :bottle ], map: :string, source: :food_package	
+	as_enum :food_package, [:sachet, :bottle ], map: :string, source: :food_package
 
 #///////////////////////////////////////////////////////////////////////////////////
 
@@ -14,8 +14,8 @@ validates :amount_left, :watery_diarrhoea, :food_package, presence: true
 		self.date = Time.now.to_date
 	end
 
-	def total_amount
-		
+	def self.total_amount
+		#Total amount used by chk
 	end
 end
 

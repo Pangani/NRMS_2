@@ -1,3 +1,42 @@
-<div>
-	<p>Hello People!</p>
+<div class="jumbotron">
+	<dl class="dl-horizontal">
+		<div class="panel panel-transparent">
+			<div class="panel-heading">
+				<h4>WEEKLY SURVELLANCE SESSION</h4>
+			</div>
+				<div class="row">
+					<br>
+					<div class="col-md-12 col-md-offset-1">
+						<div>
+							<p><i><strong> Number of RUTF sachets(92g) to be given:</strong> <%= @feedplan.amount_offered rescue nil %> per week</i></p>
+						</div>
+						<div>
+							<p><i><strong> Day for Next Visit: </strong><%= Date.today + 7.days %></i></p>
+						</div>
+						<!-- Conditional -->
+						<div>
+							<p><i><strong> Weight Gain: </strong><%= @followup.weight_gain(@child) %></i></p>
+						</div>
+						<div>
+							<p><i><strong> Weight Loss: </strong><%= %></i></p>
+						</div>
+						<div>
+							<p><i><strong> Current Weight Gain Rate: </strong><%= Date.today + 7.days %></i></p>
+						</div>
+					</div>
+				</div>
+				
+
+				<div class="col-md-12">
+
+					<div>
+						<p>Latest comments : <i><%= @followup.remark rescue "Just registered in program..." %></i></p>
+					</div>
+					<div>
+						<p>Last checked by: <i><%= @followup.clinician rescue @child.admission.date_of_admission.to_date %></i></p>
+					</div>
+
+				</div>
+		</div>
+	</dl>
 </div>

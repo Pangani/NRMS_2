@@ -3,15 +3,14 @@ class Test < ActiveRecord::Base
 	#before_validation :set_bfeeding
 
 #////////////////////////////////////////////////////////////////////////////////////////////
-validates :vomiting, :alert, :stools, :complementery_food, :presence => true
+validates :vomiting, :alert, :stools, :presence => true
 
 #////////////////////////////////////////////////////////////////////////////////////////////
+	as_enum :Appetite_test, [:Yes, :No], map: :string, source: :Appetite_test 
 	as_enum :stools, [:three, :four, :five], map: :string, source: :stools
 	as_enum :yes_appetite, [:very_good, :good, :poor, :very_poor], map: :string, source: :yes_appetite
-	as_enum :referred_by, [:Own, :NRU, :otherOTP], :map => :string, source: :referred_by
 	as_enum :complementery_food, [:Yes, :None], :map => :string, source: :complementery_food
 	as_enum :breastfeeding, [:Yes, :No], :map => :string, source: :breastfeeding
-	as_enum :vomiting, [:Yes, :No], :map => :string, source: :vomiting
 
 #///////////////////////////////////////////////////////////////////////////////////////////
 	scope :appetite_pass, lambda {where(:Appetite_test => true)}
@@ -19,16 +18,23 @@ validates :vomiting, :alert, :stools, :complementery_food, :presence => true
 
 #//////////////////////////////////////////////////////////////////////////////////////////
 	def set_breastfeeding(child)
-		@age = child.age_in_months
-		if @age.to_f > 24
-			return self.breastfeeding = "Yes"
-		else
-			return self.breastfeeding = "No"
+		if child
+			@age = child.age_in_months
+
+			if @age.to_f > 24
+				return self.breastfeeding = "Yes"
+			else
+				return self.breastfeeding = "No"
+			end
 		end
 	end
+# -----------------------------------------------------------------------------------------
+	# ALARM TRIGGER 
+	# if medical condition deteriorates
+	# 	- vomiting is always there
+	# 	- stools are three or more times for 2 weeks now
 
-	def self.complementery_food
-	end
+#------------------------------------------------------------------------------------------
 end
 
 #please do not un-comment the following code, it is for reference only
@@ -40,8 +46,7 @@ end
 #   def change
 #     create_table :tests do |t|
 #     	t.references :child, :null => false
-#     	t.string "referred_by", :limit => 10, null: false
-#     	t.boolean "Appetite_test", :null => false
+#     	t.string "Appetite_test", :null => false
 #     	t.string "breastfeeding", :limit => 5, null: false
 #     	t.string "complementery_food", :limit => 5, :null => false
 #     	t.boolean "vomiting", :limit => 10, :null => false

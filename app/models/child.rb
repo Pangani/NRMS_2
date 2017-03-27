@@ -7,13 +7,14 @@ class Child < ActiveRecord::Base
 	has_many :feedplans, :foreign_key => 'child_id', :dependent => :destroy
 	has_many :followups, :foreign_key => 'child_id', :dependent => :destroy
 	has_one :routinetreatment, :foreign_key => 'child_id', :dependent => :destroy
+	has_many :referrals, :foreign_key => 'child_id', :dependent => :destroy
 		
 #/////////////////////////////////////////////////////////////////////
 	#callbacks
 
 #////////////////////////////////////////////////////////////////////
 	#validations
-	validates :reg_number, uniqueness: true, presence: true
+	validates :reg_number, :uniqueness => true, :presence => true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :guardian_name, presence: true
@@ -97,21 +98,34 @@ end
 #-------------------------ADMISSION CRITERIA TO OTP-------------------------------- 
 	def self.eligible_for_admission
 		#add muac, oedema and z-score
-		@elig = Child.includes(:tests).where(tests: {
+		@elig = Child.includes(:tests, :admission, :anthropometry).where(tests: {
 														:appetite_test => true,
 														:alert => true
 													})
-		return nil if @elig.blank?
-		@elig
+		if @elig.has_hiv #For those children HIV+
+			for child_elig in @elig
+				if child_elig.age_in_months > 6 #only if child is aged 6 months and above
+					if child_elig.anthropometry.MUAC < 12 || child_elig.anthropometry.oedema = "+" || child_elig.anthropometry.oedema ="++"
+						return if child_elig.blank?
+					end
+				end
+			end
+
+		else #Children with HIV-
+			for child_elig in @elig
+				if child_elig.age_in_months > 6
+					if child_elig.anthropometry.MUAC < 11.5 || child_elig.anthropometry.oedema = "+" || child_elig.anthropometry.oedema ="++"
+						return if child_elig.blank?
+					end
+				end
+			end
+		end
+
+		# return nil if @elig.blank?
+		# @elig
 	end
-	#A Child who has Muac < 11.5cm, age between 6months - 11yrs, oedema grade none;+;++
+	#A Child who has Muac < 11.5cm, age between 6months - 11yrs, oedema grade none;+; ++
 	#AND has appetite, alert and clinically-well
-
-	#===========================================
-
-		#this is for a child aged 5 years and above
-		# def check_for_bmi
-		# end
 
 	#===========================================
 		#HIV-POSITIVE (if serostatus)
@@ -131,6 +145,15 @@ end
 			return true
 		end
 	end
+
+	#def reg_number
+		
+		# "Balaka","Blantyre","Chikwawa","Chiradzulu","Chitipa","Dedza",
+  #       "Dowa", "Karonga","Likoma","Lilongwe","Machinga","Mangochi",
+  #       "Mchinji","Mulanje", "Mwanza", "Mzimba","Neno","Nkhata Bay",
+  #       "Nkhotakota","Nsanje","Ntcheu","Ntchisi","Phalombe","Rumphi",
+  #       "Salima","Thyolo","Zomba"
+	#end
 #//////////////////////////////////////////////////////////////////////
 	#methods for a multi-step form of registering a child
 	def current_step

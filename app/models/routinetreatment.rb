@@ -26,60 +26,66 @@ class Routinetreatment < ActiveRecord::Base
 		self.date = Time.now.to_date
 	end
 
-	def self.vit_dosage(age, weight)
+	def vit_dosage(age, weight)
 		@age = age.to_f #expect decimals
 
+		@vitamin_A = nil
 		if @age >= 6 #only those aged above 6 months
 			if @age < 12
-				return self.vitamin_A = "half_capsule"
+				return @vitamin_A = "half_capsule"
 			else
-			  	return self.vitamin_A = "single_capsule"
+			  	return @vitamin_A = "single_capsule"
 			end
 
 		else	#These are not expected to be in programme
-			return self.vitamin_A = "do_not_use"
+			return @vitamin_A = "do_not_use"
 		end
 	end
 
-	def self.amoxicilin_dosage(weight)
+	def amoxicilin_dosage(weight)
 	# the method does not specify on whether dosage administered is syrup or tablet
 	# It will be specified in views
 		@weight = weight.to_f
 
+		amoxicilin_antibiotic = nil
+
 		if @weight < 2.0 #consideronly those over 2kg
 			if @weight > 2.0 && @weight < 10.1
-				return self.amoxicilin_antibiotic = "mg_125"
+				return amoxicilin_antibiotic = "mg_125"
 			elsif @weight = (10.1..30.0).to_a.join(', ')# @weight = 10.1 && @weight =< 30.0
-				return self.amoxicilin_antibiotic = "mg_250"
+				return amoxicilin_antibiotic = "mg_250"
 			else
-				return self.amoxicilin_antibiotic = "mg_500"
+				return amoxicilin_antibiotic = "mg_500"
 			end
 
 		else #EXCEPT under KG
-			return self.amoxicilin_antibiotic = "do_not_use"
+			return amoxicilin_antibiotic = "do_not_use"
 		end
 
 	end
 
-	def self.folic_dosage
-		self.folic_acid = "single_dose"
+	def folic_dosage
+		@folic_acid = nil
+		return @folic_acid = "single_dose"
 	end
 
-	def self.albendazole_dosage(age, weight)
+	def albendazole_dosage(age, weight)
 		@age = age.to_f
+
+		albendazole = nil
 
 		if @age > 12.0 #Only given to those aged 1 year and above
 			if @age < 24.0
-				return self.albendazole = "mg_200"
+				return albendazole = "mg_200"
 			else
-				return self.albendazole = "mg_400"
+				return albendazole = "mg_400"
 			end
 		else
-			self.albendazole = "do_not_use"
+			albendazole = "do_not_use"
 		end
 	end
 
-	def self.fansidar_dosage(age, weight)
+	def fansidar_dosage(age, weight)
 	#If in Malarial area..that to be included in Facility table
 	#As a matter of fact, it is 25mg / kg
 	# that is if weight=12 then dosage is 25*12=150mg
@@ -89,22 +95,22 @@ class Routinetreatment < ActiveRecord::Base
 
 		if age.to_f > 2.0 #Should be over 2 months
 			if @weight = (4.1..5.0).to_a.join(', ') #@weight > 4.0 && @weight =< 5.0 #
-				return self.fansidar = "quarter_tablet" #This contains 125mg
+				return fansidar = "quarter_tablet" #This contains 125mg
 
 			elsif @weight = (5.1..10.0).to_a.join(', ')#@weight > 5.0 && @weight < 10.0 
-				return self.fansidar = "half_tablet" #This contains 250mg
+				return fansidar = "half_tablet" #This contains 250mg
 
 			elsif @weight = (10.1..20.0).to_a.join(', ')#@weight > 10.0 && @weight < 20.0
-				return self.fansidar = "one_tablet" #this conatins 500mg
+				return fansidar = "one_tablet" #this conatins 500mg
 
 			elsif  @weight = (20.1..30.0).to_a.join(', ')# @weight > 20.0 && @weight =< 30.0
-				return self.fansidar = "one_half_tablet" #this contains 750mg
+				return fansidar = "one_half_tablet" #this contains 750mg
 
 			elsif @weight > 30.0 && @weight < 45.1
-				return self.fansidar = "two_tablets" #this contains 1000mg
+				return fansidar = "two_tablets" #this contains 1000mg
 
 			else
-				return self.fansidar = "three_tablets" #this contains 1500mg
+				return fansidar = "three_tablets" #this contains 1500mg
 			end
 
 		end

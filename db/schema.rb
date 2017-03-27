@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301171650) do
+
+ActiveRecord::Schema.define(version: 20170307095900) do
+
 
   create_table "admissions", force: :cascade do |t|
     t.integer  "child_id",           limit: 4
@@ -68,6 +70,19 @@ ActiveRecord::Schema.define(version: 20170301171650) do
 
   add_index "discharges", ["child_id"], name: "index_discharges_on_child_id", using: :btree
 
+  create_table "facilities", force: :cascade do |t|
+    t.string   "name",          limit: 255, null: false
+    t.string   "district",      limit: 255, null: false
+    t.string   "location",      limit: 255, null: false
+    t.integer  "facility_code", limit: 4,   null: false
+    t.boolean  "has_nru"
+    t.boolean  "has_sfp"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "facilities", ["facility_code"], name: "index_facilities_on_facility_code", using: :btree
+
   create_table "feedplans", force: :cascade do |t|
     t.integer  "child_id",                 limit: 4
     t.decimal  "admission_weight",                     precision: 10
@@ -114,11 +129,20 @@ ActiveRecord::Schema.define(version: 20170301171650) do
 
   create_table "referrals", force: :cascade do |t|
     t.integer  "child_id",      limit: 4
+<<<<<<< HEAD
     t.date     "date_referred"
     t.text     "reason",        limit: 65535
     t.string   "confirmed_by",  limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+=======
+    t.date     "date_referred",             null: false
+    t.string   "referred_to",   limit: 255, null: false
+    t.string   "reason",        limit: 255, null: false
+    t.string   "confirmed_by",  limit: 255, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+>>>>>>> d00aed92c1775c10d96fca30444fcbf9d2476174
   end
 
   add_index "referrals", ["child_id"], name: "index_referrals_on_child_id", using: :btree
@@ -139,12 +163,20 @@ ActiveRecord::Schema.define(version: 20170301171650) do
 
   create_table "tests", force: :cascade do |t|
     t.integer "child_id",             limit: 4
+<<<<<<< HEAD
     t.string  "referred_by",          limit: 10,                   null: false
     t.boolean "Appetite_test",                                     null: false
     t.string  "breastfeeding",        limit: 5,                    null: false
     t.string  "complementery_food",   limit: 5,                    null: false
     t.integer "vomiting",             limit: 1,                    null: false
     t.boolean "alert",                                             null: false
+=======
+    t.string  "Appetite_test",        limit: 255
+    t.string  "breastfeeding",        limit: 5
+    t.string  "complementery_food",   limit: 5
+    t.integer "vomiting",             limit: 1
+    t.boolean "alert"
+>>>>>>> d00aed92c1775c10d96fca30444fcbf9d2476174
     t.string  "stools",               limit: 10,                   null: false
     t.string  "yes_appetite",         limit: 255, default: "good"
     t.text    "prev_medical_history", limit: 255

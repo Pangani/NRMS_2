@@ -4,12 +4,9 @@ class Followup < ActiveRecord::Base
 	# after_save :touch_child
 	
 #////////////////////////////////////////////////////////////////////////////////////
-	validates :weight, presence: true
-	validates :height, presence: true
-	validates :MUAC, presence: true
-	validates :z_score, presence: true
-	validates :clinician, presence: true
-	validates :clinical_status, :presence => true
+	validates :weight, :height, :MUAC, :z_score, :clinician, :presence => true
+	validates_length_of :height, :maximum => 200
+	validates_numericality_of :weight, :height, :MUAC
 
 #////////////////////////////////////////////////////////////////////////////////////
 	scope :latest_update_first, lambda{ order("follow_ups.updated_at ASC")}
@@ -19,6 +16,23 @@ class Followup < ActiveRecord::Base
 	as_enum :clinical_status, [:clinically_well, :not_well], map: :string, source: :clinical_status
 
 #///////////////////////////////////////////////////////////////////////////////////
+
+	def weight_gain(child)
+		@last_weight = child.follow_ups.find_by_updated_at(Date.today - 7.days) rescue child.anthropometry.weight 
+
+		@f_weight = (self.weight.to_f - @last_weight.to_f) / @last_weight.to_f
+		@gain = @f_weight * 100 #In percentage
+
+		return if @gain.blank?
+		@gain
+	end
+
+#------------------------------------------------------------------------------------
+	# ALARM TRIGGER 
+	# If a child looses weight or remains static for 2 consecutive weeks,
+	# 	-review for any medical complications and refer to medical services if need to
+	# 	-refer directly to NRU having also considered other NRU referral criteria
+#------------------------------------------------------------------------------------
 private
 	def set_last_update
 		self.last_update = Time.now.to_date

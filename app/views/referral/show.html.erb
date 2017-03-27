@@ -1,2 +1,84 @@
-<h1>Referral#show</h1>
-<p>Find me in app/views/referral/show.html.erb</p>
+<h4>#Still Under Construction</h4>
+
+<div class="jumbotron">
+	<div class="panel panel-transparent">
+		<div class="panel-heading">
+			<h4>REFERRAL DETAILS</h4>
+		</div>
+
+		<div class="panel-body">
+			<div class="row">
+	            <div class="col-xs-6">
+	              <em>
+	                <div>
+	                  <p><strong>Full Name: </strong></p>
+	                </div>
+	                <div>
+	                  <p><strong>ID Number: </strong></p>
+	                </div>
+	              </em>
+	            </div>
+	  
+	            <div class="col-xs-6">
+	              <em>
+	                <div>
+	                  <p><strong>Age : </strong></p>
+	                </div>
+	                <div>
+	                  <p><strong>Facility Name: </strong> Nthumbwe Health Centre </p>
+	                </div>
+	              </em>
+	            </div>
+		    </div>
+		    <hr>
+		    <i>Please review the following referral details for .Click edit should there be any changes...</i>
+		    <br><br>
+		    <div class="row">
+		    	<div class="col-md-12">
+		    		<table class="table">
+		    			<thead>
+		    				<tr>
+		    					<th>Date Referred</th>
+			    				<th>Reason for Referral</th>
+			    				<th>Confirmed By</th>
+		    				</tr>
+		    			</thead>
+
+		    			<tbody>
+		    				<%= for ref in @referral %> 
+		    				<tr>
+		    					<td><%= ref.date_referred %></td>
+		    					<td><%= ref.reason } %></td>
+		    					<td><%= ref.confirmed_by %></td>
+		    				</tr>
+		    			</tbody>
+		    		</table>
+		    	</div>
+		    </div>
+
+		    <br><br>
+
+		    <div class="row">
+		    	<div class="col-md-12">
+		    		<div class="col-md-5 col-md-offset-1">
+		    			<div class="pull-left">
+		    				<i>jdjd</i>
+		    			</div>
+		    		</div>
+
+		    		<div class="col-md-5">
+		    			<div class="pull-right">
+		    				<i>djjd</i>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	
+		    	
+		    </div>
+		</div>
+	</div>
+	<!-- <div class="date">
+		<p>Time: <b></b></p>
+	</div> -->
+</div>
+	

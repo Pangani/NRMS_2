@@ -101,6 +101,12 @@
 				</div>
 		</div>
 	</div>
+	<div class="pull-left">
+		<%= link_to '<< Back', url_for(:action => 'show',  :id =>@child.id ,:controller => 'child') , :class => "btn btn-primary btn-default" %>
+	</div>
+	<div class="pull-right">
+              <%= link_to 'DONE' , url_for( :action => 'check', :controller => 'child'), :class => 'btn btn-primary btn-lg' %>
+            </div>
 </div>
 
 <style>

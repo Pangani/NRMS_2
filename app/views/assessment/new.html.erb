@@ -9,9 +9,11 @@
 				<%= simple_form_for :presenter, :url => url_for(:action => 'create', :controller => 'assessment'), :method => 'post' do |f| %>
 
 				    	<%= render( :partial => "form", :locals => {:f => f}) %>
-	    
-					<%= f.button :submit, 'Complete Registration ', class: 'btn btn-primary btn-lg'%>
-					 
+				    <br><br>
+		    		<div class="pull-right">
+		    			<%= f.button :submit, 'Complete Registration ', class: 'btn btn-primary btn-lg'%>
+		    		</div>
+	 
 				<% end %>
 		</div>
 	</div>

@@ -1,8 +1,8 @@
 <div class="jumbotron">
 
-  <div class="panel panel-transparent panel-primary">
+  <div class="panel panel-transparent">
       	<div class="panel-heading">
-      		<h3>REFERRAL CARD</h3>
+      		<h4>REFERRAL CARD</h4>
       	</div>
       	<!-- panel body (pd) -->
 	      <div class="panel-body">
@@ -31,17 +31,12 @@
 	            </div>
 	          </div>
 	          <hr>
-	            <i>Please fill in the entries below with required information...</i>
-	          <br />
+	            
 	          <div class="row">
 	            <%= simple_form_for @referral, :url => url_for(:action => 'create', :controller => 'referral'),
 	              :method => 'post'  do |f| %>
 
 	                  <%= render(:partial => "referral", :locals => {:f => f}) %>
-
-	                  <div style="align-left">
-	                      <%= f.button :submit, 'CREATE ', class: 'btn btn-primary btn-lg' %>
-	                  </div>
 	            <% end %>
 	          </div>
 	      </div>

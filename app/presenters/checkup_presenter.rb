@@ -35,15 +35,19 @@ class CheckupPresenter
 			@feedplan.amount_offered = @ration.sachets_per_week.to_f if !@ration.blank?
 
 			#FOR REMAINING test PARAMS
-			@test.set_breastfeeding(@current_child)
 			@test.Appetite_test = @followup.appetite_test 
 
 		#==============================================
+
 		@current_child.feedplans << @feedplan
 		@current_child.followups << @followup
 		@current_child.tests << @test
 		@followup.save && @feedplan.save && @test.save
 	end
+
+	# def edit
+	# 	@followup = Followup.find_by_id(params[:id)
+	# end
 
 	def method_missing(model_attribute, *args)
 		model, *method_name = model_attribute.to_s.split("_" )

@@ -1,27 +1,30 @@
 
-
-<div class="intro-headeri">
+<div class="jumbotron">
+	<div class="intro-headeri">
 	<div class="">
 		<div class="panel panel-primary panel-transparent">
 			<div class="panel-heading">Deleting a Registered Child</div>
 
 			<div class="panel-body">
-				
+				<div class="col-md-8 col-md-offset-3">
+					<%= form_for(:child, :url => {:action =>'destroy', :id =>@child.id}) do |f|%>
+					   <p> Are you sure you want to permanently delete </p>
 
-	  <%= form_for(:child, :url => {:action =>'destroy', :id =>@child.id}) do |f|%>
-		   <p> Are you sure you want to permanently delete </p>
+					   <p class="reference-name"><%= @child.first_name + " " + @child.last_name%></p>
+					  
+					   <%= link_to("Back to List", {:action => 'index'}, :class => 'btn btn-primary') %>     
+					   |
+				     <%= button_tag(type: 'submit', class: "btn btn-danger") do %>
+				 <i class="fa  fa-ok fa-lg"></i> Delete Child
+				  
+				  <% end %>
 
-		   <p class="reference-name"><%= @child.first_name + " " + @child.last_name%></p>
-		  
-		   <%= link_to("Back to List", {:action => 'index'}, :class => 'btn btn-primary') %>     
-		   |
-	     <%= button_tag(type: 'submit', class: "btn btn-danger") do %>
-	 <i class="fa  fa-ok fa-lg"></i> Delete Child
-	  
-	  <% end %>
+				  <% end %>		
 
-	  <% end %>		
+				</div>
+				  
 			</div>
 		</div>
 	</div>	
+</div>
 </div>

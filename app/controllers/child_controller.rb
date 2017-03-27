@@ -37,7 +37,9 @@ class ChildController < ApplicationController
 
     if params[:search]
 
+
      empty_search = params[:search].empty?
+
     else
       empty_search = true
 
