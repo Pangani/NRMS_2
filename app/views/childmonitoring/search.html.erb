@@ -1,0 +1,71 @@
+<div class="jumbotron">
+
+	<div class="panel panel-primary panel-transparent">
+		<div class="panel-heading">
+			<h2>CHILD MONITORING</h2>
+		</div>
+	</div>
+	<br>
+	<section class="search-form">
+		<h4><i>Please ENTER the ID number for a child to monitor...</i></h4>
+		<%= form_for :children, method: :get do |f| %>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="input-group input-group-lg">
+						<%= label_tag :keywords, nil, class: "sr-only" %>
+						<%= text_field_tag :keywords, nil, placeholder: "First Name, Last Name or ID number", class: "form-control input-lg" %>
+
+						<span class="input-group-btn">
+							<%= submit_tag "Find Child", class: 'btn btn-primary btn-lg' %>
+						</span>
+					</div>
+				</div>
+			</div>
+		<% end -%>
+	</section>
+	<br>
+	<div class="panelpanel-transparent ">
+		<section class="search-results">
+			<header>
+				<h3>Results</h3>
+			</header>
+
+			<ol class="list-group">
+				<% @children.each do |child| %>
+					<li class="list-group-item list-group-item-info clearfix">
+						<h5 class="pull-right">
+							<small class="text-uppercase">Admitted on</small>
+							<%= l child.created_at.to_date %>
+						</h5>
+
+						<h4><%= child.first_name %> <%= child.last_name %></h4>
+						
+						<h6><i>Guardian: <%= child.guardian_name  %></i></h6>
+						<div class="pull-right">
+				          <%= link_to 'Monitor', url_for(:action => 'index' ,:controller => 'childmonitoring', :child_id => child.id ) , :class => "btn btn-primary btn-default" %>
+				       </div>
+					</li>
+				<% end %>
+			</ol>
+
+		</section>
+	</div>	
+		
+	<br><br>
+	<hr>
+	<!-- <p>
+		The search algorithm will be done using: <br>
+		<i>- Ruby: for the server-side work</i><br>
+		<i>- AngularJS: for easy fluidity - will take adavntage of data binding...</i>
+	</p>
+	<p>
+		<i>The details of a child are displayed as ID number is being entered (AngularJS)</i><br>
+		<i>Once the desired child is found, can be clicked!</i><br>
+		<i>This redirects page to index...</i>
+	</p> -->
+</div>
+<style type="text/css">
+	h3 {
+		text-decoration: underline;
+	}
+</style>
