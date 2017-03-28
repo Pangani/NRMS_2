@@ -32,7 +32,7 @@
                 <div class="col-md-6">
                     <div>
 
-                        <p><i><strong> Last Update: </strong> <%= @child.follow_ups.last.last_update rescue @child.anthropometry.updated_at.to_date %></i></p>
+                        <p><i><strong> Last Update: </strong> <%= @child.followups.last.last_update rescue @child.anthropometry.updated_at.to_date %></i></p>
                     </div>
                     <div>
                         <p><i><strong> Total number of visits: </strong><%= @child.followups.count rescue @child.feedplans.first.amount_offered %></i></p>

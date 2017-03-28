@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20170307095900) do
-
 
   create_table "admissions", force: :cascade do |t|
     t.integer  "child_id",           limit: 4
@@ -129,20 +127,11 @@ ActiveRecord::Schema.define(version: 20170307095900) do
 
   create_table "referrals", force: :cascade do |t|
     t.integer  "child_id",      limit: 4
-<<<<<<< HEAD
     t.date     "date_referred"
     t.text     "reason",        limit: 65535
     t.string   "confirmed_by",  limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-=======
-    t.date     "date_referred",             null: false
-    t.string   "referred_to",   limit: 255, null: false
-    t.string   "reason",        limit: 255, null: false
-    t.string   "confirmed_by",  limit: 255, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
->>>>>>> d00aed92c1775c10d96fca30444fcbf9d2476174
   end
 
   add_index "referrals", ["child_id"], name: "index_referrals_on_child_id", using: :btree
@@ -163,20 +152,12 @@ ActiveRecord::Schema.define(version: 20170307095900) do
 
   create_table "tests", force: :cascade do |t|
     t.integer "child_id",             limit: 4
-<<<<<<< HEAD
     t.string  "referred_by",          limit: 10,                   null: false
-    t.boolean "Appetite_test",                                     null: false
+    t.string  "Appetite_test",        limit: 255,                  null: false
     t.string  "breastfeeding",        limit: 5,                    null: false
     t.string  "complementery_food",   limit: 5,                    null: false
     t.integer "vomiting",             limit: 1,                    null: false
     t.boolean "alert",                                             null: false
-=======
-    t.string  "Appetite_test",        limit: 255
-    t.string  "breastfeeding",        limit: 5
-    t.string  "complementery_food",   limit: 5
-    t.integer "vomiting",             limit: 1
-    t.boolean "alert"
->>>>>>> d00aed92c1775c10d96fca30444fcbf9d2476174
     t.string  "stools",               limit: 10,                   null: false
     t.string  "yes_appetite",         limit: 255, default: "good"
     t.text    "prev_medical_history", limit: 255
