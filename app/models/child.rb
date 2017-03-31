@@ -1,4 +1,21 @@
 class Child < ActiveRecord::Base
+	#auto generated reg_number
+	
+	 before_create :set_unique_reg_number
+
+	def set_unique_reg_number
+
+    if last_child = Child.last
+      last_reg_number = last_child.reg_number.scan(/\d+$/).first.to_i
+      new_reg_number= last_reg_number + 1
+    else
+      new_reg_number = 1
+    end
+    self.reg_number = "#{}#{sprintf("%03d", new_reg_number)}"
+		
+	end
+
+
 	#Associations
 	has_one :admission, :foreign_key => 'child_id', :dependent => :destroy
 	has_one :discharge, :foreign_key => 'child_id', :dependent => :destroy
@@ -14,7 +31,7 @@ class Child < ActiveRecord::Base
 
 #////////////////////////////////////////////////////////////////////
 	#validations
-	validates :reg_number, :uniqueness => true, :presence => true
+	#validates :reg_number, :uniqueness => true, :presence => true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :guardian_name, presence: true
