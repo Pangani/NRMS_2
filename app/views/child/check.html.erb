@@ -19,7 +19,7 @@
           <div class="row">
               <div class="col-xs-6">
                   <h5>Total children  registered by Day</h5>
-                  <%= line_chart Child.group_by_day(:created_at).reverse_order.count %>
+                  <%= line_chart Child.group_by_day(:created_at, format: "%b %-e", range: 3.month.ago..Date.today).count %>
               </div>
          
               <div class="col-xs-6">

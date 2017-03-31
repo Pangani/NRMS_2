@@ -10,6 +10,7 @@ class CheckUpController < ApplicationController
 #===============================check_up/summary=====================================
 	def summary
 		@follows = Followup.where(:child_id => @child.id).limit(2)
+		@child_follows = Followup.where(:child_id => @child.id)
 		# FollowUp.left_outer_joins(:feed_plans).where(:)
 	end
 

@@ -1,4 +1,21 @@
 class Child < ActiveRecord::Base
+	#auto generated reg_number
+	
+	 before_create :set_unique_reg_number
+
+	def set_unique_reg_number
+
+    if last_child = Child.last
+      last_reg_number = last_child.reg_number.scan(/\d+$/).first.to_i
+      new_reg_number= last_reg_number + 1
+    else
+      new_reg_number = 1
+    end
+    self.reg_number = "#{}#{sprintf("%03d", new_reg_number)}"
+		
+	end
+
+
 	#Associations
 	has_one :admission, :foreign_key => 'child_id', :dependent => :destroy
 	has_one :discharge, :foreign_key => 'child_id', :dependent => :destroy
@@ -14,7 +31,7 @@ class Child < ActiveRecord::Base
 
 #////////////////////////////////////////////////////////////////////
 	#validations
-	validates :reg_number, :uniqueness => true, :presence => true
+	#validates :reg_number, :uniqueness => true, :presence => true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :guardian_name, presence: true
@@ -45,12 +62,25 @@ class Child < ActiveRecord::Base
 
 	scope :hiv_both, lambda{where("HIV_serostatus = 'RR' AND maternal_HIV_serostatus = 'RR'")}
 	scope :is_exposed, lambda{where("HIV_serostatus = 'unknown' AND maternal_HIV_serostatus = 'RR'")}
-	scope :search, lambda { |query|
-		where(["reg_number LIKE ?", "%#{query}%"])
-		}
-	scope :child_assess, lambda { |query|
-		where(["id LIKE ?", "%#{query}%"])
-	}
+	#scope :search, lambda { |query|
+		#where(["reg_number LIKE ?", "%#{query}%"])
+		#}
+	#scope :child_assess, lambda { |query|
+		#where(["id LIKE ?", "%#{query}%"])
+	#}
+
+
+
+
+
+def self.search(search)
+  if search
+    where('reg_number LIKE ?', "%#{search}%")
+  else
+    nil
+  end
+end
+
 
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	#Variables with multiple options

@@ -20,31 +20,43 @@
           </div>
       </div>
 
-
-      <h5><em>Summary of Visits</em></h5>
+      <div class="row-fluid">
+       <h5 class="col-md-6"><em>Summary of Visits</em></h5> 
+       <h5 class="col-md-6"> The plot of weight against visits</h5>
+      </div>
+      
       <div class="panel panel-transparent">
         <div class="panel-body">
             <div class="row">
               <!-- holds the statistics -->
                 <div class="col-md-6">
                     <div>
-                        <p><i><strong> Last Update: </strong> <%= @child.follow_ups.last.last_update rescue @child.anthropometry.updated_at.to_date %></i></p>
+
+                        <p><i><strong> Last Update: </strong> <%= @child.followups.last.last_update rescue @child.anthropometry.updated_at.to_date %></i></p>
                     </div>
                     <div>
                         <p><i><strong> Total number of visits: </strong><%= @child.followups.count rescue @child.feedplans.first.amount_offered %></i></p>
+
                     </div>
                     <div>
                         <p><i><strong> Length of stay: </strong><%= ((Time.now.to_date - @child.admission.created_at.to_date).to_i) rescue nil%> days</i></p>
                     </div>
                     <div>
-                        <p><i><strong> Total Amount of RUTF used: <%= @child.feed_plans.total_amount rescue nil%></strong></i></p>
+                        <p><i><strong> Total Amount of RUTF used: <%= @child.feedplans.total_amount rescue nil%></strong></i></p>
                     </div>
                 </div>
 
                 <!-- holds some graphs (weight graph) -->
+
                 <div class="col-md-6">
-                  The plot of weight against visits
+                 
+
+                <div class="container-fluid">
+                 
+
+                  <div>  <%= line_chart @child_follows.group(:created_at).sum(:weight),  xtitle: "checkup date", ytitle: "Weight (kg)", download: "boom" %> </div>
                   <br>
+
                 </div>  
             </div>
             <!-- DIV to hold the table for OTP session card -->
@@ -92,8 +104,21 @@
   </dl>
 </div>
 
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
 <style type="text/css">
   h5 {
     text-decoration: underline;
   }
+
+
 </style>

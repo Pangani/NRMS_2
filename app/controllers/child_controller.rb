@@ -34,31 +34,40 @@ class ChildController < ApplicationController
 #Search a child for a check-up
   def check
     # ----------------------------------------------------------------------------
-    # this is a search function
-    @found_person = nil
 
-    if params[:search] #if the variable carries values...
-      @found_results = Child.search(params[:search]) #search in DB
+    if params[:search]
 
-      #check the number of results found and assign to "found_person"
-      if @found_results.length > 1
-        @found_person = @found_results.first
-      else
-        @found_person = @found_results
-      end
-      # we need also to separate those that are admitted into programme
-      # because the mthos searches for all
-      #if assigned
-      if @found_person
-        session[:child_id] = @found_person.first.id
-        redirect_to :controller => :check_up, :action => 'summary', :child_id => @found_person.first.id and return
-      else
-          flash[:error] = "No child is found..."
-      end
-    #-------if variable doesnt have value
+
+     empty_search = params[:search].empty?
+
     else
-      render 'check'
+      empty_search = true
+
+
     end
+
+    if empty_search
+         # no search was submitted, or search params are all blank
+         @search = ""
+         @searched_child = []
+         flash.now[:notice] = "The search field is empty "
+        render "check"
+
+        else
+         # a search was submitted
+         @search = Child.search(params[:search])
+         @searched_child = @search.all
+
+          if   @searched_child.count >= 1
+               redirect_to :controller => :check_up, :action => 'summary', :child_id => session[:child_id] = @searched_child.first.id and return
+          
+       else
+          flash.now[:notice] = "No results found"
+          render "check"
+          end
+     
+        end
+   
 
   end
 

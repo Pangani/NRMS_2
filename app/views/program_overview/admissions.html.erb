@@ -42,7 +42,7 @@
 		                    	<tr>
 		                    		
 		                    		<td>Females</td>
-		                    		<td><%= @female_6_months_old.where('admissions.admission_criteria' => "z_score").count rescue nil%></td>
+		                    		<td><%= @female_6_months_old.where('admissions.admission_criteria' => "z_score").count %></td>
 		                    		<td><%= @female_6_months_old.where('admissions.admission_criteria' => "MUAC").count rescue nil%></td>
 		                    		<td><%= @female_6_months_old.where('admissions.admission_criteria' => "bilateral_oedema").count rescue nil%></td>
 		                    		<td><%= @female_6_months_old.where('admissions.admission_criteria' => "bmi_for_age").count rescue nil%></td>

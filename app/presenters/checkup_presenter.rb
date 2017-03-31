@@ -30,7 +30,7 @@ class CheckupPresenter
 		@ration = Foodration.amount_of_rutf(@followup.weight) #returns number of sachets based on weight
 		#======set some fields from other fields======
 			#FOR REMAINING feedplan PARAMS
-			@feedplan.admission_weight = @current_child.anthropometry.weight
+			#@feedplan.admission_weight = @current_child.anthropometry.weight
 			@feedplan.today_weight = @followup.weight
 			@feedplan.amount_offered = @ration.sachets_per_week.to_f if !@ration.blank?
 

@@ -7,7 +7,7 @@
     	</div>
 	</div>
 
-	<table id="discharge" class="table table-inverse table-bordered" cellspacing="0">
+	<table id="discharge" class="table table-inverse table-bordered" >
         <thead>
             <tr>
               	<th>Cured <span>(k)</span></th>
@@ -22,38 +22,70 @@
 
   		<tbody>
           	<tr>
-                <td>0</td>
-                <td>0</td>
-                <td> 0 </td>
-                <td> 0</td>
-                <td> 0 </td>
-                <td> 0 </td>
-                <td></td>
+                <td> <%= @child_cured.count rescue nil %></td>
+                <td> <%= @child_dead.count  rescue nil %></td>
+                <td> <%= @child_dead.count  rescue nil %></td>
+                <td> <%= @child_dead.count  rescue nil %></td>
+                <td> <%= @child_dead.count  rescue nil %></td>
+                <td> <%= @child_dead.count  rescue nil %> </td>
+                <td> <%= @discharge.count   rescue nil %></td>
           	</tr>
        		<tr>
-        	 	<td>Cure rate=  %</td>
-              	<td>Death rate=  %</td>
-              	<td>Default rate= %</td>
-              	<td>Non-response rate = %</td>
-              	<td> </td>
-              	<td> </td>
-              	<td></td>
+        	 	<td>Cure rate= <%= (@child_cured.count/@discharge.count)* 100 %> %</td>
+              	<td>Death rate = <%= (@child_dead.count/@discharge.count)* 100 %> %</td>
+              	<td>Default rate = <%= (@child_defaulted.count/@discharge.count)* 100 %> %</td>
+              	<td>Non-response rate = <%= (@child_nonresponse.count/@discharge.count)* 100 %>  %</td>
+              <td colspan="3"></td>
+              	
             </tr>
         </tbody>
    
        	<tfoot>
-   		 	<td>Not Applicable</td>
-          	<td>Target Death rate= < 10% </td>
-          	<td>Target Default rate= < 15% </td>
-          	<td>Target Non-response rate = N/A</td>
-          	<td> </td>
-          	<td> </td>
-          	<td></td>
-		</tfoot>
+   		 	   <td><button class="btn btn-default btn-md" data-toggle="collapse" data-target="#cure">Target Cured rate </button>
+
+            <div id="cure" class="collapse">
+              N/A
+            </div>
+            </td>
+          	<td><button class="btn btn-default btn-md" data-toggle="collapse" data-target="#dead">Target Death rate </button>
+
+            <div id="dead" class="collapse">less than 10%
+            </div>
+            </td>
+
+          	<td><button class="btn btn-default btn-md" data-toggle="collapse" data-target="#default">Target Defaulted rate </button>
+
+            <div id="default" class="collapse">less than 15%
+            </div> 
+            </td>
+
+          	<td><button class="btn btn-default btn-md" data-toggle="collapse" data-target="#nores">Target Non-response rate </button>
+
+            <div id="nores" class="collapse"> N/A
+            </div>
+            </td>
+            <td colspan="3"></td>
+
+          	</tfoot>
+		
 
 	</table>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <hr>
+ 
 
 
 <%= link_to '<< Back', url_for(:action => 'index' ,:controller => 'program_overview') , :class => "btn btn-primary btn-default" %> 
