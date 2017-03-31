@@ -40,7 +40,4 @@ class ProgramOverviewController < ApplicationController
 
   def transfer 	  	
   end	  
-
-
-
 end

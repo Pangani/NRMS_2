@@ -1,0 +1,128 @@
+<!-- <!DOCTYPE html>
+<html>
+	<head>
+		<title>NRMS | Admin</title>
+	</head>
+	<body>
+		<div id="header">
+			<h1>NRMS Admin</h1>
+		</div>
+		<div class="container">
+		</div>
+		<div class="footer">
+			<p>&copy; Roy and Joseph</p>
+		</div>
+	</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
+	    <title>NRMS | Admin</title>
+
+		<%= stylesheet_link_tag('application', :media => 'all')%>
+		<%= javascript_include_tag 'application'%>
+  		<%= csrf_meta_tags %>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="/">NRMS</a>
+            </div>
+          
+        </div>
+        <!-- /.container -->
+  </nav>
+	    <div id="wrapper">
+
+	        <!-- Sidebar -->
+	        <div id="sidebar-wrapper">
+	            <ul class="sidebar-nav">
+	                <li class="sidebar-brand">
+	                    <a href="#">
+	                        NRMS
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="">
+	                    	<i class="fa fa-dashboard"></i>
+	                    	<span>Dashboard</span>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="#">
+	                    	<i class="fa fa-bar-chart-o"></i>
+	                    	<span>Overview</span>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="#">
+	                    	<i class="fa fa-edit"></i>
+	                    		<span>Reports</span>
+	                    	<i class="fa fa-chevron-down"></i>
+	                    </a>
+	                </li>
+	                <li>
+	                	<a href="admin/facility/index">
+	                		<i class="fa fa-laptop"></i>
+	                		<span>Facility</span>
+	                	</a>
+	                </li>
+	                <li>
+	                    <a href="#">
+	                    	<i class="fa fa-bell-o"></i>
+	                    	<span>Notifications</span>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="#">
+	                    	<i class="fa fa-cog"></i>
+	                    	<span>Settings</span>
+	                    </a>
+	                </li>
+	            </ul>
+	        </div>
+	        <!-- /#sidebar-wrapper -->
+
+	        <!-- Page Content -->
+	        <div id="page-content-wrapper">
+	            <div class="container-fluid">
+	            	<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+	            	<%= yield %>
+	            </div>
+	        </div>
+	        <!-- /#page-content-wrapper -->
+	    </div>
+	    <!-- /#wrapper -->
+
+	    <!-- jQuery -->
+	    <!-- // <script src="app/assets/javascripts/admin/jquery.js"></script>
+ -->
+	     <!-- Bootstrap Core JavaScript -->
+	    <!-- // <script src="app/assets/javascripts/admin/bootstrap.min.js"></script> -->
+
+	    <!-- Menu Toggle Script -->
+	    <script>
+	    $("#menu-toggle").click(function(e) {
+	        e.preventDefault();
+	        $("#wrapper").toggleClass("toggled");
+	    });
+	    </script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<div class="col-md-12">
+    <div class="col-md-6">
+    	<%= f.input :name, :label => "Health Centre Name: ", placeholder: 'facility name', class: 'col-md-6' %>
+
+    	<%= f.input :facility_code, :label => "Facility Code: ", placeholder: 'e.g 11',class: 'col-md-6' %>
+
+    	<%= f.input :location, :label => "Location: ", placeholder: 'e.g Namitambo Constituency...', class: 'col-md-6' %>
+    </div>
+
+    <div class="col-md-6">
+    	<%= f.input :district, :label => "District: ",placeholder: 'District',collection: [
+            "Balaka","Blantyre","Chikwawa","Chiradzulu","Chitipa","Dedza",
+            "Dowa", "Karonga","Likoma","Lilongwe","Machinga","Mangochi",
+            "Mchinji","Mulanje", "Mwanza", "Mzimba","Neno","Nkhata Bay",
+            "Nkhotakota","Nsanje","Ntcheu","Ntchisi","Phalombe","Rumphi",
+            "Salima","Thyolo","Zomba"] %>
+
+        <%= f.input :has_nru, :label => "Has NRU? ",collection: ["Yes", "No"], :selected => "No" %>
+
+        <%= f.input :has_sfp, :label => "Has SFP? ",collection: ["Yes", "No"], :selected => "No" %>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="jumbotron">
+<div class="dl-horizontal">
+	<div class="panel panel-transparent">
+		<div class="panel-heading">
+			<h3>CONFIRM DETAILS</h3>
+		</div>
+
+		<div class="panel-body">
+			<div class="col-md-12">
+				<em>
+					<div class="col-md-12">
+                    	<p>
+                    		<div class="col-md-3"> <strong>Health Centre Name : </strong></div>
+                    		<div class="col-md-9"> <%= @facility.name rescue nil%></div>
+                    	</p>
+                	</div>
+                	<div class="col-md-12">
+                    	<p>
+                    		<div class="col-md-3"> <strong>Health Centre Code : </strong></div>
+                    		<div class="col-md-9"> <%= @facility.facility_code rescue nil%></div>
+                    	</p>
+                	</div>
+                	<div class="col-md-12">
+                    	<p>
+                    		<div class="col-md-3"> <strong>Health Centre Location : </strong></div>
+                    		<div class="col-md-9"><%= @facility.location rescue nil%></div>
+                    	</p>
+                	</div>
+                	<div class="col-md-12">
+                		<p>
+                    		<div class="col-md-3"> <strong>District : </strong></div>
+                    		<div class="col-md-9"><%= @facility.district rescue nil%></div>
+                    	</p>
+               		</div>
+               		<div class="col-md-12">
+               			<p>
+                    		<div class="col-md-3"> <strong>Is NRU available? : </strong></div>
+                    		<div class="col-md-9"><%= @facility.has_nru rescue nil%></div>
+                    	</p>
+                	</div>
+                	<div class="col-md-12">
+                		<p>
+                    		<div class="col-md-3"> <strong>Is SFP available? : </strong></div>
+                    		<div class="col-md-9"><%= @facility.has_sfp rescue nil%></div>
+                    	</p>
+                	</div>
+				</em>
+			</div>
+		</div>
+		<div class="col-md-12">
+              <div class="pull-left">
+                <%= link_to 'Edit', url_for(:action => 'edit', :controller => 'facility'), class: 'btn btn-primary btn-medium'%>
+              </div>
+              <div class="pull-right">
+                <%= link_to 'CONFIRM', url_for(:action => 'index', :controller => 'facility'), class: 'btn btn-primary btn-medium'%>
+              </div>
+          </div>
+	</div>
+</div>
+</div>

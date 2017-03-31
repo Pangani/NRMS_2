@@ -6,10 +6,12 @@ class ChildmonitoringController < ApplicationController
     @child = Child.find_by_id(params[:child_id])
 
     ## ANTHROPOMETRY
-    @child_fol = @child.followups
-    @child_anthrop = @child.anthropometry
-    # MEDICAL HISTORY
+      @child_fol = @child.followups
+      @child_anthrop = @child.anthropometry
 
+    # MEDICAL HISTORY
+      @child_test = @child.tests
+      
     # ROUTINE-MEDICATIONS
 
     # PHYSICAL EXAMINATION

@@ -149,7 +149,7 @@
 						<em>
 							<div class="col-md-6">
 								<p>Number of Sessions with Diarrhoea: <%= @child.tests.count rescue nil%></p>
-								<p>Number of referrals to clinician: </p>
+								<p>Number of referrals to clinician: <%= @child.referrals.count rescue 0 %></p>
 							</div>
 							<div class="col-md-6">
 								<p>Number of Sessions while vomiting: </p>
@@ -160,50 +160,50 @@
 					<br>
 					<i>The table below shows the weeks in which corresponding information were recorded...</i><br>
 					<div class="col-md-12">
-							<table class="table table-bordered">
-								<thead>
-									<th><strong>Week</strong></th>
-									<th>1</th>
-									<th>2</th>
-									<th>3</th>
-									<th>4</th>
-									<th>5</th>
-									<th>6</th>
-									<th>7</th>
-									<th>8</th>
-									<th>9</th>
-									<th>10</th>
-								</thead>	
-								<tbody>
-									<tr>
-										<td><strong>Diarrhoea<br><i>(# days)</i></strong></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><strong>Vomiting<br><i># days</i></strong></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									
-								</tbody>
-							</table>
+						<table class="table table-bordered">
+							<thead>
+								<th><strong>Week</strong></th>
+								<th>1</th>
+								<th>2</th>
+								<th>3</th>
+								<th>4</th>
+								<th>5</th>
+								<th>6</th>
+								<th>7</th>
+								<th>8</th>
+								<th>9</th>
+								<th>10</th>
+							</thead>	
+							<tbody>
+								<tr>
+									<td><strong>Diarrhoea<br><i>(# days)</i></strong></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>Vomiting<br><i># days</i></strong></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								
+							</tbody>
+						</table>
 					</div>
 
 				</div>
