@@ -1,8 +1,12 @@
 class ReferralController < ApplicationController
-	# before_action :find_child
+	before_action :find_child
 
 	def index
-	  	@c_referral = Child.joins(:referrals).all
+		if @child.referrals
+	  		@c_referral = Child.joins(:referrals).all
+	  	else
+	  		render 'new'
+	  	end
 	end
 
 	def new
@@ -22,27 +26,27 @@ class ReferralController < ApplicationController
 	end
 
 	def show
-		#@referral = Child.join(:referrals).where(:child_id => @child.id)
+		@referral = Child.join(:referrals).where(:child_id => @child.id)
 	end
 
 	def edit
-		#@referral = Referral.find_by_id(params[:id])
+		@referral = Referral.find_by_id(params[:id])
 	end
 
 	def update
-		#@referral = Referral.find_by_id(params[:id])
+		@referral = Referral.find_by_id(params[:id])
 
-	    # if @referral.update_attributes(follow_params)
-	    #   	flash[:notice] = "sreferral details updated successfully"
+	    if @referral.update_attributes(follow_params)
+	      	flash[:notice] = "sreferral details updated successfully"
 	      	
-	    #   	redirect_to(:action => 'show', :id => @referral.id)
-	    # else
-	    #   render('edit')
-	    # end
+	      	redirect_to(:action => 'show', :id => @referral.id)
+	    else
+	      render('edit')
+	    end
 	end
 
 	def confirm
-		#@referral = Referral.find_by_id(params[:id])
+		@referral = Referral.find_by_id(params[:id])
 	end
 
 

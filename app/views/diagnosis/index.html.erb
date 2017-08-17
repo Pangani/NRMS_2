@@ -73,6 +73,7 @@
         <i>The following routine medicines are administered based on age and current weight...</i>
         <br><br>
         <div class="col-md-12" >
+          <% if @child.routinetreatment %>
           <em>
             <!-- Trigger Alarm when it is time for provision of each medication
                   Let the system be notified when given that medication (In its specified time ofcourse !!!)  -->
@@ -191,7 +192,12 @@
                 </strong></p>
               </div>
             </div><br>
-          </em>  
+          </em>
+          <% else %>
+            <div>
+              <p><i>The Routine Treatment Plan was not created...</i></p>
+            </div>
+          <% end -%>  
         </div>
       </div>
     </div>

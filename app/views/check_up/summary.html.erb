@@ -44,6 +44,10 @@
                     <div>
                         <p><i><strong> Total Amount of RUTF used: <%= @child.feedplans.total_amount rescue nil%></strong></i></p>
                     </div>
+                    <br><br>
+                    <div id="myButton" class="pull-left">
+                      <%= link_to 'REFERRAL' , url_for(:action => 'index', :controller => 'referral', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
+                    </div>
                 </div>
 
                 <!-- holds some graphs (weight graph) -->
@@ -52,15 +56,15 @@
                  
 
                 <div class="container-fluid">
-                 
-
-                  <div>  <%= line_chart @child_follows.group(:created_at).sum(:weight),  xtitle: "checkup date", ytitle: "Weight (kg)", download: "boom" %> </div>
+                  <div>
+                    <%= line_chart @child_follows.group(:created_at).sum(:weight),  xtitle: "checkup days", ytitle: "Weight (kg)", download: "boom" %> 
+                  </div>
                   <br>
-
                 </div>  
             </div>
             <!-- DIV to hold the table for OTP session card -->
             <div class="row">
+              <div class="col-md-12">
               <br><br>
               <i>*The OTP ration card below shows the updates for the last two visits</i>
               <table class="table table-bordered" >
@@ -92,9 +96,10 @@
                     <% end %>
                   </tbody>
               </table>
-                <div id="myButton">
+                <div id="myButton" class="pull-right">
                    <%= link_to 'UPDATE CARD' , url_for( :action => 'new', :controller => 'check_up', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
                 </div>
+              </div>
             </div>
             <br>
             <br>            

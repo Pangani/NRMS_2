@@ -36,39 +36,30 @@ class ChildController < ApplicationController
     # ----------------------------------------------------------------------------
 
     if params[:search]
-
-
-     empty_search = params[:search].empty?
-
+      empty_search = params[:search].empty?
     else
       empty_search = true
-
-
     end
 
     if empty_search
          # no search was submitted, or search params are all blank
-         @search = ""
-         @searched_child = []
-         flash.now[:notice] = "The search field is empty "
-        render "check"
+          @search = ""
+          @searched_child = []
 
-        else
-         # a search was submitted
-         @search = Child.search(params[:search])
-         @searched_child = @search.all
-
-          if   @searched_child.count >= 1
-               redirect_to :controller => :check_up, :action => 'summary', :child_id => session[:child_id] = @searched_child.first.id and return
-          
-       else
-          flash.now[:notice] = "No results found"
+          flash.now[:notice] = "The search field is empty "
           render "check"
-          end
-     
-        end
-   
+    else
+         # a search was submitted
+          @search = Child.search(params[:search])
+          @searched_child = @search.all
 
+          if @searched_child.count >= 1
+              redirect_to :controller => :check_up, :action => 'summary', :child_id => session[:child_id] = @searched_child.first.id and return
+          else
+              flash.now[:notice] = "No results found"
+              render "check"
+          end
+    end
   end
 
 #===================================================================================================

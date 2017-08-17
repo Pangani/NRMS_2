@@ -123,12 +123,19 @@
 						</tbody>
 					</table>
 					<br>
-					<div class="col-md-12">
-						<div class="col-md-6">
-							<i>Graph of weight</i>
-						</div>
-						<div class="col-md-6">
-							<i>Graph of MUAC</i>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="container-fluid">
+									<div>
+										<%= line_chart @child_fol.group(:created_at).sum(:weight),  xtitle: "checkup days", ytitle: "Weight (kg)", download: "boom" %> 
+									</div>
+								</div>
+				                    
+							</div>
+							<div class="col-md-6">
+								<i>Graph of MUAC</i>
+							</div>
 						</div>
 					</div>
 				</div>

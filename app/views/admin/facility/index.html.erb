@@ -1,5 +1,41 @@
+<h3>Still Under Construction.../</h3>
 <div class="jumbotron">
+	<div class="panel panel-transparent">
+		<div class="panel-heading">
+			<h2>Health Centre</h2>
+		</div>
+	</div>
+
+	<div>
+	
 	<section>
-		<p>Hello index, its me People!</p>
-	</section>	
+		<table class="table">
+			<thead>
+				<th>Health Centre Name</th>
+				<th>Facility Code</th>
+				<th>Location</th>
+				<th>District</th>
+				<th>Actions</th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr>
+					<% for facility in @facilities %>
+					<td><%= facility.name%></td>
+					<td><%= facility.facility_code %></td>
+					<td><%= facility.location %></td>
+					<td><%= facility.district %></td>
+					<td><%= link_to("Show", {:action =>'show', :controller => 'facility', :id =>facility.id}, :class => 'fa  fa-eye fa-lg') %></td>
+
+                   <td> <%= link_to("Edit", {:action => 'edit', :controller => 'facility',:id =>facility.id}, :class => 'fa  fa-edit fa-lg ') %></td>
+                   <td><%= link_to("Delete", {:action =>'delete', :controller => 'facility', :id =>facility.id}, :class => 'fa  fa-trash fa-lg') %>
+                    
+                   </td>
+
+					<% end %>
+				</tr>
+			</tbody>
+		</table>
+	</section>		
 </div>

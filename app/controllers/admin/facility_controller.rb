@@ -1,6 +1,7 @@
 class Admin::FacilityController < ApplicationController
 	layout 'admin'
 	def index
+		@facilities = Facility.all
 	end
 	
 	def new
@@ -12,13 +13,17 @@ class Admin::FacilityController < ApplicationController
 
 		if @facility.save
 			flash[:notice] = "Details of a facility has added successfully..."
-			redirect_to(:controller => 'settings', :action => 'index')
+			redirect_to(:controller => 'facility', :action => 'simple_show')
 		else
 			render('new')
 		end
 	end
 
 	def show
+		@facility = Facility.find_by_id(params[:id])
+	end
+
+	def simple_show
 		@facility = Facility.find_by_id(params[:id])
 	end
 

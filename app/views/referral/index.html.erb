@@ -36,6 +36,15 @@
 			    			<% end -%>
 		    			</tbody>
 		    		</table>
+		    		<br>
+		    		<div class="row">
+			    		<div id="myButton" class="pull-left">
+	                      <%= link_to '<< Back' , url_for(:action => 'summary', :controller => 'check_up', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
+	                    </div>
+			    		<div id="myButton" class="pull-right">
+	                      <%= link_to 'Create New Referral' , url_for(:action => 'new', :controller => 'referral', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
+	                    </div>
+                	</div>
 		    	</div>
 		    	
 		    </div>

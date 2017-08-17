@@ -6,6 +6,9 @@
 		<%= f.input  :reason, as: :text, :label => "Reason For Referral",placeholder: 'e.g visit to HTC', class: 'col-md-4'%>
 		<%= f.input :confirmed_by, :label => "Confirmed By:", class: 'col-md-4' %>
 
+		<div id="myButton" class="pull-left">
+                      <%= link_to '<< Back' , url_for(:action => 'index', :controller => 'referral', :child_id => @child.id), :class => 'btn btn-primary btn-default' %>
+        </div>
 		<div class="pull-right">
           <%= f.button :submit, 'CREATE ', class: 'btn btn-primary btn-lg' %>
       	</div>

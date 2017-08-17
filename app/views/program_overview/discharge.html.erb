@@ -31,12 +31,16 @@
                 <td> <%= @discharge.count   rescue nil %></td>
           	</tr>
        		<tr>
-        	 	<td>Cure rate= <%= (@child_cured.count/@discharge.count)* 100 %> %</td>
-              	<td>Death rate = <%= (@child_dead.count/@discharge.count)* 100 %> %</td>
-              	<td>Default rate = <%= (@child_defaulted.count/@discharge.count)* 100 %> %</td>
-              	<td>Non-response rate = <%= (@child_nonresponse.count/@discharge.count)* 100 %>  %</td>
+
+            <% if @discharge.count != 0 %>
+             <td>Cure rate= <%= (@child_cured.count/@discharge.count)* 100 %> %</td>
+                <td>Death rate = <%= (@child_dead.count/@discharge.count)* 100 %> %</td>
+                <td>Default rate = <%= (@child_defaulted.count/@discharge.count)* 100 %> %</td>
+                <td>Non-response rate = <%= (@child_nonresponse.count/@discharge.count)* 100 %>  %</td>
               <td colspan="3"></td>
-              	
+                 
+            <% end %>
+        	 	
             </tr>
         </tbody>
    

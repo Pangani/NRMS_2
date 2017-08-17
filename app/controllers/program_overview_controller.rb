@@ -13,7 +13,7 @@ class ProgramOverviewController < ApplicationController
       @child_dead = Discharge.joins(:child).while_dead
       @child_defaulted = Discharge.joins(:child).while_defaulted
       @child_nonresponse = Discharge.joins(:child).while_nonresponse
-      @child_transferred= Discharge.joins(:child).while_transferred
+      @child_transferred = Discharge.joins(:child).while_transferred
 
   end
 

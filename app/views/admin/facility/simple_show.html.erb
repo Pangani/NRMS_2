@@ -1,0 +1,64 @@
+<div class="jumbotron">
+<div class="dl-horizontal">
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <h3>CONFIRM DETAILS</h3>
+        </div>
+
+        <div class="panel-body">
+            <br>
+            <div class="col-md-11 col-md-offset-1">
+                <em>
+                    <div>
+                        <p>
+                            <strong>Health Centre Name : </strong>
+                            <%= @facility.name rescue nil%>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p>
+                            <strong>Health Centre Code : </strong>
+                            <%= @facility.facility_code rescue nil%>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p>
+                            <strong>Health Centre Location : </strong>
+                            <%= @facility.location rescue nil%>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p>
+                            <strong>District : </strong>
+                            <%= @facility.district rescue nil%>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <strong>Is NRU available? : </strong>
+                            <%= @facility.has_nru rescue nil%>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <strong>Is SFP available? : </strong>
+                            <%= @facility.has_sfp rescue nil%>
+                        </p>
+                    </div>
+                </em>
+            </div>
+        </div>
+        <div class="col-md-12">
+              <div class="pull-left">
+                <%= link_to 'Edit', url_for(:action => 'edit', :controller => 'facility'), class: 'btn btn-primary btn-medium'%>
+              </div>
+              <div class="pull-right">
+                <%= link_to 'CONFIRM', url_for(:action => 'index', :controller => 'facility'), class: 'btn btn-primary btn-medium'%>
+              </div>
+          </div>
+    </div>
+</div>
+</div>

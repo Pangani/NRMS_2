@@ -11,6 +11,5 @@ class Admin::DashboardController < ApplicationController
 	end
 
 	def show
-		
 	end
 end
