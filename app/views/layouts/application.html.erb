@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NRMS</title>
+  <title>OTP</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="/">NRMS</a>
+                <a class="navbar-brand topnav" href="/">Feeding Programme</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,7 +34,7 @@
                         <a href="/">Home</a>
                     </li>
                     <li>
-                      <a href="/child/check">Check-Session</a>
+                      <a href="/childmonitoring/search">Child-Monitor</a>
                     </li>
                     <li>
                       <%= link_to 'Registration', url_for(:action => 'index', :controller => 'child')  %>
@@ -62,30 +62,31 @@
 
             </div>
             <!-- /.navbar-collapse -->
-
-     
+   
         </div>
         <!-- /.container -->
   </nav>
   <% end -%>
     
- <div class="container">
+ <div class="container" style="padding-top: 10px">
 
-      <% flash.each do |severity, message| %>
-    <div data-alert class='alert-box <%= severity %>' role='dialog'>
-      <%= message %>
-      <a href='#' class='close flash-data-alert'>&times;</a>
-    </div>
-  <% end %>
+    <% flash.each do |severity, message| %>
+        <div data-alert class='alert-box <%= severity %>' role='dialog'>
+          <%= message %>
+          <a href='#' class='close flash-data-alert'>&times;</a>
+        </div>
+    <% end %>
 
-      <%= yield %>
+      <!-- WHOLE PROGRAM FITS HERE -->
+            <%= yield %>
+      <!-- HERE -->
 
-      <script>
-  $(document).click(function() {
-    $('.close.flash-data-alert').click();
-  });
-</script>
-    </div>
+    <script>
+      $(document).click(function() {
+            $('.close.flash-data-alert').click();
+          });
+    </script>
+  </div>
 
 </body>
 </html>

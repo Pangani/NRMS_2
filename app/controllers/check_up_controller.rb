@@ -75,7 +75,7 @@ private
 
 	def find_child
 		if session[:child_id]
-			@child = Child.find(session[:child_id])
+			@child = Child.find_by_id(session[:child_id])
 		end
 	end
 end

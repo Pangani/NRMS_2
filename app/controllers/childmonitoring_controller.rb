@@ -28,7 +28,7 @@ class ChildmonitoringController < ApplicationController
             child_search_term.where_clause,
             child_search_term.where_args).order(child_search_term.order).offset(PAGE_SIZE * @page).limit(PAGE_SIZE)
       else
-        @children = Child.all.limit(3)
+        @children = Child.all.limit(0)
       end
   end
 

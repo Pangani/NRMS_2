@@ -1,11 +1,6 @@
 <div class="jumbotron">
 
-	<div class="panel panel-primary panel-transparent">
-		<div class="panel-heading">
-			<h2>CHILD MONITORING</h2>
-		</div>
-	</div>
-	<br>
+			<center><h3>CHILD MONITORING</h3></center>
 	<section class="search-form">
 		<h4><i>Please ENTER the ID number for a child to monitor...</i></h4>
 		<%= form_for :children, method: :get do |f| %>
@@ -24,12 +19,15 @@
 		<% end -%>
 	</section>
 	<br>
-	<div class="panelpanel-transparent ">
+	<div class="panel panel-transparent ">
 		<section class="search-results">
 			<header>
-				<h3>Results</h3>
+				<h3><i>Results</i></h3>
 			</header>
 
+				<i> <%= @children.count %> result(s) is shown...</i>
+
+			<hr>
 			<ol class="list-group">
 				<% @children.each do |child| %>
 					<li class="list-group-item list-group-item-info clearfix">
@@ -42,16 +40,30 @@
 						
 						<h6><i>Guardian: <%= child.guardian_name  %></i></h6>
 						<div class="pull-right">
-				          <%= link_to 'Monitor', url_for(:action => 'index' ,:controller => 'childmonitoring', :child_id => child.id ) , :class => "btn btn-primary btn-default" %>
+							<% session[:child_id] = child.id %>
+				            <%= link_to 'Follow-up', url_for(:controller => 'check_up', :action => 'summary' , :child_id => child.id ) , :class => "btn btn-primary btn-default" %>
 				       </div>
 					</li>
 				<% end %>
 			</ol>
 
+			<% if (@children.length < 1 ) %>
+
+				<div class="row">
+	              <div class="col-xs-6">
+	                  <h5>Total children  registered by Day</h5>
+	                  <%= line_chart Child.group_by_day(:created_at).reverse_order.count %>
+	              </div>
+	         
+	              <div class="col-xs-6">
+	                  <h5>Total Visits by Village</h5>
+	                  <%= pie_chart Child.group(:village).count %>
+	              </div>
+	            </div>
+          	<% end -%>
+
 		</section>
 	</div>	
-		
-	<br><br>
 	<hr>
 	<!-- <p>
 		The search algorithm will be done using: <br>
