@@ -31,9 +31,15 @@ class ChildController < ApplicationController
   end
 
 #=============================child/check===========================================================
-#Search a child for a check-up
+#Search a child for a check-up or just monitor
+
   def check
     # ----------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+    this is a search function
+    @found_person = nil
+>>>>>>> develop
 
     if params[:search]
       empty_search = params[:search].empty?

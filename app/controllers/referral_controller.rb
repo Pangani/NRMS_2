@@ -50,7 +50,7 @@ class ReferralController < ApplicationController
 	end
 
 
-	  private
+	private
 	def find_child
 	  	if session[:child_id]
 			@child = Child.find_by_id(session[:child_id])

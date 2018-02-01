@@ -9,47 +9,43 @@
 
 <br><br><br>
 
-<table id="child" class="table table-striped table-bordered" cellspacing="0"  >
-     
-        <thead>
-            <tr>
-              <th>Registration #</th>
-              <th>Name</th>
-              <th>Sex</th>
-              <th>Guardian Name</th>
-              <th>T/A</th>
-              <th>village</th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-        </thead>
+<table id="child" class="table table-striped table-bordered" cellspacing="0"  >   
+    <thead>
+        <tr>
+          <th>Registration #</th>
+          <th>Name</th>
+          <th>Sex</th>
+          <th>Guardian Name</th>
+          <th>T/A</th>
+          <th>village</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+    </thead>
+
+    <tbody style="color:#a65959" >
+              <% @child.each do |child| %>
+
+                <tr>
+                    <td><%=child.reg_number%></td>
+                    <td><%= child.full_name %></td>
+                    <td> <%=child.sex %> </td>
+                    <td><%=child.guardian_name%></td>
+                    <td><%=child.trad_authority %></td>
+                    <td> <%=child.village%>
 
 
-  <tbody style="color:#a65959" >
-            <% @child.each do |child| %>
+                     <td ><%= link_to("Show", {:action =>'show', :id =>child.id}, :class => 'fa  fa-eye fa-lg') %></td>
 
-              <tr>
-                  <td><%=child.reg_number%></td>
-                  <td><%= child.full_name %></td>
-                  <td> <%=child.sex %> </td>
-                  <td><%=child.guardian_name%></td>
-                  <td><%=child.trad_authority %></td>
-                  <td> <%=child.village%>
+                     <td> <%= link_to("Edit", {:action => 'edit', :id =>child.id}, :class => 'fa  fa-edit fa-lg ') %></td>
+                     <td><%= link_to("Delete", {:action =>'delete', :id =>child.id}, :class => 'fa  fa-trash fa-lg') %>
+                      
+                     </td>
 
-
-                   <td ><%= link_to("Show", {:action =>'show', :id =>child.id}, :class => 'fa  fa-eye fa-lg') %></td>
-
-                   <td> <%= link_to("Edit", {:action => 'edit', :id =>child.id}, :class => 'fa  fa-edit fa-lg ') %></td>
-                   <td><%= link_to("Delete", {:action =>'delete', :id =>child.id}, :class => 'fa  fa-trash fa-lg') %>
-                    
-                   </td>
-
-              </tr>
-            <% end %>
-
-        </tbody>
-   
+                </tr>
+              <% end %>
+    </tbody>
 </table>
 
 <hr>
